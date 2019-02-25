@@ -1,6 +1,6 @@
 ﻿namespace SKA_Inventario
 {
-    partial class FormProdutos
+    partial class FormPrincipal
     {
         /// <summary>
         /// Variável de designer necessária.
@@ -31,10 +31,15 @@
             this.btnProdutos = new System.Windows.Forms.Button();
             this.btnFiliais = new System.Windows.Forms.Button();
             this.pnlBtnProdutos = new System.Windows.Forms.Panel();
-            this.btnCadastrar = new System.Windows.Forms.Button();
-            this.btnEditar = new System.Windows.Forms.Button();
             this.btnExcluir = new System.Windows.Forms.Button();
+            this.btnEditar = new System.Windows.Forms.Button();
+            this.btnCadastrar = new System.Windows.Forms.Button();
+            this.pnlBtnFilial = new System.Windows.Forms.Panel();
+            this.btnDelFilial = new System.Windows.Forms.Button();
+            this.btnEditFilial = new System.Windows.Forms.Button();
+            this.btnCadFilial = new System.Windows.Forms.Button();
             this.pnlBtnProdutos.SuspendLayout();
+            this.pnlBtnFilial.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnProdutos
@@ -65,18 +70,17 @@
             this.pnlBtnProdutos.Controls.Add(this.btnCadastrar);
             this.pnlBtnProdutos.Location = new System.Drawing.Point(12, 41);
             this.pnlBtnProdutos.Name = "pnlBtnProdutos";
-            this.pnlBtnProdutos.Size = new System.Drawing.Size(593, 26);
+            this.pnlBtnProdutos.Size = new System.Drawing.Size(776, 397);
             this.pnlBtnProdutos.TabIndex = 2;
             // 
-            // btnCadastrar
+            // btnExcluir
             // 
-            this.btnCadastrar.Location = new System.Drawing.Point(17, 0);
-            this.btnCadastrar.Name = "btnCadastrar";
-            this.btnCadastrar.Size = new System.Drawing.Size(75, 23);
-            this.btnCadastrar.TabIndex = 0;
-            this.btnCadastrar.Text = "cadastrar";
-            this.btnCadastrar.UseVisualStyleBackColor = true;
-            this.btnCadastrar.Click += new System.EventHandler(this.btnCadastrar_Click);
+            this.btnExcluir.Location = new System.Drawing.Point(183, 0);
+            this.btnExcluir.Name = "btnExcluir";
+            this.btnExcluir.Size = new System.Drawing.Size(75, 23);
+            this.btnExcluir.TabIndex = 2;
+            this.btnExcluir.Text = "excluir";
+            this.btnExcluir.UseVisualStyleBackColor = true;
             // 
             // btnEditar
             // 
@@ -88,26 +92,68 @@
             this.btnEditar.UseVisualStyleBackColor = true;
             this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
-            // btnExcluir
+            // btnCadastrar
             // 
-            this.btnExcluir.Location = new System.Drawing.Point(183, 0);
-            this.btnExcluir.Name = "btnExcluir";
-            this.btnExcluir.Size = new System.Drawing.Size(75, 23);
-            this.btnExcluir.TabIndex = 2;
-            this.btnExcluir.Text = "excluir";
-            this.btnExcluir.UseVisualStyleBackColor = true;
+            this.btnCadastrar.Location = new System.Drawing.Point(17, 0);
+            this.btnCadastrar.Name = "btnCadastrar";
+            this.btnCadastrar.Size = new System.Drawing.Size(75, 23);
+            this.btnCadastrar.TabIndex = 0;
+            this.btnCadastrar.Text = "cadastrar";
+            this.btnCadastrar.UseVisualStyleBackColor = true;
+            this.btnCadastrar.Click += new System.EventHandler(this.btnCadastrar_Click);
             // 
-            // FormProdutos
+            // pnlBtnFilial
+            // 
+            this.pnlBtnFilial.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlBtnFilial.Controls.Add(this.btnDelFilial);
+            this.pnlBtnFilial.Controls.Add(this.btnEditFilial);
+            this.pnlBtnFilial.Controls.Add(this.btnCadFilial);
+            this.pnlBtnFilial.Location = new System.Drawing.Point(12, 41);
+            this.pnlBtnFilial.Name = "pnlBtnFilial";
+            this.pnlBtnFilial.Size = new System.Drawing.Size(776, 397);
+            this.pnlBtnFilial.TabIndex = 3;
+            // 
+            // btnDelFilial
+            // 
+            this.btnDelFilial.Location = new System.Drawing.Point(183, 0);
+            this.btnDelFilial.Name = "btnDelFilial";
+            this.btnDelFilial.Size = new System.Drawing.Size(75, 23);
+            this.btnDelFilial.TabIndex = 2;
+            this.btnDelFilial.Text = "excluir";
+            this.btnDelFilial.UseVisualStyleBackColor = true;
+            // 
+            // btnEditFilial
+            // 
+            this.btnEditFilial.Location = new System.Drawing.Point(100, 0);
+            this.btnEditFilial.Name = "btnEditFilial";
+            this.btnEditFilial.Size = new System.Drawing.Size(75, 23);
+            this.btnEditFilial.TabIndex = 1;
+            this.btnEditFilial.Text = "editar";
+            this.btnEditFilial.UseVisualStyleBackColor = true;
+            // 
+            // btnCadFilial
+            // 
+            this.btnCadFilial.Location = new System.Drawing.Point(17, 0);
+            this.btnCadFilial.Name = "btnCadFilial";
+            this.btnCadFilial.Size = new System.Drawing.Size(75, 23);
+            this.btnCadFilial.TabIndex = 0;
+            this.btnCadFilial.Text = "cadastrar";
+            this.btnCadFilial.UseVisualStyleBackColor = true;
+            this.btnCadFilial.Click += new System.EventHandler(this.btnCadFilial_Click);
+            // 
+            // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.pnlBtnFilial);
             this.Controls.Add(this.pnlBtnProdutos);
             this.Controls.Add(this.btnFiliais);
             this.Controls.Add(this.btnProdutos);
-            this.Name = "FormProdutos";
-            this.Text = "Produtos";
+            this.Name = "FormPrincipal";
+            this.Text = "SKA Inventário";
             this.pnlBtnProdutos.ResumeLayout(false);
+            this.pnlBtnFilial.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -120,6 +166,10 @@
         private System.Windows.Forms.Button btnCadastrar;
         private System.Windows.Forms.Button btnExcluir;
         private System.Windows.Forms.Button btnEditar;
+        private System.Windows.Forms.Panel pnlBtnFilial;
+        private System.Windows.Forms.Button btnDelFilial;
+        private System.Windows.Forms.Button btnEditFilial;
+        private System.Windows.Forms.Button btnCadFilial;
     }
 }
 

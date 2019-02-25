@@ -16,7 +16,7 @@ namespace SKA_Inventario
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormProdutos());
+            Application.Run(new FormPrincipal());
         }
     }
 }

@@ -2,7 +2,6 @@ C:\Users\SKA\Documents\Análise Sistema de Inventário\SKA_Inventario\SKA_Invent
 C:\Users\SKA\Documents\Análise Sistema de Inventário\SKA_Inventario\SKA_Inventario\bin\Debug\SKA_Inventario.exe
 C:\Users\SKA\Documents\Análise Sistema de Inventário\SKA_Inventario\SKA_Inventario\bin\Debug\SKA_Inventario.pdb
 C:\Users\SKA\Documents\Análise Sistema de Inventário\SKA_Inventario\SKA_Inventario\obj\Debug\SKA_Inventario.csprojAssemblyReference.cache
-C:\Users\SKA\Documents\Análise Sistema de Inventário\SKA_Inventario\SKA_Inventario\obj\Debug\SKA_Inventario.FormProdutos.resources
 C:\Users\SKA\Documents\Análise Sistema de Inventário\SKA_Inventario\SKA_Inventario\obj\Debug\SKA_Inventario.Properties.Resources.resources
 C:\Users\SKA\Documents\Análise Sistema de Inventário\SKA_Inventario\SKA_Inventario\obj\Debug\SKA_Inventario.csproj.GenerateResource.cache
 C:\Users\SKA\Documents\Análise Sistema de Inventário\SKA_Inventario\SKA_Inventario\obj\Debug\SKA_Inventario.csproj.CoreCompileInputs.cache
@@ -10,3 +9,5 @@ C:\Users\SKA\Documents\Análise Sistema de Inventário\SKA_Inventario\SKA_Invent
 C:\Users\SKA\Documents\Análise Sistema de Inventário\SKA_Inventario\SKA_Inventario\obj\Debug\SKA_Inventario.pdb
 C:\Users\SKA\Documents\Análise Sistema de Inventário\SKA_Inventario\SKA_Inventario\obj\Debug\SKA_Inventario.FormCadPrdt.resources
 C:\Users\SKA\Documents\Análise Sistema de Inventário\SKA_Inventario\SKA_Inventario\obj\Debug\SKA_Inventario.FormEdtPrdt.resources
+C:\Users\SKA\Documents\Análise Sistema de Inventário\SKA_Inventario\SKA_Inventario\obj\Debug\SKA_Inventario.FormCadFilial.resources
+C:\Users\SKA\Documents\Análise Sistema de Inventário\SKA_Inventario\SKA_Inventario\obj\Debug\SKA_Inventario.FormPrincipal.resources
