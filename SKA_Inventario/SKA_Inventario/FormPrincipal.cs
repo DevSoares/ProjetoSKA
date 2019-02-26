@@ -54,5 +54,6 @@ namespace SKA_Inventario
             FormCadFilial formCadFilial = new FormCadFilial();
             formCadFilial.Show();
         }
+
     }
 }
