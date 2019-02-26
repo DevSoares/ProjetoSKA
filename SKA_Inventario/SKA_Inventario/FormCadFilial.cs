@@ -21,9 +21,10 @@ namespace SKA_Inventario
         private void btnOK_Click(object sender, EventArgs e)
         {
 
-            string connString = "Server=DESKTOP-FP3Q8AQ\\SQLEXPRESS2008; Database=ProjectSKA; User Id=SQL_PROJECT_SKA;Password=Dev0test@;";
+            
             try
             {
+                string connString = "Server=DESKTOP-FP3Q8AQ\\SQLEXPRESS2008; Database=ProjectSKA; User Id=SQL_PROJECT_SKA;Password=Dev0test@;";
                 using (SqlConnection connection = new SqlConnection(connString))
                 {
                     //  abrindo a conexão com o servidor sql

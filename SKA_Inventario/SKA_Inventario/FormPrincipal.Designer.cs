@@ -35,11 +35,13 @@
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnCadastrar = new System.Windows.Forms.Button();
             this.pnlBtnFilial = new System.Windows.Forms.Panel();
+            this.dataGVFilial = new System.Windows.Forms.DataGridView();
             this.btnDelFilial = new System.Windows.Forms.Button();
             this.btnEditFilial = new System.Windows.Forms.Button();
             this.btnCadFilial = new System.Windows.Forms.Button();
             this.pnlBtnProdutos.SuspendLayout();
             this.pnlBtnFilial.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGVFilial)).BeginInit();
             this.SuspendLayout();
             // 
             // btnProdutos
@@ -105,6 +107,7 @@
             // pnlBtnFilial
             // 
             this.pnlBtnFilial.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlBtnFilial.Controls.Add(this.dataGVFilial);
             this.pnlBtnFilial.Controls.Add(this.btnDelFilial);
             this.pnlBtnFilial.Controls.Add(this.btnEditFilial);
             this.pnlBtnFilial.Controls.Add(this.btnCadFilial);
@@ -112,6 +115,18 @@
             this.pnlBtnFilial.Name = "pnlBtnFilial";
             this.pnlBtnFilial.Size = new System.Drawing.Size(776, 397);
             this.pnlBtnFilial.TabIndex = 3;
+            // 
+            // dataGVFilial
+            // 
+            this.dataGVFilial.AllowUserToAddRows = false;
+            this.dataGVFilial.AllowUserToDeleteRows = false;
+            this.dataGVFilial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGVFilial.Location = new System.Drawing.Point(17, 71);
+            this.dataGVFilial.MultiSelect = false;
+            this.dataGVFilial.Name = "dataGVFilial";
+            this.dataGVFilial.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGVFilial.Size = new System.Drawing.Size(706, 150);
+            this.dataGVFilial.TabIndex = 3;
             // 
             // btnDelFilial
             // 
@@ -121,6 +136,7 @@
             this.btnDelFilial.TabIndex = 2;
             this.btnDelFilial.Text = "excluir";
             this.btnDelFilial.UseVisualStyleBackColor = true;
+            this.btnDelFilial.Click += new System.EventHandler(this.btnDelFilial_Click);
             // 
             // btnEditFilial
             // 
@@ -154,6 +170,7 @@
             this.Text = "SKA Inventário";
             this.pnlBtnProdutos.ResumeLayout(false);
             this.pnlBtnFilial.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGVFilial)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -170,6 +187,7 @@
         private System.Windows.Forms.Button btnDelFilial;
         private System.Windows.Forms.Button btnEditFilial;
         private System.Windows.Forms.Button btnCadFilial;
+        private System.Windows.Forms.DataGridView dataGVFilial;
     }
 }
 
