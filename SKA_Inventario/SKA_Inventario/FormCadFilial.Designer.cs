@@ -43,63 +43,67 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(20, 25);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 13);
+            this.label1.Size = new System.Drawing.Size(53, 18);
             this.label1.TabIndex = 0;
             this.label1.Text = "Nome:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(20, 65);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(43, 13);
+            this.label2.Size = new System.Drawing.Size(58, 18);
             this.label2.TabIndex = 1;
             this.label2.Text = "Cidade:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(20, 105);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(64, 13);
+            this.label3.Size = new System.Drawing.Size(89, 18);
             this.label3.TabIndex = 2;
             this.label3.Text = "Logradouro:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(20, 145);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(52, 13);
+            this.label4.Size = new System.Drawing.Size(69, 18);
             this.label4.TabIndex = 3;
             this.label4.Text = "Telefone:";
             // 
             // txbNomeFilial
             // 
-            this.txbNomeFilial.Location = new System.Drawing.Point(110, 21);
+            this.txbNomeFilial.Location = new System.Drawing.Point(120, 23);
             this.txbNomeFilial.Name = "txbNomeFilial";
             this.txbNomeFilial.Size = new System.Drawing.Size(550, 20);
             this.txbNomeFilial.TabIndex = 4;
             // 
             // txbCidadeFilial
             // 
-            this.txbCidadeFilial.Location = new System.Drawing.Point(110, 61);
+            this.txbCidadeFilial.Location = new System.Drawing.Point(120, 63);
             this.txbCidadeFilial.Name = "txbCidadeFilial";
             this.txbCidadeFilial.Size = new System.Drawing.Size(550, 20);
             this.txbCidadeFilial.TabIndex = 5;
             // 
             // txbLogFilial
             // 
-            this.txbLogFilial.Location = new System.Drawing.Point(110, 101);
+            this.txbLogFilial.Location = new System.Drawing.Point(120, 103);
             this.txbLogFilial.Name = "txbLogFilial";
             this.txbLogFilial.Size = new System.Drawing.Size(550, 20);
             this.txbLogFilial.TabIndex = 6;
             // 
             // txbTelFilial
             // 
-            this.txbTelFilial.Location = new System.Drawing.Point(110, 141);
+            this.txbTelFilial.Location = new System.Drawing.Point(120, 143);
             this.txbTelFilial.Name = "txbTelFilial";
             this.txbTelFilial.Size = new System.Drawing.Size(550, 20);
             this.txbTelFilial.TabIndex = 7;
@@ -124,6 +128,7 @@
             this.btnCancelar.TabIndex = 9;
             this.btnCancelar.Text = "CANCELAR";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // FormCadFilial
             // 

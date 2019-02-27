@@ -90,31 +90,32 @@ namespace SKA_Inventario
 
         private void btnDelFilial_Click(object sender, EventArgs e)
         {
-            /*
-            int id = 0;
-            try
-            {
-                string connString = "Server=DESKTOP-FP3Q8AQ\\SQLEXPRESS2008; Database=ProjectSKA; User Id=SQL_PROJECT_SKA;Password=Dev0test@;";
-                using (SqlConnection connection = new SqlConnection(connString))
-                {
-                    //  abrindo a conexão
-                    connection.Open();
 
-                    id = dataGVFilial.Rows[dataGVFilial.CurrentRow.Index].Cells.
-
-                    SqlCommand command = new SqlCommand();
-                    
-
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            */
+            //  pegando o index da linha selecionada no datagridview
             DataGridViewRow row = this.dataGVFilial.Rows[dataGVFilial.CurrentRow.Index];
-            MessageBox.Show("DGV index: "+dataGVFilial.CurrentRow.Index.ToString()+ "row ID:"+ row.Cells["id"].Value.ToString());
+            //atribuindo novo form e passando os dados da row selecionada
+            FormDeletarFilial formDeletarFilial = new FormDeletarFilial();
+            formDeletarFilial.setGridViewID(int.Parse(row.Cells["id"].Value.ToString()));
+            formDeletarFilial.setGridViewNome(row.Cells["nome"].Value.ToString());
+            formDeletarFilial.setGridViewCidade(row.Cells["cidade"].Value.ToString());
+            formDeletarFilial.setGridViewLogradouro(row.Cells["logradouro"].Value.ToString());
+            formDeletarFilial.setGridViewTelefone(row.Cells["telefone"].Value.ToString());
+            formDeletarFilial.Show();
+                       
         }
 
+        private void btnEditFilial_Click(object sender, EventArgs e)
+        {
+            //  pegando o index da linha selecionada no datagridview
+            DataGridViewRow row = this.dataGVFilial.Rows[dataGVFilial.CurrentRow.Index];
+            //atribuindo novo form e passando os dados da row selecionada
+            FormEdtFilial formEdtFilial = new FormEdtFilial();
+            formEdtFilial.setGridViewID(int.Parse(row.Cells["id"].Value.ToString()));
+            formEdtFilial.setGridViewNome(row.Cells["nome"].Value.ToString());
+            formEdtFilial.setGridViewCidade(row.Cells["cidade"].Value.ToString());
+            formEdtFilial.setGridViewLogradouro(row.Cells["logradouro"].Value.ToString());
+            formEdtFilial.setGridViewTelefone(row.Cells["telefone"].Value.ToString());
+            formEdtFilial.Show();
+        }
     }
 }

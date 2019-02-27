@@ -146,6 +146,7 @@
             this.btnEditFilial.TabIndex = 1;
             this.btnEditFilial.Text = "editar";
             this.btnEditFilial.UseVisualStyleBackColor = true;
+            this.btnEditFilial.Click += new System.EventHandler(this.btnEditFilial_Click);
             // 
             // btnCadFilial
             // 

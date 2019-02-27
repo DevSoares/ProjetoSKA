@@ -62,5 +62,11 @@ namespace SKA_Inventario
             }
             this.Close();
         }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Operação cancelada");
+            this.Close();
+        }
     }
 }

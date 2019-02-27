@@ -46,6 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormEdtFilial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEdtFilial.Designer.cs">
+      <DependentUpon>FormEdtFilial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDeletarFilial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDeletarFilial.Designer.cs">
+      <DependentUpon>FormDeletarFilial.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,6 +89,12 @@
       <DependentUpon>ProjectSKADataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormEdtFilial.resx">
+      <DependentUpon>FormEdtFilial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDeletarFilial.resx">
+      <DependentUpon>FormDeletarFilial.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormPrincipal.resx">
       <DependentUpon>FormPrincipal.cs</DependentUpon>
     </EmbeddedResource>
