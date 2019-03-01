@@ -28,56 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnProdutos = new System.Windows.Forms.Button();
-            this.btnFiliais = new System.Windows.Forms.Button();
-            this.pnlBtnProdutos = new System.Windows.Forms.Panel();
             this.btnExcluir = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnCadastrar = new System.Windows.Forms.Button();
-            this.pnlBtnFilial = new System.Windows.Forms.Panel();
             this.dataGVFilial = new System.Windows.Forms.DataGridView();
             this.btnDelFilial = new System.Windows.Forms.Button();
             this.btnEditFilial = new System.Windows.Forms.Button();
             this.btnCadFilial = new System.Windows.Forms.Button();
-            this.pnlBtnProdutos.SuspendLayout();
-            this.pnlBtnFilial.SuspendLayout();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.dataGVProdutos = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dataGVFilial)).BeginInit();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGVProdutos)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btnProdutos
-            // 
-            this.btnProdutos.Location = new System.Drawing.Point(12, 12);
-            this.btnProdutos.Name = "btnProdutos";
-            this.btnProdutos.Size = new System.Drawing.Size(75, 23);
-            this.btnProdutos.TabIndex = 0;
-            this.btnProdutos.Text = "Produtos";
-            this.btnProdutos.UseVisualStyleBackColor = true;
-            this.btnProdutos.Click += new System.EventHandler(this.btnProdutos_Click);
-            // 
-            // btnFiliais
-            // 
-            this.btnFiliais.Location = new System.Drawing.Point(113, 12);
-            this.btnFiliais.Name = "btnFiliais";
-            this.btnFiliais.Size = new System.Drawing.Size(75, 23);
-            this.btnFiliais.TabIndex = 1;
-            this.btnFiliais.Text = "Filiais";
-            this.btnFiliais.UseVisualStyleBackColor = true;
-            this.btnFiliais.Click += new System.EventHandler(this.btnFiliais_Click);
-            // 
-            // pnlBtnProdutos
-            // 
-            this.pnlBtnProdutos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlBtnProdutos.Controls.Add(this.btnExcluir);
-            this.pnlBtnProdutos.Controls.Add(this.btnEditar);
-            this.pnlBtnProdutos.Controls.Add(this.btnCadastrar);
-            this.pnlBtnProdutos.Location = new System.Drawing.Point(12, 41);
-            this.pnlBtnProdutos.Name = "pnlBtnProdutos";
-            this.pnlBtnProdutos.Size = new System.Drawing.Size(776, 397);
-            this.pnlBtnProdutos.TabIndex = 2;
             // 
             // btnExcluir
             // 
-            this.btnExcluir.Location = new System.Drawing.Point(183, 0);
+            this.btnExcluir.Location = new System.Drawing.Point(168, 11);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(75, 23);
             this.btnExcluir.TabIndex = 2;
@@ -86,7 +58,7 @@
             // 
             // btnEditar
             // 
-            this.btnEditar.Location = new System.Drawing.Point(100, 0);
+            this.btnEditar.Location = new System.Drawing.Point(87, 11);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(75, 23);
             this.btnEditar.TabIndex = 1;
@@ -96,7 +68,7 @@
             // 
             // btnCadastrar
             // 
-            this.btnCadastrar.Location = new System.Drawing.Point(17, 0);
+            this.btnCadastrar.Location = new System.Drawing.Point(6, 11);
             this.btnCadastrar.Name = "btnCadastrar";
             this.btnCadastrar.Size = new System.Drawing.Size(75, 23);
             this.btnCadastrar.TabIndex = 0;
@@ -104,24 +76,12 @@
             this.btnCadastrar.UseVisualStyleBackColor = true;
             this.btnCadastrar.Click += new System.EventHandler(this.btnCadastrar_Click);
             // 
-            // pnlBtnFilial
-            // 
-            this.pnlBtnFilial.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlBtnFilial.Controls.Add(this.dataGVFilial);
-            this.pnlBtnFilial.Controls.Add(this.btnDelFilial);
-            this.pnlBtnFilial.Controls.Add(this.btnEditFilial);
-            this.pnlBtnFilial.Controls.Add(this.btnCadFilial);
-            this.pnlBtnFilial.Location = new System.Drawing.Point(12, 41);
-            this.pnlBtnFilial.Name = "pnlBtnFilial";
-            this.pnlBtnFilial.Size = new System.Drawing.Size(776, 397);
-            this.pnlBtnFilial.TabIndex = 3;
-            // 
             // dataGVFilial
             // 
             this.dataGVFilial.AllowUserToAddRows = false;
             this.dataGVFilial.AllowUserToDeleteRows = false;
             this.dataGVFilial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGVFilial.Location = new System.Drawing.Point(17, 71);
+            this.dataGVFilial.Location = new System.Drawing.Point(6, 40);
             this.dataGVFilial.MultiSelect = false;
             this.dataGVFilial.Name = "dataGVFilial";
             this.dataGVFilial.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -130,7 +90,7 @@
             // 
             // btnDelFilial
             // 
-            this.btnDelFilial.Location = new System.Drawing.Point(183, 0);
+            this.btnDelFilial.Location = new System.Drawing.Point(168, 11);
             this.btnDelFilial.Name = "btnDelFilial";
             this.btnDelFilial.Size = new System.Drawing.Size(75, 23);
             this.btnDelFilial.TabIndex = 2;
@@ -140,7 +100,7 @@
             // 
             // btnEditFilial
             // 
-            this.btnEditFilial.Location = new System.Drawing.Point(100, 0);
+            this.btnEditFilial.Location = new System.Drawing.Point(87, 8);
             this.btnEditFilial.Name = "btnEditFilial";
             this.btnEditFilial.Size = new System.Drawing.Size(75, 23);
             this.btnEditFilial.TabIndex = 1;
@@ -150,7 +110,7 @@
             // 
             // btnCadFilial
             // 
-            this.btnCadFilial.Location = new System.Drawing.Point(17, 0);
+            this.btnCadFilial.Location = new System.Drawing.Point(6, 7);
             this.btnCadFilial.Name = "btnCadFilial";
             this.btnCadFilial.Size = new System.Drawing.Size(75, 23);
             this.btnCadFilial.TabIndex = 0;
@@ -158,37 +118,97 @@
             this.btnCadFilial.UseVisualStyleBackColor = true;
             this.btnCadFilial.Click += new System.EventHandler(this.btnCadFilial_Click);
             // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Location = new System.Drawing.Point(3, 3);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(850, 640);
+            this.tabControl1.TabIndex = 4;
+            this.tabControl1.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControl1_Selected);
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.dataGVProdutos);
+            this.tabPage1.Controls.Add(this.btnExcluir);
+            this.tabPage1.Controls.Add(this.btnCadastrar);
+            this.tabPage1.Controls.Add(this.btnEditar);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(842, 614);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Produtos";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.btnDelFilial);
+            this.tabPage2.Controls.Add(this.dataGVFilial);
+            this.tabPage2.Controls.Add(this.btnEditFilial);
+            this.tabPage2.Controls.Add(this.btnCadFilial);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(842, 614);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Filiais";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(842, 614);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Movimentações";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView1
+            // 
+            this.dataGVProdutos.AllowUserToAddRows = false;
+            this.dataGVProdutos.AllowUserToDeleteRows = false;
+            this.dataGVProdutos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGVProdutos.Location = new System.Drawing.Point(6, 49);
+            this.dataGVProdutos.Name = "dataGridView1";
+            this.dataGVProdutos.ReadOnly = true;
+            this.dataGVProdutos.Size = new System.Drawing.Size(729, 150);
+            this.dataGVProdutos.TabIndex = 3;
+            // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.pnlBtnFilial);
-            this.Controls.Add(this.pnlBtnProdutos);
-            this.Controls.Add(this.btnFiliais);
-            this.Controls.Add(this.btnProdutos);
+            this.ClientSize = new System.Drawing.Size(884, 641);
+            this.Controls.Add(this.tabControl1);
             this.Name = "FormPrincipal";
             this.Text = "SKA Inventário";
-            this.pnlBtnProdutos.ResumeLayout(false);
-            this.pnlBtnFilial.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGVFilial)).EndInit();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGVProdutos)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnProdutos;
-        private System.Windows.Forms.Button btnFiliais;
-        private System.Windows.Forms.Panel pnlBtnProdutos;
         private System.Windows.Forms.Button btnCadastrar;
         private System.Windows.Forms.Button btnExcluir;
         private System.Windows.Forms.Button btnEditar;
-        private System.Windows.Forms.Panel pnlBtnFilial;
         private System.Windows.Forms.Button btnDelFilial;
         private System.Windows.Forms.Button btnEditFilial;
         private System.Windows.Forms.Button btnCadFilial;
         private System.Windows.Forms.DataGridView dataGVFilial;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.DataGridView dataGVProdutos;
     }
 }
 
