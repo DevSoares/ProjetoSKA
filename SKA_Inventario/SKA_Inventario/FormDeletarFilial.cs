@@ -18,6 +18,7 @@ namespace SKA_Inventario
         private string gridViewCidade;
         private string gridViewLogradouro;
         private string gridViewTelefone;
+        private ConManager conManager = new ConManager();
 
         protected override void OnLoad(EventArgs e)
         {
@@ -33,8 +34,8 @@ namespace SKA_Inventario
 
         private void setLabels()
         {
-            lblNomeFilial.Text = "Nome: "+ getGridViewNome();
             lblIDFilial.Text = "ID: "+ getGridViewID().ToString();
+            lblNomeFilial.Text = "Nome: "+ getGridViewNome();
             lblCidadeFilial.Text = "Cidade: " + getGridViewCidade();
             lblLogradouroFilial.Text = "Logradouro: "+getGridViewLogradouro();
             lblTelefoneFilial.Text = "Telefone: "+getGridViewTelefone();
@@ -42,39 +43,17 @@ namespace SKA_Inventario
         
         private void btnConfirmarExclusao_Click(object sender, EventArgs e)
         {
-            
-            string msgDelConf = "Filial excluída!!\n Nome: " + getGridViewNome() + "\n ID: " + getGridViewID().ToString();
-            try
-            {
-                string connString = "Server=DESKTOP-FP3Q8AQ\\SQLEXPRESS2008; Database=ProjectSKA; User Id=SQL_PROJECT_SKA;Password=Dev0test@;";
-                using (SqlConnection connection = new SqlConnection(connString))
-                {
-                    //  abrindo a conexão
-                    connection.Open();
-                    //  configurando o parametro de exclusão
-                    SqlParameter paramID = new SqlParameter("@paramID", SqlDbType.Int);
-                    paramID.Value = getGridViewID();
-
-                    //  configurando o sqlCommand
-                    SqlCommand command = new SqlCommand();
-                    //  adicionando o parametro
-                    command.Parameters.Add(paramID);
-                    command.Connection = connection;
-                    command.CommandText = "DELETE FROM Filiais WHERE id=@paramID";
-                    command.CommandType = CommandType.Text;
-
-                    command.ExecuteNonQuery();
-                    MessageBox.Show(msgDelConf);
-
-                    connection.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            conManager.DeletarFilial(gridViewID, gridViewNome);            
             this.Close();
         }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Operação cancelada");
+            this.Close();
+        }
+
+        //
         //  sets e gets das propriedades resgatadas do gridview
         public void setGridViewID(int newID)
         {
@@ -115,12 +94,6 @@ namespace SKA_Inventario
         public string getGridViewTelefone()
         {
             return this.gridViewTelefone;
-        }
-
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Operação cancelada");
-            this.Close();
-        }
+        }       
     }
 }

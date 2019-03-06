@@ -32,13 +32,12 @@
             this.lblNomePrdt = new System.Windows.Forms.Label();
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.cbxFiliaisPrdt = new System.Windows.Forms.ComboBox();
-            this.lblFilialCadPrdt = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txbNomePrdt
             // 
             this.txbNomePrdt.Location = new System.Drawing.Point(134, 30);
+            this.txbNomePrdt.MaxLength = 50;
             this.txbNomePrdt.Name = "txbNomePrdt";
             this.txbNomePrdt.Size = new System.Drawing.Size(394, 20);
             this.txbNomePrdt.TabIndex = 0;
@@ -55,48 +54,31 @@
             // btnOK
             // 
             this.btnOK.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnOK.Location = new System.Drawing.Point(122, 149);
+            this.btnOK.Location = new System.Drawing.Point(185, 90);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 2;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // btnCancelar
             // 
             this.btnCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCancelar.Location = new System.Drawing.Point(340, 149);
+            this.btnCancelar.Location = new System.Drawing.Point(360, 90);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 3;
             this.btnCancelar.Text = "CANCELAR";
             this.btnCancelar.UseVisualStyleBackColor = true;
-            // 
-            // cbxFiliaisPrdt
-            // 
-            this.cbxFiliaisPrdt.FormattingEnabled = true;
-            this.cbxFiliaisPrdt.Location = new System.Drawing.Point(134, 72);
-            this.cbxFiliaisPrdt.Name = "cbxFiliaisPrdt";
-            this.cbxFiliaisPrdt.Size = new System.Drawing.Size(394, 21);
-            this.cbxFiliaisPrdt.TabIndex = 4;
-            // 
-            // lblFilialCadPrdt
-            // 
-            this.lblFilialCadPrdt.AutoSize = true;
-            this.lblFilialCadPrdt.Location = new System.Drawing.Point(48, 75);
-            this.lblFilialCadPrdt.Name = "lblFilialCadPrdt";
-            this.lblFilialCadPrdt.Size = new System.Drawing.Size(27, 13);
-            this.lblFilialCadPrdt.TabIndex = 5;
-            this.lblFilialCadPrdt.Text = "Filial";
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // FormCadPrdt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(604, 241);
-            this.Controls.Add(this.lblFilialCadPrdt);
-            this.Controls.Add(this.cbxFiliaisPrdt);
+            this.ClientSize = new System.Drawing.Size(604, 151);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.lblNomePrdt);
@@ -114,7 +96,5 @@
         private System.Windows.Forms.Label lblNomePrdt;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.ComboBox cbxFiliaisPrdt;
-        private System.Windows.Forms.Label lblFilialCadPrdt;
     }
 }

@@ -13,3 +13,4 @@ C:\Users\SKA\Documents\Análise Sistema de Inventário\SKA_Inventario\SKA_Invent
 C:\Users\SKA\Documents\Análise Sistema de Inventário\SKA_Inventario\SKA_Inventario\obj\Debug\SKA_Inventario.FormPrincipal.resources
 C:\Users\SKA\Documents\Análise Sistema de Inventário\SKA_Inventario\SKA_Inventario\obj\Debug\SKA_Inventario.FormDeletarFilial.resources
 C:\Users\SKA\Documents\Análise Sistema de Inventário\SKA_Inventario\SKA_Inventario\obj\Debug\SKA_Inventario.FormEdtFilial.resources
+C:\Users\SKA\Documents\Análise Sistema de Inventário\SKA_Inventario\SKA_Inventario\obj\Debug\SKA_Inventario.FormDeletarPrdt.resources

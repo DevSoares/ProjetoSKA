@@ -83,6 +83,7 @@
             // txbNomeFilial
             // 
             this.txbNomeFilial.Location = new System.Drawing.Point(120, 23);
+            this.txbNomeFilial.MaxLength = 50;
             this.txbNomeFilial.Name = "txbNomeFilial";
             this.txbNomeFilial.Size = new System.Drawing.Size(550, 20);
             this.txbNomeFilial.TabIndex = 4;
@@ -90,6 +91,7 @@
             // txbCidadeFilial
             // 
             this.txbCidadeFilial.Location = new System.Drawing.Point(120, 63);
+            this.txbCidadeFilial.MaxLength = 50;
             this.txbCidadeFilial.Name = "txbCidadeFilial";
             this.txbCidadeFilial.Size = new System.Drawing.Size(550, 20);
             this.txbCidadeFilial.TabIndex = 5;
@@ -97,6 +99,7 @@
             // txbLogFilial
             // 
             this.txbLogFilial.Location = new System.Drawing.Point(120, 103);
+            this.txbLogFilial.MaxLength = 50;
             this.txbLogFilial.Name = "txbLogFilial";
             this.txbLogFilial.Size = new System.Drawing.Size(550, 20);
             this.txbLogFilial.TabIndex = 6;
@@ -104,6 +107,7 @@
             // txbTelFilial
             // 
             this.txbTelFilial.Location = new System.Drawing.Point(120, 143);
+            this.txbTelFilial.MaxLength = 50;
             this.txbTelFilial.Name = "txbTelFilial";
             this.txbTelFilial.Size = new System.Drawing.Size(550, 20);
             this.txbTelFilial.TabIndex = 7;

@@ -47,6 +47,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConManager.cs" />
+    <Compile Include="FormDeletarPrdt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDeletarPrdt.Designer.cs">
+      <DependentUpon>FormDeletarPrdt.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormEdtFilial.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +96,9 @@
       <DependentUpon>ProjectSKADataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormDeletarPrdt.resx">
+      <DependentUpon>FormDeletarPrdt.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormEdtFilial.resx">
       <DependentUpon>FormEdtFilial.cs</DependentUpon>
     </EmbeddedResource>

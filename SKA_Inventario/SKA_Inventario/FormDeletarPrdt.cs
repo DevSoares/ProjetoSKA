@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace SKA_Inventario
 {
-    public partial class FormEdtPrdt : Form
+    public partial class FormDeletarPrdt : Form
     {
         private int gridViewID;
         private string gridViewNome;
@@ -23,7 +23,7 @@ namespace SKA_Inventario
             setTextBoxes();
         }
 
-        public FormEdtPrdt()
+        public FormDeletarPrdt()
         {
             InitializeComponent();
         }
@@ -32,19 +32,7 @@ namespace SKA_Inventario
         {
             txbNomePrdt.Text = getGridViewNome();
             txbCodPrdt.Text = getGridViewID().ToString();
-            txbDataPrdt.Text = getGridViewDataCadastro();            
-        }
-
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Operação cancelada!");
-            this.Close();
-        }
-
-        private void btnOK_Click(object sender, EventArgs e)
-        {
-            conManager.editarProduto(gridViewID, txbNomePrdt.Text);
-            this.Close();
+            txbDataPrdt.Text = getGridViewDataCadastro();
         }
 
         //
@@ -69,11 +57,22 @@ namespace SKA_Inventario
         public void setGridViewDataCadastro(string newDataCadastro)
         {
             this.gridViewDataCadastro = newDataCadastro;
-        }       
+        }
         public string getGridViewDataCadastro()
         {
             return this.gridViewDataCadastro;
         }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            conManager.deletarProduto(gridViewID,gridViewNome);
+            this.Close();
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Operação cancelada!");
+            this.Close();
+        }
     }
 }
-
