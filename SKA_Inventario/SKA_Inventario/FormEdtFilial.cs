@@ -18,6 +18,8 @@ namespace SKA_Inventario
         private string gridViewCidade;
         private string gridViewLogradouro;
         private string gridViewTelefone;
+        private ConManager conManager = new ConManager();
+        
 
         protected override void OnLoad(EventArgs e)
         {
@@ -44,7 +46,15 @@ namespace SKA_Inventario
             this.Close();
         }
 
+        private void btnAplicar_Click(object sender, EventArgs e)
+        {
+            conManager.EditarFilial(this.getGridViewID(), txbNomeFilial.Text, txbCidadeFilial.Text, txbLogradouroFilial.Text, txbTelefoneFilial.Text);
+            this.Close();
+        }
+
+        //
         //  sets e gets das propriedades resgatadas do gridview
+        //
         public void setGridViewID(int newID)
         {
             gridViewID = newID;
@@ -84,55 +94,6 @@ namespace SKA_Inventario
         public string getGridViewTelefone()
         {
             return this.gridViewTelefone;
-        }
-
-        private void btnAplicar_Click(object sender, EventArgs e)
-        {
-
-            string msgDelConf = "Filial editada!!\n Nome: " + txbNomeFilial.Text + "\n ID: " + getGridViewID().ToString();
-            try
-            {
-                string connString = "Server=DESKTOP-FP3Q8AQ\\SQLEXPRESS2008; Database=ProjectSKA; User Id=SQL_PROJECT_SKA;Password=Dev0test@;";
-                using (SqlConnection connection = new SqlConnection(connString))
-                {
-                    //  abrindo a conexão
-                    connection.Open();
-                    //  configurando o parametro de exclusão
-                    SqlParameter paramID = new SqlParameter("@ParamID", SqlDbType.Int);
-                    paramID.Value = getGridViewID();
-                    SqlParameter paramNome = new SqlParameter("@ParamNome", SqlDbType.NVarChar,50);
-                    paramNome.Value = txbNomeFilial.Text;
-                    SqlParameter paramCidade = new SqlParameter("@ParamCidade", SqlDbType.NVarChar, 50);
-                    paramCidade.Value = txbCidadeFilial.Text;
-                    SqlParameter paramLogradouro = new SqlParameter("@ParamLogradouro", SqlDbType.NVarChar, 50);
-                    paramLogradouro.Value = txbLogradouroFilial.Text;
-                    SqlParameter paramTelefone = new SqlParameter("@ParamTelefone", SqlDbType.NVarChar, 50);
-                    paramTelefone.Value = txbTelefoneFilial.Text;
-
-                    //  configurando o sqlCommand
-                    SqlCommand command = new SqlCommand();
-                    //  adicionando parametros
-                    command.Parameters.Add(paramID);
-                    command.Parameters.Add(paramNome);
-                    command.Parameters.Add(paramCidade);
-                    command.Parameters.Add(paramLogradouro);
-                    command.Parameters.Add(paramTelefone);
-
-                    command.Connection = connection;
-                    command.CommandText = "UPDATE Filiais SET nome=@ParamNome, cidade=@ParamCidade, logradouro=@ParamLogradouro, telefone=@ParamTelefone WHERE id=@paramID";
-                    command.CommandType = CommandType.Text;
-
-                    command.ExecuteNonQuery();
-                    MessageBox.Show(msgDelConf);
-
-                    connection.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            this.Close();
-        }
+        }       
     }
 }

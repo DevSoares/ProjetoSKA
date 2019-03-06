@@ -30,8 +30,8 @@
         {
             this.btnConfirmarExclusao = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.lblNomeFilial = new System.Windows.Forms.Label();
             this.lblIDFilial = new System.Windows.Forms.Label();
+            this.lblNomeFilial = new System.Windows.Forms.Label();
             this.lblCidadeFilial = new System.Windows.Forms.Label();
             this.lblLogradouroFilial = new System.Windows.Forms.Label();
             this.lblTelefoneFilial = new System.Windows.Forms.Label();
@@ -58,25 +58,25 @@
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // lblNomeFilial
-            // 
-            this.lblNomeFilial.AutoSize = true;
-            this.lblNomeFilial.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNomeFilial.Location = new System.Drawing.Point(45, 20);
-            this.lblNomeFilial.Name = "lblNomeFilial";
-            this.lblNomeFilial.Size = new System.Drawing.Size(46, 18);
-            this.lblNomeFilial.TabIndex = 2;
-            this.lblNomeFilial.Text = "label1";
-            // 
             // lblIDFilial
             // 
             this.lblIDFilial.AutoSize = true;
             this.lblIDFilial.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIDFilial.Location = new System.Drawing.Point(45, 50);
+            this.lblIDFilial.Location = new System.Drawing.Point(45, 20);
             this.lblIDFilial.Name = "lblIDFilial";
             this.lblIDFilial.Size = new System.Drawing.Size(46, 18);
-            this.lblIDFilial.TabIndex = 3;
-            this.lblIDFilial.Text = "label2";
+            this.lblIDFilial.TabIndex = 2;
+            this.lblIDFilial.Text = "label1";
+            // 
+            // lblNomeFilial
+            // 
+            this.lblNomeFilial.AutoSize = true;
+            this.lblNomeFilial.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNomeFilial.Location = new System.Drawing.Point(45, 50);
+            this.lblNomeFilial.Name = "lblNomeFilial";
+            this.lblNomeFilial.Size = new System.Drawing.Size(46, 18);
+            this.lblNomeFilial.TabIndex = 3;
+            this.lblNomeFilial.Text = "label2";
             // 
             // lblCidadeFilial
             // 
@@ -117,8 +117,8 @@
             this.Controls.Add(this.lblTelefoneFilial);
             this.Controls.Add(this.lblLogradouroFilial);
             this.Controls.Add(this.lblCidadeFilial);
-            this.Controls.Add(this.lblIDFilial);
             this.Controls.Add(this.lblNomeFilial);
+            this.Controls.Add(this.lblIDFilial);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnConfirmarExclusao);
             this.Name = "FormDeletarFilial";
@@ -131,8 +131,8 @@
 
         private System.Windows.Forms.Button btnConfirmarExclusao;
         private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.Label lblNomeFilial;
         private System.Windows.Forms.Label lblIDFilial;
+        private System.Windows.Forms.Label lblNomeFilial;
         private System.Windows.Forms.Label lblCidadeFilial;
         private System.Windows.Forms.Label lblLogradouroFilial;
         private System.Windows.Forms.Label lblTelefoneFilial;

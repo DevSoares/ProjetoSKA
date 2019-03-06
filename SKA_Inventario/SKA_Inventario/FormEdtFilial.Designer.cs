@@ -46,7 +46,7 @@
             // 
             this.lblNome.AutoSize = true;
             this.lblNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNome.Location = new System.Drawing.Point(20, 20);
+            this.lblNome.Location = new System.Drawing.Point(20, 50);
             this.lblNome.Name = "lblNome";
             this.lblNome.Size = new System.Drawing.Size(53, 18);
             this.lblNome.TabIndex = 0;
@@ -56,7 +56,7 @@
             // 
             this.lblID.AutoSize = true;
             this.lblID.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblID.Location = new System.Drawing.Point(20, 50);
+            this.lblID.Location = new System.Drawing.Point(20, 20);
             this.lblID.Name = "lblID";
             this.lblID.Size = new System.Drawing.Size(26, 18);
             this.lblID.TabIndex = 1;
@@ -94,7 +94,8 @@
             // 
             // txbNomeFilial
             // 
-            this.txbNomeFilial.Location = new System.Drawing.Point(140, 18);
+            this.txbNomeFilial.Location = new System.Drawing.Point(140, 48);
+            this.txbNomeFilial.MaxLength = 50;
             this.txbNomeFilial.Name = "txbNomeFilial";
             this.txbNomeFilial.Size = new System.Drawing.Size(550, 20);
             this.txbNomeFilial.TabIndex = 5;
@@ -102,7 +103,7 @@
             // txbIDFilial
             // 
             this.txbIDFilial.Enabled = false;
-            this.txbIDFilial.Location = new System.Drawing.Point(140, 48);
+            this.txbIDFilial.Location = new System.Drawing.Point(140, 18);
             this.txbIDFilial.Name = "txbIDFilial";
             this.txbIDFilial.ReadOnly = true;
             this.txbIDFilial.Size = new System.Drawing.Size(550, 20);
@@ -111,6 +112,7 @@
             // txbCidadeFilial
             // 
             this.txbCidadeFilial.Location = new System.Drawing.Point(140, 78);
+            this.txbCidadeFilial.MaxLength = 50;
             this.txbCidadeFilial.Name = "txbCidadeFilial";
             this.txbCidadeFilial.Size = new System.Drawing.Size(550, 20);
             this.txbCidadeFilial.TabIndex = 7;
@@ -118,6 +120,7 @@
             // txbLogradouroFilial
             // 
             this.txbLogradouroFilial.Location = new System.Drawing.Point(140, 108);
+            this.txbLogradouroFilial.MaxLength = 50;
             this.txbLogradouroFilial.Name = "txbLogradouroFilial";
             this.txbLogradouroFilial.Size = new System.Drawing.Size(550, 20);
             this.txbLogradouroFilial.TabIndex = 8;
@@ -125,6 +128,7 @@
             // txbTelefoneFilial
             // 
             this.txbTelefoneFilial.Location = new System.Drawing.Point(140, 138);
+            this.txbTelefoneFilial.MaxLength = 50;
             this.txbTelefoneFilial.Name = "txbTelefoneFilial";
             this.txbTelefoneFilial.Size = new System.Drawing.Size(550, 20);
             this.txbTelefoneFilial.TabIndex = 9;
