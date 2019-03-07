@@ -190,6 +190,7 @@
             this.Controls.Add(this.tabControl1);
             this.Name = "FormPrincipal";
             this.Text = "SKA Inventário";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormPrincipal_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.dataGVFilial)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);

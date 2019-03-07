@@ -11,7 +11,61 @@ namespace SKA_Inventario
 {
     class ConManager
     {
-        private string connString;        
+        private string connString;
+
+        //
+        //  Função para criptografar a senha
+        //
+        public static string HashSHA1(string valor)
+        {
+            var sha1 = System.Security.Cryptography.SHA1.Create();
+            var inputBytes = Encoding.ASCII.GetBytes(valor);
+            var hash = sha1.ComputeHash(inputBytes);
+            var sb = new StringBuilder();
+            for (var i = 0; i < hash.Length; i++)
+            {
+                sb.Append(hash[i].ToString("X2"));
+            }
+            return sb.ToString();
+        }
+
+        //
+        //  Função para retornar o cod_usuario validando login e senha
+        //
+        public static int GetUserIdByUsernameAndPassword(string username, string password)
+        {
+            // valor padrão para retorno da função
+            int userId = 0;
+
+            SqlConnection con = new SqlConnection("Server=DESKTOP-FP3Q8AQ\\SQLEXPRESS2008; Database=ProjectSKA; User Id=SQL_PROJECT_SKA;Password=Dev0test@;");
+            using (SqlCommand cmd = new SqlCommand("SELECT cod_usuario, senha, guid_usuario FROM Usuarios WHERE usuario=@username", con))
+            {
+                cmd.Parameters.AddWithValue("@username", username);
+                con.Open();
+
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    // dr.Read() = we found user(s) with matching username!
+                    int dbUserId = Convert.ToInt32(dr["cod_usuario"]);
+                    string dbPassword = Convert.ToString(dr["senha"]);
+                    string dbUserGuid = Convert.ToString(dr["guid_usuario"]);
+                    // dr.read() pega a senha cadastrada no DB e transforma para string
+                    // o guid_usuario é recuperado do DB e atribuido como string em dbUserGuid
+                    // agora a senha fornecida pelo usuario é concatenada com a guid recuperada do servidor
+                    //então é efetuado a criptografia
+                    string hashedPassword = HashSHA1(password + dbUserGuid);
+                    // agora a senha recem criptografada é comparada com a senha criptografada no DB
+                    if (dbPassword == hashedPassword)
+                    {                        
+                        userId = dbUserId;
+                    }
+                }
+                con.Close();
+            }
+            // Retorno da função com o cod_usuario que está logado
+            return userId;
+        }
 
         //
         //  função para atualizar o GridView da tela Filiais

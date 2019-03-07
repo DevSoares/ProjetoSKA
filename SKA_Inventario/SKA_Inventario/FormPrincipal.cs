@@ -25,7 +25,7 @@ namespace SKA_Inventario
         //  buscar as informações no servidor, para isso e alterado a função OnLoad.
         protected override void OnLoad(EventArgs e)
         {
-            base.OnLoad(e);
+            base.OnLoad(e);            
             load_getProdutos();
         }
 
@@ -78,6 +78,11 @@ namespace SKA_Inventario
         private void btnExcluirProduto_Click(object sender, EventArgs e)
         {
             conManager.showFormDeletarProduto(dataGVProdutos);
+        }
+
+        public void FormPrincipal_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
