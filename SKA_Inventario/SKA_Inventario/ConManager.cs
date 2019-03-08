@@ -11,7 +11,7 @@ namespace SKA_Inventario
 {
     class ConManager
     {
-        private string connString;
+        private string connString = "Server=DESKTOP-FP3Q8AQ\\SQLEXPRESS2008; Database=ProjectSKA; User Id=SQL_PROJECT_SKA;Password=Dev0test@;";
 
         //
         //  Função para criptografar a senha
@@ -74,7 +74,6 @@ namespace SKA_Inventario
         {
             try
             {
-                this.connString = "Server=DESKTOP-FP3Q8AQ\\SQLEXPRESS2008; Database=ProjectSKA; User Id=SQL_PROJECT_SKA;Password=Dev0test@;";
                 using (SqlConnection connection = new SqlConnection(connString))
                 {
                     // abrindo conexão com o DB
@@ -112,7 +111,6 @@ namespace SKA_Inventario
         {
             try
             {
-                this.connString = "Server=DESKTOP-FP3Q8AQ\\SQLEXPRESS2008; Database=ProjectSKA; User Id=SQL_PROJECT_SKA;Password=Dev0test@;";
                 using (SqlConnection connection = new SqlConnection(connString))
                 {
                     // abrindo conexão com o DB
@@ -120,6 +118,43 @@ namespace SKA_Inventario
 
                     //definindo sqlcommand
                     string cmdQuery = "SELECT * FROM Produtos";
+                    SqlCommand sqlCommand = new SqlCommand(cmdQuery, connection);
+
+                    SqlDataAdapter dataAdapter = new SqlDataAdapter(sqlCommand);
+                    //  definindo dataSet
+                    DataSet dataSet = new DataSet();
+                    //  preenchendo o dataset com os resultados da query
+                    dataAdapter.Fill(dataSet);
+                    // definindo gridview como read-only
+                    gridView.ReadOnly = true;
+                    // preenchendo o gridview com o dataset
+                    gridView.DataSource = dataSet.Tables[0];
+                    connection.Close();
+                    return gridView;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return gridView;
+            }
+        }
+
+        //
+        //  Função para atualizar as opções do gridview de cadastro de produto
+        //
+        public DataGridView GetGridViewFiliais(DataGridView gridView)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connString))
+                {
+                    // abrindo conexão com o DB
+                    connection.Open();
+
+                    //definindo sqlcommand
+                    string cmdQuery = "SELECT id, nome FROM Filiais";
                     SqlCommand sqlCommand = new SqlCommand(cmdQuery, connection);
 
                     SqlDataAdapter dataAdapter = new SqlDataAdapter(sqlCommand);
@@ -315,7 +350,7 @@ namespace SKA_Inventario
         // Função para cadastrar o produto
         //
         public void CadastrarProduto(string cad_nome)
-        {
+        {            
             try
             {
                 string connString = "Server=DESKTOP-FP3Q8AQ\\SQLEXPRESS2008; Database=ProjectSKA; User Id=SQL_PROJECT_SKA;Password=Dev0test@;";
@@ -453,6 +488,63 @@ namespace SKA_Inventario
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        public static void CadPrdtMovimentar(int cd_produto, int cd_filial, int cd_usuario)
+        {
+            try
+            {
+                string connString = "Server=DESKTOP-FP3Q8AQ\\SQLEXPRESS2008; Database=ProjectSKA; User Id=SQL_PROJECT_SKA;Password=Dev0test@;";
+                using (SqlConnection connection = new SqlConnection(connString))
+                {
+                    //  abrindo a conexão
+                    connection.Open();               
+                    //  configurando o sqlCommand
+                    SqlCommand command = new SqlCommand();
+                    //  adicionando o parametro
+                    command.Parameters.AddWithValue("@cd_usuario", cd_usuario);
+                    command.Parameters.AddWithValue("@cd_produto", cd_produto);
+                    command.Parameters.AddWithValue("@cd_filial", cd_filial);
+                    command.Connection = connection;
+                    command.CommandText = "INSERT INTO Movimentacoes (cd_produto, cd_usuario, cd_filial_remetente) VALUES (@cd_produto, @cd_usuario, @cd_filial);";
+                    command.CommandType = CommandType.Text;
+
+                    command.ExecuteNonQuery();                    
+                    connection.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public static int GetLastProduto()
+        {
+            int last_produto = 0;           
+            try
+            {
+                string connString = "Server=DESKTOP-FP3Q8AQ\\SQLEXPRESS2008; Database=ProjectSKA; User Id=SQL_PROJECT_SKA;Password=Dev0test@;";
+                using (SqlConnection connection = new SqlConnection(connString))
+                {    
+                    //  abrindo a conexão
+                    connection.Open();                   
+                    //  configurando o sqlCommand
+                    SqlCommand command = new SqlCommand("SELECT TOP 1 cd_produto FROM Produtos ORDER BY cd_produto DESC", connection);
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        last_produto = reader.GetInt32(0);
+                    }
+                    reader.Close();                                                          
+                    return last_produto;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            return last_produto;
         }
     }
 }

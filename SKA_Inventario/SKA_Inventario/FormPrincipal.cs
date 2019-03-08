@@ -42,30 +42,34 @@ namespace SKA_Inventario
         private void btnEditar_Click(object sender, EventArgs e)
         {
             conManager.showFormEditarProduto(dataGVProdutos);
+            load_getProdutos();
         }
 
         private void btnCadFilial_Click(object sender, EventArgs e)
         {
             FormCadFilial formCadFilial = new FormCadFilial();
             formCadFilial.Show();
+            load_getFiliais();
         }
 
         private void btnDelFilial_Click(object sender, EventArgs e)
         {
-            conManager.showFormDeletarFilial(dataGVFilial);                       
+            conManager.showFormDeletarFilial(dataGVFilial);
+            load_getFiliais();
         }
 
         private void btnEditFilial_Click(object sender, EventArgs e)
         {
             conManager.showFormEditarFilial(dataGVFilial);
+            load_getFiliais();
         }
 
         //
         //  Atualiza o gridView no formulário principal quando uma aba é selecionada
         private void tabControl1_Selected(object sender, TabControlEventArgs e)
         {
-            dataGVFilial = conManager.getFiliais(dataGVFilial);
-            dataGVProdutos = conManager.getProdutos(dataGVProdutos);
+            load_getFiliais();
+            load_getProdutos();
         }
 
         //
@@ -74,10 +78,17 @@ namespace SKA_Inventario
         {
             dataGVProdutos = conManager.getProdutos(dataGVProdutos);
         }
+        //
+        //  Atualiza apenas o gridView filiais
+        public void load_getFiliais()
+        {
+            dataGVFilial = conManager.getFiliais(dataGVFilial);
+        }
 
         private void btnExcluirProduto_Click(object sender, EventArgs e)
         {
             conManager.showFormDeletarProduto(dataGVProdutos);
+            load_getProdutos();
         }
 
         public void FormPrincipal_FormClosed(object sender, FormClosedEventArgs e)

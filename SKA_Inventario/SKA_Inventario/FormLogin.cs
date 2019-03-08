@@ -12,6 +12,13 @@ namespace SKA_Inventario
 {
     public partial class FormLogin : Form
     {
+        static int cd_usuario;
+
+        public static int get_cd_usuario()
+        {
+            return cd_usuario;
+        }      
+
         public FormLogin()
         {
             InitializeComponent();
@@ -22,6 +29,7 @@ namespace SKA_Inventario
             int cod_usuario = ConManager.GetUserIdByUsernameAndPassword(txbUsuario.Text, txbSenha.Text);
             if (cod_usuario > 0)
             {
+                cd_usuario = cod_usuario;
                 FormPrincipal formPrincipal = new FormPrincipal();
                 formPrincipal.Show();
                 formPrincipal.Text = formPrincipal.Text + " | Usuário: " + txbUsuario.Text+" |";

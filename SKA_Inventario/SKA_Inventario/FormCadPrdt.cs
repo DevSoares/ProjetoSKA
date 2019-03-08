@@ -14,14 +14,31 @@ namespace SKA_Inventario
     {
         private ConManager conManager = new ConManager();
 
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            setGridView(conManager.GetGridViewFiliais(dataGridViewFilial));
+        }
+
         public FormCadPrdt()
         {
             InitializeComponent();
         }
 
+        private void setGridView(DataGridView gridView)
+        {
+            this.dataGridViewFilial = gridView;
+        }
+
         private void btnOK_Click(object sender, EventArgs e)
         {
-            conManager.CadastrarProduto(txbNomePrdt.Text);            
+            conManager.CadastrarProduto(txbNomePrdt.Text);
+
+            DataGridViewRow row = dataGridViewFilial.Rows[dataGridViewFilial.CurrentRow.Index];
+            int cd_produto = ConManager.GetLastProduto();
+            int cd_filial = int.Parse(row.Cells["id"].Value.ToString());
+            int cd_usuario = FormLogin.get_cd_usuario();
+            ConManager.CadPrdtMovimentar(cd_produto, cd_filial, cd_usuario);
             this.Close();
         }
 
@@ -29,6 +46,6 @@ namespace SKA_Inventario
         {
             MessageBox.Show("Operação cancelada!");
             this.Close();
-        }
+        }             
     }
 }

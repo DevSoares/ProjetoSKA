@@ -96,11 +96,6 @@
       <DependentUpon>FormCadFilial.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
-    <Compile Include="ProjectSKADataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ProjectSKADataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormDeletarPrdt.resx">
       <DependentUpon>FormDeletarPrdt.cs</DependentUpon>
@@ -135,17 +130,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="ProjectSKADataSet.xsc">
-      <DependentUpon>ProjectSKADataSet.xsd</DependentUpon>
-    </None>
-    <None Include="ProjectSKADataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>ProjectSKADataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="ProjectSKADataSet.xss">
-      <DependentUpon>ProjectSKADataSet.xsd</DependentUpon>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
