@@ -35,11 +35,8 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.lblFilial = new System.Windows.Forms.Label();
             this.filiaisBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.projectSKADataSet = new SKA_Inventario.ProjectSKADataSet();
-            this.filiaisTableAdapter = new SKA_Inventario.ProjectSKADataSetTableAdapters.FiliaisTableAdapter();
             this.dataGridViewFilial = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.filiaisBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.projectSKADataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFilial)).BeginInit();
             this.SuspendLayout();
             // 
@@ -97,16 +94,7 @@
             // filiaisBindingSource
             // 
             this.filiaisBindingSource.DataMember = "Filiais";
-            this.filiaisBindingSource.DataSource = this.projectSKADataSet;
             // 
-            // projectSKADataSet
-            // 
-            this.projectSKADataSet.DataSetName = "ProjectSKADataSet";
-            this.projectSKADataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // filiaisTableAdapter
-            // 
-            this.filiaisTableAdapter.ClearBeforeFill = true;
             // 
             // dataGridViewFilial
             // 
@@ -132,7 +120,6 @@
             this.Name = "FormCadPrdt";
             this.Text = "Cadastro de Produto";
             ((System.ComponentModel.ISupportInitialize)(this.filiaisBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.projectSKADataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFilial)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -146,9 +133,7 @@
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Label lblFilial;
-        private ProjectSKADataSet projectSKADataSet;
         private System.Windows.Forms.BindingSource filiaisBindingSource;
-        private ProjectSKADataSetTableAdapters.FiliaisTableAdapter filiaisTableAdapter;
         private System.Windows.Forms.DataGridView dataGridViewFilial;
     }
 }

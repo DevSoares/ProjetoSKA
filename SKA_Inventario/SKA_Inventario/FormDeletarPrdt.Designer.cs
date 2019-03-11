@@ -36,6 +36,8 @@
             this.txbDataPrdt = new System.Windows.Forms.TextBox();
             this.btnExcluir = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.ckbDisp = new System.Windows.Forms.CheckBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -98,17 +100,17 @@
             // 
             // btnExcluir
             // 
-            this.btnExcluir.Location = new System.Drawing.Point(141, 135);
+            this.btnExcluir.Location = new System.Drawing.Point(141, 175);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(149, 23);
             this.btnExcluir.TabIndex = 6;
-            this.btnExcluir.Text = "CONFIRMAR EXCLUSÃO";
+            this.btnExcluir.Text = "ALTERAR STATUS";
             this.btnExcluir.UseVisualStyleBackColor = true;
             this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(330, 135);
+            this.btnCancelar.Location = new System.Drawing.Point(330, 175);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(149, 23);
             this.btnCancelar.TabIndex = 7;
@@ -116,12 +118,33 @@
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
+            // ckbDisp
+            // 
+            this.ckbDisp.AutoSize = true;
+            this.ckbDisp.Location = new System.Drawing.Point(210, 123);
+            this.ckbDisp.Name = "ckbDisp";
+            this.ckbDisp.Size = new System.Drawing.Size(15, 14);
+            this.ckbDisp.TabIndex = 8;
+            this.ckbDisp.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.label4.Location = new System.Drawing.Point(44, 119);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(80, 18);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Disponível:";
+            // 
             // FormDeletarPrdt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(604, 184);
+            this.ClientSize = new System.Drawing.Size(604, 217);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.ckbDisp);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnExcluir);
             this.Controls.Add(this.txbDataPrdt);
@@ -147,5 +170,7 @@
         private System.Windows.Forms.TextBox txbDataPrdt;
         private System.Windows.Forms.Button btnExcluir;
         private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.CheckBox ckbDisp;
+        private System.Windows.Forms.Label label4;
     }
 }

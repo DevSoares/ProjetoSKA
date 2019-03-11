@@ -40,20 +40,24 @@
             this.dataGVProdutos = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.gridViewMovimentacoes = new System.Windows.Forms.DataGridView();
+            this.btnMovimentar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGVFilial)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGVProdutos)).BeginInit();
             this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewMovimentacoes)).BeginInit();
             this.SuspendLayout();
             // 
             // btnExcluirProduto
             // 
             this.btnExcluirProduto.Location = new System.Drawing.Point(168, 11);
             this.btnExcluirProduto.Name = "btnExcluirProduto";
-            this.btnExcluirProduto.Size = new System.Drawing.Size(75, 23);
+            this.btnExcluirProduto.Size = new System.Drawing.Size(98, 23);
             this.btnExcluirProduto.TabIndex = 2;
-            this.btnExcluirProduto.Text = "excluir";
+            this.btnExcluirProduto.Text = "Alterar Status";
             this.btnExcluirProduto.UseVisualStyleBackColor = true;
             this.btnExcluirProduto.Click += new System.EventHandler(this.btnExcluirProduto_Click);
             // 
@@ -174,6 +178,8 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.btnMovimentar);
+            this.tabPage3.Controls.Add(this.gridViewMovimentacoes);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -181,6 +187,27 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Movimentações";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // gridViewMovimentacoes
+            // 
+            this.gridViewMovimentacoes.AllowUserToAddRows = false;
+            this.gridViewMovimentacoes.AllowUserToDeleteRows = false;
+            this.gridViewMovimentacoes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridViewMovimentacoes.Location = new System.Drawing.Point(41, 58);
+            this.gridViewMovimentacoes.Name = "gridViewMovimentacoes";
+            this.gridViewMovimentacoes.ReadOnly = true;
+            this.gridViewMovimentacoes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gridViewMovimentacoes.Size = new System.Drawing.Size(618, 250);
+            this.gridViewMovimentacoes.TabIndex = 0;
+            // 
+            // btnMovimentar
+            // 
+            this.btnMovimentar.Location = new System.Drawing.Point(19, 17);
+            this.btnMovimentar.Name = "btnMovimentar";
+            this.btnMovimentar.Size = new System.Drawing.Size(75, 23);
+            this.btnMovimentar.TabIndex = 1;
+            this.btnMovimentar.Text = "Movimentar";
+            this.btnMovimentar.UseVisualStyleBackColor = true;
             // 
             // FormPrincipal
             // 
@@ -196,6 +223,8 @@
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGVProdutos)).EndInit();
             this.tabPage2.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewMovimentacoes)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -213,6 +242,8 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.DataGridView dataGVProdutos;
+        private System.Windows.Forms.DataGridView gridViewMovimentacoes;
+        private System.Windows.Forms.Button btnMovimentar;
     }
 }
 

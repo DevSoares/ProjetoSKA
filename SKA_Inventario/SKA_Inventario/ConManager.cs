@@ -365,10 +365,11 @@ namespace SKA_Inventario
                     paramNome.Value = cad_nome;
                     
                     //  Adicionando os parametros
-                    sqlCommand.Parameters.Add(paramNome);                    
+                    sqlCommand.Parameters.Add(paramNome);
+                    sqlCommand.Parameters.AddWithValue("@paramDisponivel", 1);
                     //  Definindo atributos do SqlCommand
                     sqlCommand.Connection = connection;
-                    sqlCommand.CommandText = "INSERT INTO Produtos (nome) VALUES (@paramNome);";
+                    sqlCommand.CommandText = "INSERT INTO Produtos (nome, disponivel) VALUES (@paramNome, @paramDisponivel);";
                     sqlCommand.CommandType = CommandType.Text;
                     //  Executando o SqlCommand
                     sqlCommand.ExecuteNonQuery();
@@ -430,12 +431,20 @@ namespace SKA_Inventario
         {
             //  pegando o index da linha selecionada no datagridview
             DataGridViewRow row = gridView.Rows[gridView.CurrentRow.Index];
-            //atribuindo novo form e passando os dados da row selecionada
-            FormEdtPrdt formEdtPrdt = new FormEdtPrdt();
-            formEdtPrdt.setGridViewID(int.Parse(row.Cells["cd_produto"].Value.ToString()));
-            formEdtPrdt.setGridViewNome(row.Cells["nome"].Value.ToString());
-            formEdtPrdt.setGridViewDataCadastro(row.Cells["dt_criacao"].Value.ToString());
-            formEdtPrdt.Show();
+            if (row.Cells["disponivel"].Value.Equals(true))
+            {
+                //atribuindo novo form e passando os dados da row selecionada
+                FormEdtPrdt formEdtPrdt = new FormEdtPrdt();
+                formEdtPrdt.setGridViewID(int.Parse(row.Cells["cd_produto"].Value.ToString()));
+                formEdtPrdt.setGridViewNome(row.Cells["nome"].Value.ToString());
+                formEdtPrdt.setGridViewDataCadastro(row.Cells["dt_criacao"].Value.ToString());
+                formEdtPrdt.Show();
+            }
+            else
+            {
+                MessageBox.Show("Produto Indisponível!");
+            }
+            
         }
 
         //
@@ -450,15 +459,16 @@ namespace SKA_Inventario
             formDeletarPrdt.setGridViewID(int.Parse(row.Cells["cd_produto"].Value.ToString()));
             formDeletarPrdt.setGridViewNome(row.Cells["nome"].Value.ToString());
             formDeletarPrdt.setGridViewDataCadastro(row.Cells["dt_criacao"].Value.ToString());
+            formDeletarPrdt.setDisponivel(row.Cells["disponivel"].Value.Equals(true));
             formDeletarPrdt.Show();
         }
 
         //
         // Função para deletar o produto selecionado no gridView
         //
-        public void deletarProduto(int del_id, string del_nome)
+        public void deletarProduto(int del_id, string del_nome, int disp)
         {
-            string msgDelConf = "Produto excluído!!\n Nome: " + del_nome + "\n ID: " + del_id.ToString();
+            string msgDelConf = "Status do Produto Alterado!!\n Nome: " + del_nome + "\n ID: " + del_id.ToString();
             try
             {
                 string connString = "Server=DESKTOP-FP3Q8AQ\\SQLEXPRESS2008; Database=ProjectSKA; User Id=SQL_PROJECT_SKA;Password=Dev0test@;";
@@ -473,9 +483,10 @@ namespace SKA_Inventario
                     //  configurando o sqlCommand
                     SqlCommand command = new SqlCommand();
                     //  adicionando o parametro
+                    command.Parameters.AddWithValue("@paDisponivel", disp);
                     command.Parameters.Add(paramID);
                     command.Connection = connection;
-                    command.CommandText = "DELETE FROM Produtos WHERE cd_produto=@paramID";
+                    command.CommandText = "UPDATE Produtos SET disponivel = @paDisponivel WHERE cd_produto=@paramID";
                     command.CommandType = CommandType.Text;
 
                     command.ExecuteNonQuery();
@@ -545,6 +556,47 @@ namespace SKA_Inventario
                 MessageBox.Show(ex.Message);
             }
             return last_produto;
+        }
+
+        public static DataGridView GetMovimentacoes(DataGridView gridView)
+        {
+            try
+            {
+                string connString = "Server=DESKTOP-FP3Q8AQ\\SQLEXPRESS2008; Database=ProjectSKA; User Id=SQL_PROJECT_SKA;Password=Dev0test@;";
+                using (SqlConnection connection = new SqlConnection(connString))
+                {
+                    // abrindo conexão com o DB
+                    connection.Open();
+
+                    //definindo sqlcommand
+                    string cmdQuery = "SELECT Movimentacoes.cd_movimentacao,Produtos.nome AS 'Produto'" +
+                        ",Usuarios.usuario,Remetente.nome AS 'Filial Remetente'" +
+                        ",Destinataria.nome AS 'Filial Destinataria'" +
+                        ",Movimentacoes.dt_movimentacao " +
+                        "FROM Movimentacoes " +
+                        "INNER JOIN Produtos ON Movimentacoes.cd_produto = Produtos.cd_produto " +
+                        "INNER JOIN Usuarios ON Movimentacoes.cd_usuario = Usuarios.cod_usuario " +
+                        "LEFT JOIN Filiais Remetente ON Movimentacoes.cd_filial_remetente = Remetente.id " +
+                        "LEFT JOIN Filiais Destinataria ON Movimentacoes.cd_filial_destinataria = Destinataria.id ";
+                    SqlCommand sqlCommand = new SqlCommand(cmdQuery, connection);
+                    SqlDataAdapter dataAdapter = new SqlDataAdapter(sqlCommand);
+                    //  definindo dataSet
+                    DataSet dataSet = new DataSet();
+                    //  preenchendo o dataset com os resultados da query
+                    dataAdapter.Fill(dataSet);
+                    // definindo gridview como read-only
+                    gridView.ReadOnly = true;
+                    // preenchendo o gridview com o dataset
+                    gridView.DataSource = dataSet.Tables[0];
+                    connection.Close();
+                    return gridView;
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            return gridView;
         }
     }
 }

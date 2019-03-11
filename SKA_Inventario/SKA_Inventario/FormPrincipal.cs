@@ -27,6 +27,9 @@ namespace SKA_Inventario
         {
             base.OnLoad(e);            
             load_getProdutos();
+            load_getFiliais();
+            load_getMovimentacoes();
+
         }
 
 
@@ -36,11 +39,12 @@ namespace SKA_Inventario
             FormCadPrdt formCadPrdt = new FormCadPrdt();
             formCadPrdt.Show();
             load_getProdutos();
+            load_getMovimentacoes();
         }
 
   
         private void btnEditar_Click(object sender, EventArgs e)
-        {
+        {            
             conManager.showFormEditarProduto(dataGVProdutos);
             load_getProdutos();
         }
@@ -70,6 +74,7 @@ namespace SKA_Inventario
         {
             load_getFiliais();
             load_getProdutos();
+            load_getMovimentacoes();
         }
 
         //
@@ -85,10 +90,15 @@ namespace SKA_Inventario
             dataGVFilial = conManager.getFiliais(dataGVFilial);
         }
 
+        public void load_getMovimentacoes()
+        {
+            gridViewMovimentacoes = ConManager.GetMovimentacoes(gridViewMovimentacoes);
+        }
+
         private void btnExcluirProduto_Click(object sender, EventArgs e)
         {
             conManager.showFormDeletarProduto(dataGVProdutos);
-            load_getProdutos();
+            this.load_getProdutos();
         }
 
         public void FormPrincipal_FormClosed(object sender, FormClosedEventArgs e)

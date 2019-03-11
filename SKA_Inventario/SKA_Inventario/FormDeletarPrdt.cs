@@ -15,6 +15,7 @@ namespace SKA_Inventario
         private int gridViewID;
         private string gridViewNome;
         private string gridViewDataCadastro;
+        private int disponivel;
         private ConManager conManager = new ConManager();
 
         protected override void OnLoad(EventArgs e)
@@ -33,6 +34,14 @@ namespace SKA_Inventario
             txbNomePrdt.Text = getGridViewNome();
             txbCodPrdt.Text = getGridViewID().ToString();
             txbDataPrdt.Text = getGridViewDataCadastro();
+            if (disponivel == 1)
+            {
+                ckbDisp.CheckState = CheckState.Checked;
+            }
+            else
+            {
+                ckbDisp.CheckState = CheckState.Unchecked;
+            }
         }
 
         //
@@ -63,9 +72,30 @@ namespace SKA_Inventario
             return this.gridViewDataCadastro;
         }
 
+        public void setDisponivel(bool disp)
+        {
+            if (disp == true)
+            {
+                this.disponivel = 1;
+            }
+            else
+            {
+                this.disponivel = 0;
+            }
+            
+        }        
+
         private void btnExcluir_Click(object sender, EventArgs e)
         {
-            conManager.deletarProduto(gridViewID,gridViewNome);
+            if (ckbDisp.Checked)
+            {
+                this.disponivel = 1;
+            }
+            else
+            {
+                this.disponivel = 0;
+            }
+            conManager.deletarProduto(gridViewID,gridViewNome,disponivel);
             this.Close();
         }
 
@@ -73,6 +103,6 @@ namespace SKA_Inventario
         {
             MessageBox.Show("Operação cancelada!");
             this.Close();
-        }
+        }      
     }
 }
