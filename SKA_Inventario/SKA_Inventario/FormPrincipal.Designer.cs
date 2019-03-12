@@ -42,6 +42,9 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.btnMovimentar = new System.Windows.Forms.Button();
             this.gridViewMovimentacoes = new System.Windows.Forms.DataGridView();
+            this.btnHistorico = new System.Windows.Forms.Button();
+            this.btnListarMovimentacoes = new System.Windows.Forms.Button();
+            this.btnPesCodPrdt = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGVFilial)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -178,6 +181,9 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.btnPesCodPrdt);
+            this.tabPage3.Controls.Add(this.btnListarMovimentacoes);
+            this.tabPage3.Controls.Add(this.btnHistorico);
             this.tabPage3.Controls.Add(this.btnMovimentar);
             this.tabPage3.Controls.Add(this.gridViewMovimentacoes);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
@@ -209,6 +215,36 @@
             this.gridViewMovimentacoes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridViewMovimentacoes.Size = new System.Drawing.Size(804, 373);
             this.gridViewMovimentacoes.TabIndex = 0;
+            // 
+            // btnHistorico
+            // 
+            this.btnHistorico.Location = new System.Drawing.Point(114, 17);
+            this.btnHistorico.Name = "btnHistorico";
+            this.btnHistorico.Size = new System.Drawing.Size(101, 23);
+            this.btnHistorico.TabIndex = 2;
+            this.btnHistorico.Text = "Verificar Histórico";
+            this.btnHistorico.UseVisualStyleBackColor = true;
+            this.btnHistorico.Click += new System.EventHandler(this.btnHistorico_Click);
+            // 
+            // btnListarMovimentacoes
+            // 
+            this.btnListarMovimentacoes.Location = new System.Drawing.Point(234, 17);
+            this.btnListarMovimentacoes.Name = "btnListarMovimentacoes";
+            this.btnListarMovimentacoes.Size = new System.Drawing.Size(127, 23);
+            this.btnListarMovimentacoes.TabIndex = 3;
+            this.btnListarMovimentacoes.Text = "Listar Movimentações";
+            this.btnListarMovimentacoes.UseVisualStyleBackColor = true;
+            this.btnListarMovimentacoes.Click += new System.EventHandler(this.btnListarMovimentacoes_Click);
+            // 
+            // btnPesCodPrdt
+            // 
+            this.btnPesCodPrdt.Location = new System.Drawing.Point(367, 17);
+            this.btnPesCodPrdt.Name = "btnPesCodPrdt";
+            this.btnPesCodPrdt.Size = new System.Drawing.Size(75, 23);
+            this.btnPesCodPrdt.TabIndex = 4;
+            this.btnPesCodPrdt.Text = "Pesq / Cod";
+            this.btnPesCodPrdt.UseVisualStyleBackColor = true;
+            this.btnPesCodPrdt.Click += new System.EventHandler(this.btnPesCodPrdt_Click);
             // 
             // FormPrincipal
             // 
@@ -245,6 +281,9 @@
         private System.Windows.Forms.DataGridView dataGVProdutos;
         private System.Windows.Forms.DataGridView gridViewMovimentacoes;
         private System.Windows.Forms.Button btnMovimentar;
+        private System.Windows.Forms.Button btnListarMovimentacoes;
+        private System.Windows.Forms.Button btnHistorico;
+        private System.Windows.Forms.Button btnPesCodPrdt;
     }
 }
 

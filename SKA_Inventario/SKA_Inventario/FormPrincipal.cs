@@ -14,6 +14,7 @@ namespace SKA_Inventario
     public partial class FormPrincipal : Form
     {
         private ConManager conManager = new ConManager();
+        public static DataGridView StaticGrid { get; set; }
 
         public FormPrincipal()
         {
@@ -110,6 +111,22 @@ namespace SKA_Inventario
         {
             ConManager.ShowFormMovimentar(gridViewMovimentacoes);
             this.load_getMovimentacoes();
+        }
+
+        private void btnHistorico_Click(object sender, EventArgs e)
+        {
+            ConManager.GetMovimentacaoProduto(gridViewMovimentacoes);
+        }
+
+        private void btnListarMovimentacoes_Click(object sender, EventArgs e)
+        {
+            this.load_getMovimentacoes();
+        }
+
+        private void btnPesCodPrdt_Click(object sender, EventArgs e)
+        {
+            ConManager.ShowFormPesquisarMovimentacaoPorCdProduto(gridViewMovimentacoes);
+            gridViewMovimentacoes = FormPrincipal.StaticGrid;
         }
     }
 }

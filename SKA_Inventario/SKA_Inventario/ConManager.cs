@@ -551,7 +551,8 @@ namespace SKA_Inventario
                         "INNER JOIN Produtos ON Movimentacoes.cd_produto = Produtos.cd_produto " +
                         "INNER JOIN Usuarios ON Movimentacoes.cd_usuario = Usuarios.cod_usuario " +
                         "LEFT JOIN Filiais Remetente ON Movimentacoes.cd_filial_remetente = Remetente.id " +
-                        "LEFT JOIN Filiais Destinataria ON Movimentacoes.cd_filial_destinataria = Destinataria.id ";
+                        "LEFT JOIN Filiais Destinataria ON Movimentacoes.cd_filial_destinataria = Destinataria.id "+
+                        "ORDER BY Movimentacoes.cd_movimentacao DESC";
                     SqlCommand sqlCommand = new SqlCommand(cmdQuery, connection);
                     SqlDataAdapter dataAdapter = new SqlDataAdapter(sqlCommand);
                     //  definindo dataSet
@@ -559,7 +560,6 @@ namespace SKA_Inventario
                     //  preenchendo o dataset com os resultados da query
                     dataAdapter.Fill(dataSet);
                     // definindo gridview como read-only
-                    gridView.ReadOnly = true;
                     // preenchendo o gridview com o dataset
                     gridView.DataSource = dataSet.Tables[0];
                     connection.Close();
@@ -672,6 +672,103 @@ namespace SKA_Inventario
                 MessageBox.Show(ex.ToString());
             }
             return cd_filial;
+        }
+
+        public static DataGridView GetMovimentacaoProduto(DataGridView gridView)
+        {
+            DataGridViewRow row = gridView.Rows[gridView.CurrentRow.Index];
+            try
+            {
+                string connString = "Server=DESKTOP-FP3Q8AQ\\SQLEXPRESS2008; Database=ProjectSKA; User Id=SQL_PROJECT_SKA;Password=Dev0test@;";
+                using (SqlConnection connection = new SqlConnection(connString))
+                {
+                    // abrindo conexão com o DB
+                    connection.Open();
+                    string cmdQuery = "SELECT Movimentacoes.cd_movimentacao" +
+                        ",Movimentacoes.cd_produto AS 'Código Produto'" +
+                        ",Produtos.nome AS 'Produto'" +
+                        ",Usuarios.usuario,Remetente.nome AS 'Filial Remetente'" +
+                        ",Destinataria.nome AS 'Filial Destinataria'" +
+                        ",Movimentacoes.dt_movimentacao " +
+                        ",Produtos.disponivel " +
+                        "FROM Movimentacoes " +
+                        "INNER JOIN Produtos ON Movimentacoes.cd_produto = Produtos.cd_produto " +
+                        "INNER JOIN Usuarios ON Movimentacoes.cd_usuario = Usuarios.cod_usuario " +
+                        "LEFT JOIN Filiais Remetente ON Movimentacoes.cd_filial_remetente = Remetente.id " +
+                        "LEFT JOIN Filiais Destinataria ON Movimentacoes.cd_filial_destinataria = Destinataria.id "+
+                        "WHERE Movimentacoes.cd_produto = @pCDproduto "+
+                        "ORDER BY Movimentacoes.cd_movimentacao DESC";
+                    SqlCommand sqlCommand = new SqlCommand(cmdQuery, connection);
+                    sqlCommand.Parameters.AddWithValue("@pCDproduto", int.Parse(row.Cells["Código Produto"].Value.ToString()));
+                    SqlDataAdapter dataAdapter = new SqlDataAdapter(sqlCommand);
+                    //  definindo dataSet
+                    DataSet dataSet = new DataSet();
+                    //  preenchendo o dataset com os resultados da query
+                    dataAdapter.Fill(dataSet);
+                    // definindo gridview como read-only
+                    gridView.ReadOnly = true;
+                    // preenchendo o gridview com o dataset
+                    gridView.DataSource = dataSet.Tables[0];
+                    connection.Close();
+                    return gridView;
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            return gridView;
+        }
+
+        public static void ShowFormPesquisarMovimentacaoPorCdProduto(DataGridView gridView)
+        {
+            FormPesquisarMovimentacaoPorCdProduto formPesquisar = new FormPesquisarMovimentacaoPorCdProduto();
+            FormPesquisarMovimentacaoPorCdProduto.gridView = gridView;
+            formPesquisar.Show();
+        }
+
+        public static DataGridView GetMovimentacaoCDProduto(DataGridView gridView, int cd_produto)
+        {
+            try
+            {
+                string connString = "Server=DESKTOP-FP3Q8AQ\\SQLEXPRESS2008; Database=ProjectSKA; User Id=SQL_PROJECT_SKA;Password=Dev0test@;";
+                using (SqlConnection connection = new SqlConnection(connString))
+                {
+                    // abrindo conexão com o DB
+                    connection.Open();
+                    string cmdQuery = "SELECT Movimentacoes.cd_movimentacao" +
+                        ",Movimentacoes.cd_produto AS 'Código Produto'" +
+                        ",Produtos.nome AS 'Produto'" +
+                        ",Usuarios.usuario,Remetente.nome AS 'Filial Remetente'" +
+                        ",Destinataria.nome AS 'Filial Destinataria'" +
+                        ",Movimentacoes.dt_movimentacao " +
+                        ",Produtos.disponivel " +
+                        "FROM Movimentacoes " +
+                        "INNER JOIN Produtos ON Movimentacoes.cd_produto = Produtos.cd_produto " +
+                        "INNER JOIN Usuarios ON Movimentacoes.cd_usuario = Usuarios.cod_usuario " +
+                        "LEFT JOIN Filiais Remetente ON Movimentacoes.cd_filial_remetente = Remetente.id " +
+                        "LEFT JOIN Filiais Destinataria ON Movimentacoes.cd_filial_destinataria = Destinataria.id " +
+                        "WHERE Movimentacoes.cd_produto = @pCDproduto " +
+                        "ORDER BY Movimentacoes.cd_movimentacao DESC";
+                    SqlCommand sqlCommand = new SqlCommand(cmdQuery, connection);
+                    sqlCommand.Parameters.AddWithValue("@pCDproduto", cd_produto);
+                    SqlDataAdapter dataAdapter = new SqlDataAdapter(sqlCommand);
+                    //  definindo dataSet
+                    DataSet dataSet = new DataSet();
+                    //  preenchendo o dataset com os resultados da query
+                    dataAdapter.Fill(dataSet);
+                    // definindo gridview como read-only                    
+                    // preenchendo o gridview com o dataset                    
+                    gridView.DataSource = dataSet.Tables[0];
+                    connection.Close();
+                    return gridView;
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            return  gridView;
         }
     }
 }
