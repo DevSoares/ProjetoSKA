@@ -35,27 +35,26 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.lblFilial = new System.Windows.Forms.Label();
             this.filiaisBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataGridViewFilial = new System.Windows.Forms.DataGridView();
+            this.cb_Filial = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.filiaisBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFilial)).BeginInit();
             this.SuspendLayout();
             // 
             // txbNomePrdt
             // 
-            this.txbNomePrdt.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.txbNomePrdt.Location = new System.Drawing.Point(148, 22);
+            this.txbNomePrdt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txbNomePrdt.Location = new System.Drawing.Point(176, 25);
             this.txbNomePrdt.MaxLength = 50;
             this.txbNomePrdt.Name = "txbNomePrdt";
-            this.txbNomePrdt.Size = new System.Drawing.Size(380, 23);
+            this.txbNomePrdt.Size = new System.Drawing.Size(366, 26);
             this.txbNomePrdt.TabIndex = 0;
             // 
             // lblNomePrdt
             // 
             this.lblNomePrdt.AutoSize = true;
-            this.lblNomePrdt.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.lblNomePrdt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.lblNomePrdt.Location = new System.Drawing.Point(23, 25);
             this.lblNomePrdt.Name = "lblNomePrdt";
-            this.lblNomePrdt.Size = new System.Drawing.Size(122, 17);
+            this.lblNomePrdt.Size = new System.Drawing.Size(136, 20);
             this.lblNomePrdt.TabIndex = 1;
             this.lblNomePrdt.Text = "Nome do produto:";
             // 
@@ -84,10 +83,10 @@
             // lblFilial
             // 
             this.lblFilial.AutoSize = true;
-            this.lblFilial.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.lblFilial.Location = new System.Drawing.Point(53, 81);
+            this.lblFilial.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.lblFilial.Location = new System.Drawing.Point(79, 84);
             this.lblFilial.Name = "lblFilial";
-            this.lblFilial.Size = new System.Drawing.Size(44, 17);
+            this.lblFilial.Size = new System.Drawing.Size(48, 20);
             this.lblFilial.TabIndex = 4;
             this.lblFilial.Text = "Filial :";
             // 
@@ -95,15 +94,14 @@
             // 
             this.filiaisBindingSource.DataMember = "Filiais";
             // 
+            // cb_Filial
             // 
-            // dataGridViewFilial
-            // 
-            this.dataGridViewFilial.BackgroundColor = System.Drawing.SystemColors.Window;
-            this.dataGridViewFilial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewFilial.Location = new System.Drawing.Point(148, 69);
-            this.dataGridViewFilial.Name = "dataGridViewFilial";
-            this.dataGridViewFilial.Size = new System.Drawing.Size(380, 73);
-            this.dataGridViewFilial.TabIndex = 5;
+            this.cb_Filial.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.cb_Filial.FormattingEnabled = true;
+            this.cb_Filial.Location = new System.Drawing.Point(176, 81);
+            this.cb_Filial.Name = "cb_Filial";
+            this.cb_Filial.Size = new System.Drawing.Size(366, 28);
+            this.cb_Filial.TabIndex = 5;
             // 
             // FormCadPrdt
             // 
@@ -111,7 +109,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(604, 201);
-            this.Controls.Add(this.dataGridViewFilial);
+            this.Controls.Add(this.cb_Filial);
             this.Controls.Add(this.lblFilial);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnOK);
@@ -120,7 +118,6 @@
             this.Name = "FormCadPrdt";
             this.Text = "Cadastro de Produto";
             ((System.ComponentModel.ISupportInitialize)(this.filiaisBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFilial)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -134,6 +131,6 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Label lblFilial;
         private System.Windows.Forms.BindingSource filiaisBindingSource;
-        private System.Windows.Forms.DataGridView dataGridViewFilial;
+        private System.Windows.Forms.ComboBox cb_Filial;
     }
 }

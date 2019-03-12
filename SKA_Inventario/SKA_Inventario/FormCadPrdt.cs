@@ -17,7 +17,7 @@ namespace SKA_Inventario
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            setGridView(conManager.GetGridViewFiliais(dataGridViewFilial));
+            setComboBox();
         }
 
         public FormCadPrdt()
@@ -25,20 +25,15 @@ namespace SKA_Inventario
             InitializeComponent();
         }
 
-        private void setGridView(DataGridView gridView)
+        private void setComboBox()
         {
-            this.dataGridViewFilial = gridView;
+            cb_Filial = ConManager.getFiliaisCheckBox(cb_Filial);
         }
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            conManager.CadastrarProduto(txbNomePrdt.Text);
-
-            DataGridViewRow row = dataGridViewFilial.Rows[dataGridViewFilial.CurrentRow.Index];
-            int cd_produto = ConManager.GetLastProduto();
-            int cd_filial = int.Parse(row.Cells["id"].Value.ToString());
-            int cd_usuario = FormLogin.get_cd_usuario();
-            ConManager.CadPrdtMovimentar(cd_produto, cd_filial, cd_usuario);
+            conManager.CadastrarProduto(txbNomePrdt.Text);                     
+            ConManager.movimentarProduto(ConManager.GetLastProduto(), ConManager.GetCD_FilialPorNomeFilial(cb_Filial.Text), ConManager.GetCD_FilialPorNomeFilial(cb_Filial.Text));
             this.Close();
         }
 

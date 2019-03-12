@@ -40,8 +40,8 @@
             this.dataGVProdutos = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.gridViewMovimentacoes = new System.Windows.Forms.DataGridView();
             this.btnMovimentar = new System.Windows.Forms.Button();
+            this.gridViewMovimentacoes = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dataGVFilial)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -90,7 +90,7 @@
             this.dataGVFilial.MultiSelect = false;
             this.dataGVFilial.Name = "dataGVFilial";
             this.dataGVFilial.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGVFilial.Size = new System.Drawing.Size(706, 150);
+            this.dataGVFilial.Size = new System.Drawing.Size(706, 280);
             this.dataGVFilial.TabIndex = 3;
             // 
             // btnDelFilial
@@ -159,7 +159,7 @@
             this.dataGVProdutos.Name = "dataGVProdutos";
             this.dataGVProdutos.ReadOnly = true;
             this.dataGVProdutos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGVProdutos.Size = new System.Drawing.Size(729, 150);
+            this.dataGVProdutos.Size = new System.Drawing.Size(797, 259);
             this.dataGVProdutos.TabIndex = 3;
             // 
             // tabPage2
@@ -188,18 +188,6 @@
             this.tabPage3.Text = "Movimentações";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // gridViewMovimentacoes
-            // 
-            this.gridViewMovimentacoes.AllowUserToAddRows = false;
-            this.gridViewMovimentacoes.AllowUserToDeleteRows = false;
-            this.gridViewMovimentacoes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridViewMovimentacoes.Location = new System.Drawing.Point(41, 58);
-            this.gridViewMovimentacoes.Name = "gridViewMovimentacoes";
-            this.gridViewMovimentacoes.ReadOnly = true;
-            this.gridViewMovimentacoes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridViewMovimentacoes.Size = new System.Drawing.Size(618, 250);
-            this.gridViewMovimentacoes.TabIndex = 0;
-            // 
             // btnMovimentar
             // 
             this.btnMovimentar.Location = new System.Drawing.Point(19, 17);
@@ -208,6 +196,19 @@
             this.btnMovimentar.TabIndex = 1;
             this.btnMovimentar.Text = "Movimentar";
             this.btnMovimentar.UseVisualStyleBackColor = true;
+            this.btnMovimentar.Click += new System.EventHandler(this.btnMovimentar_Click);
+            // 
+            // gridViewMovimentacoes
+            // 
+            this.gridViewMovimentacoes.AllowUserToAddRows = false;
+            this.gridViewMovimentacoes.AllowUserToDeleteRows = false;
+            this.gridViewMovimentacoes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridViewMovimentacoes.Location = new System.Drawing.Point(19, 58);
+            this.gridViewMovimentacoes.Name = "gridViewMovimentacoes";
+            this.gridViewMovimentacoes.ReadOnly = true;
+            this.gridViewMovimentacoes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gridViewMovimentacoes.Size = new System.Drawing.Size(804, 373);
+            this.gridViewMovimentacoes.TabIndex = 0;
             // 
             // FormPrincipal
             // 

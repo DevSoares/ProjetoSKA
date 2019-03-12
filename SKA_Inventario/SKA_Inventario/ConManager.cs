@@ -70,7 +70,7 @@ namespace SKA_Inventario
         //
         //  função para atualizar o GridView da tela Filiais
         //
-        public DataGridView getFiliais(DataGridView gridView)
+        public DataGridView getFiliaisGridView(DataGridView gridView)
         {
             try
             {
@@ -80,7 +80,7 @@ namespace SKA_Inventario
                     connection.Open();
 
                     //definindo sqlcommand
-                    string cmdQuery = "SELECT * FROM Filiais";
+                    string cmdQuery = "SELECT id, nome FROM Filiais";
                     SqlCommand sqlCommand = new SqlCommand(cmdQuery, connection);
 
                     SqlDataAdapter dataAdapter = new SqlDataAdapter(sqlCommand);
@@ -142,19 +142,20 @@ namespace SKA_Inventario
         }
 
         //
-        //  Função para atualizar as opções do gridview de cadastro de produto
+        //  Função para atualizar as opções de checkbox de filiais
         //
-        public DataGridView GetGridViewFiliais(DataGridView gridView)
+        public static ComboBox getFiliaisCheckBox(ComboBox comboBox)
         {
             try
             {
+                string connString = "Server=DESKTOP-FP3Q8AQ\\SQLEXPRESS2008; Database=ProjectSKA; User Id=SQL_PROJECT_SKA;Password=Dev0test@;";
                 using (SqlConnection connection = new SqlConnection(connString))
                 {
                     // abrindo conexão com o DB
                     connection.Open();
 
                     //definindo sqlcommand
-                    string cmdQuery = "SELECT id, nome FROM Filiais";
+                    string cmdQuery = "SELECT nome FROM Filiais";
                     SqlCommand sqlCommand = new SqlCommand(cmdQuery, connection);
 
                     SqlDataAdapter dataAdapter = new SqlDataAdapter(sqlCommand);
@@ -162,19 +163,18 @@ namespace SKA_Inventario
                     DataSet dataSet = new DataSet();
                     //  preenchendo o dataset com os resultados da query
                     dataAdapter.Fill(dataSet);
-                    // definindo gridview como read-only
-                    gridView.ReadOnly = true;
                     // preenchendo o gridview com o dataset
-                    gridView.DataSource = dataSet.Tables[0];
+                    comboBox.DataSource = dataSet.Tables[0];
+                    comboBox.DisplayMember = "nome";
                     connection.Close();
-                    return gridView;
+                    return comboBox;
 
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                return gridView;
+                return comboBox;
             }
         }
 
@@ -499,36 +499,7 @@ namespace SKA_Inventario
             {
                 MessageBox.Show(ex.Message);
             }
-        }
-
-        public static void CadPrdtMovimentar(int cd_produto, int cd_filial, int cd_usuario)
-        {
-            try
-            {
-                string connString = "Server=DESKTOP-FP3Q8AQ\\SQLEXPRESS2008; Database=ProjectSKA; User Id=SQL_PROJECT_SKA;Password=Dev0test@;";
-                using (SqlConnection connection = new SqlConnection(connString))
-                {
-                    //  abrindo a conexão
-                    connection.Open();               
-                    //  configurando o sqlCommand
-                    SqlCommand command = new SqlCommand();
-                    //  adicionando o parametro
-                    command.Parameters.AddWithValue("@cd_usuario", cd_usuario);
-                    command.Parameters.AddWithValue("@cd_produto", cd_produto);
-                    command.Parameters.AddWithValue("@cd_filial", cd_filial);
-                    command.Connection = connection;
-                    command.CommandText = "INSERT INTO Movimentacoes (cd_produto, cd_usuario, cd_filial_remetente) VALUES (@cd_produto, @cd_usuario, @cd_filial);";
-                    command.CommandType = CommandType.Text;
-
-                    command.ExecuteNonQuery();                    
-                    connection.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
+        }              
 
         public static int GetLastProduto()
         {
@@ -569,10 +540,13 @@ namespace SKA_Inventario
                     connection.Open();
 
                     //definindo sqlcommand
-                    string cmdQuery = "SELECT Movimentacoes.cd_movimentacao,Produtos.nome AS 'Produto'" +
+                    string cmdQuery = "SELECT Movimentacoes.cd_movimentacao" +
+                        ",Movimentacoes.cd_produto AS 'Código Produto'"+
+                        ",Produtos.nome AS 'Produto'" +
                         ",Usuarios.usuario,Remetente.nome AS 'Filial Remetente'" +
                         ",Destinataria.nome AS 'Filial Destinataria'" +
                         ",Movimentacoes.dt_movimentacao " +
+                        ",Produtos.disponivel "+
                         "FROM Movimentacoes " +
                         "INNER JOIN Produtos ON Movimentacoes.cd_produto = Produtos.cd_produto " +
                         "INNER JOIN Usuarios ON Movimentacoes.cd_usuario = Usuarios.cod_usuario " +
@@ -597,6 +571,107 @@ namespace SKA_Inventario
                 MessageBox.Show(ex.ToString());
             }
             return gridView;
+        }
+
+        public static void movimentarProduto(int cd_produto, int cd_remetente, int cd_destinataria)
+        {
+            try
+            {
+                string connString = "Server=DESKTOP-FP3Q8AQ\\SQLEXPRESS2008; Database=ProjectSKA; User Id=SQL_PROJECT_SKA;Password=Dev0test@;";
+                using (SqlConnection connection = new SqlConnection(connString))
+                {
+                    connection.Open();
+                    string cmdQuery = "INSERT INTO Movimentacoes (cd_produto, cd_usuario, cd_filial_remetente, cd_filial_destinataria) VALUES (@cd_produto, @cd_usuario, @cd_remetente, @cd_destinataria);";
+                    SqlCommand command = new SqlCommand(cmdQuery, connection);
+                    command.Parameters.AddWithValue("@cd_produto", cd_produto);
+                    command.Parameters.AddWithValue("@cd_usuario", FormLogin.get_cd_usuario());
+                    command.Parameters.AddWithValue("@cd_remetente", cd_remetente);
+                    command.Parameters.AddWithValue("@cd_destinataria", cd_destinataria);
+                    command.ExecuteNonQuery();
+                    connection.Close();
+                    MessageBox.Show("Movimentação efetuada!");
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+        
+        public static void ShowFormMovimentar(DataGridView gridView)
+        {
+            //  pegando o index da linha selecionada no datagridview
+            DataGridViewRow row = gridView.Rows[gridView.CurrentRow.Index];
+            //atribuindo novo form e passando os dados da row selecionada
+            if(row.Cells["disponivel"].Value.Equals(true)){
+                FormMovimentar formMovimentar = new FormMovimentar();
+                formMovimentar.Cd_produto = ConManager.GetCD_ProdutoPorCD_Movimentacao(int.Parse(row.Cells["cd_movimentacao"].Value.ToString()));
+                formMovimentar.Nome_produto = (row.Cells["Produto"].Value.ToString());
+                formMovimentar.Filial_Remetente = row.Cells["Filial Destinataria"].Value.ToString();
+                formMovimentar.Show();
+            }
+            else
+            {
+                MessageBox.Show("Produto Indisponível!");
+            }        
+        }
+
+        public static int GetCD_ProdutoPorCD_Movimentacao(int cd_movimementacao)
+        {
+            int cd_produto = 0;
+            try
+            {
+                string connString = "Server=DESKTOP-FP3Q8AQ\\SQLEXPRESS2008; Database=ProjectSKA; User Id=SQL_PROJECT_SKA;Password=Dev0test@;";
+                using (SqlConnection connection = new SqlConnection(connString))
+                {                    
+                    //  abrindo a conexão
+                    connection.Open();
+                    //  configurando o sqlCommand
+                    SqlCommand command = new SqlCommand("SELECT cd_produto FROM Movimentacoes WHERE cd_movimentacao=@pCDMov", connection);
+                    command.Parameters.AddWithValue("@pCDMov", cd_movimementacao);
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        cd_produto = reader.GetInt32(0);
+                    }
+                    reader.Close();
+                    return cd_produto;
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            return cd_produto;
+        }
+
+        public static int GetCD_FilialPorNomeFilial(string nome)
+        {
+            int cd_filial = 0;
+            try
+            {
+                string connString = "Server=DESKTOP-FP3Q8AQ\\SQLEXPRESS2008; Database=ProjectSKA; User Id=SQL_PROJECT_SKA;Password=Dev0test@;";
+                using (SqlConnection connection = new SqlConnection(connString))
+                {
+                    //  abrindo a conexão
+                    connection.Open();
+                    //  configurando o sqlCommand
+                    SqlCommand command = new SqlCommand("SELECT id FROM Filiais WHERE nome=@pCDMov", connection);
+                    command.Parameters.AddWithValue("@pCDMov", nome);
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        cd_filial = reader.GetInt32(0);
+                    }
+                    reader.Close();
+                    return cd_filial;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            return cd_filial;
         }
     }
 }

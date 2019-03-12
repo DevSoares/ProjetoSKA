@@ -87,7 +87,7 @@ namespace SKA_Inventario
         //  Atualiza apenas o gridView filiais
         public void load_getFiliais()
         {
-            dataGVFilial = conManager.getFiliais(dataGVFilial);
+            dataGVFilial = conManager.getFiliaisGridView(dataGVFilial);
         }
 
         public void load_getMovimentacoes()
@@ -104,6 +104,12 @@ namespace SKA_Inventario
         public void FormPrincipal_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void btnMovimentar_Click(object sender, EventArgs e)
+        {
+            ConManager.ShowFormMovimentar(gridViewMovimentacoes);
+            this.load_getMovimentacoes();
         }
     }
 }
