@@ -38,6 +38,10 @@ namespace SKA_Inventario
                     this.Hide();
                     formPrincipal.FormClosed += new FormClosedEventHandler(formPrincipal.FormPrincipal_FormClosed);
                 }
+                else
+                {
+                    MessageBox.Show("Usuário Indisponível!");
+                }
                 
             }
             else

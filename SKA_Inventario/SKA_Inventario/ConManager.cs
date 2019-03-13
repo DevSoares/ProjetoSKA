@@ -30,7 +30,7 @@ namespace SKA_Inventario
         }
 
         //
-        //  Função para retornar o cod_usuario validando login e senha
+        //  Função para retornar o cd_usuario validando login e senha
         //
         public static int GetUserIdByUsernameAndPassword(string username, string password)
         {
@@ -38,7 +38,7 @@ namespace SKA_Inventario
             int userId = 0;
 
             SqlConnection con = new SqlConnection("Server=DESKTOP-FP3Q8AQ\\SQLEXPRESS2008; Database=ProjectSKA; User Id=SQL_PROJECT_SKA;Password=Dev0test@;");
-            using (SqlCommand cmd = new SqlCommand("SELECT cod_usuario, senha, guid_usuario FROM Usuarios WHERE usuario=@username", con))
+            using (SqlCommand cmd = new SqlCommand("SELECT cd_usuario, senha, guid_usuario FROM Usuarios WHERE usuario=@username", con))
             {
                 cmd.Parameters.AddWithValue("@username", username);
                 con.Open();
@@ -47,7 +47,7 @@ namespace SKA_Inventario
                 while (dr.Read())
                 {
                     // dr.Read() = we found user(s) with matching username!
-                    int dbUserId = Convert.ToInt32(dr["cod_usuario"]);
+                    int dbUserId = Convert.ToInt32(dr["cd_usuario"]);
                     string dbPassword = Convert.ToString(dr["senha"]);
                     string dbUserGuid = Convert.ToString(dr["guid_usuario"]);
                     // dr.read() pega a senha cadastrada no DB e transforma para string
@@ -63,7 +63,7 @@ namespace SKA_Inventario
                 }
                 con.Close();
             }
-            // Retorno da função com o cod_usuario que está logado
+            // Retorno da função com o cd_usuario que está logado
             return userId;
         }
 
@@ -144,7 +144,7 @@ namespace SKA_Inventario
         //
         //  Função para atualizar as opções de checkbox de filiais
         //
-        public static ComboBox GetFiliaisCheckBox(ComboBox comboBox)
+        public static ComboBox GetFiliaisComboBox(ComboBox comboBox)
         {
             try
             {
@@ -466,6 +466,7 @@ namespace SKA_Inventario
                     connection.Open();
                     //  configurando o sqlCommand
                     SqlCommand command = new SqlCommand("SELECT TOP 1 disponivel FROM Usuarios WHERE cd_usuario =@pCDusuario ORDER BY cd_usuario DESC", connection);
+                    command.Parameters.AddWithValue("@pCDusuario", cd_usuario);
                     SqlDataReader reader = command.ExecuteReader();
                     while (reader.Read())
                     {
@@ -502,7 +503,7 @@ namespace SKA_Inventario
                         ",Produtos.disponivel "+
                         "FROM Movimentacoes " +
                         "INNER JOIN Produtos ON Movimentacoes.cd_produto = Produtos.cd_produto " +
-                        "INNER JOIN Usuarios ON Movimentacoes.cd_usuario = Usuarios.cod_usuario " +
+                        "INNER JOIN Usuarios ON Movimentacoes.cd_usuario = Usuarios.cd_usuario " +
                         "LEFT JOIN Filiais Remetente ON Movimentacoes.cd_filial_remetente = Remetente.id " +
                         "LEFT JOIN Filiais Destinataria ON Movimentacoes.cd_filial_destinataria = Destinataria.id "+
                         "ORDER BY Movimentacoes.cd_movimentacao DESC";
@@ -629,7 +630,7 @@ namespace SKA_Inventario
                         ",Produtos.disponivel " +
                         "FROM Movimentacoes " +
                         "INNER JOIN Produtos ON Movimentacoes.cd_produto = Produtos.cd_produto " +
-                        "INNER JOIN Usuarios ON Movimentacoes.cd_usuario = Usuarios.cod_usuario " +
+                        "INNER JOIN Usuarios ON Movimentacoes.cd_usuario = Usuarios.cd_usuario " +
                         "LEFT JOIN Filiais Remetente ON Movimentacoes.cd_filial_remetente = Remetente.id " +
                         "LEFT JOIN Filiais Destinataria ON Movimentacoes.cd_filial_destinataria = Destinataria.id "+
                         "WHERE Movimentacoes.cd_produto = @pCDproduto "+
@@ -674,7 +675,7 @@ namespace SKA_Inventario
                         ",Produtos.disponivel " +
                         "FROM Movimentacoes " +
                         "INNER JOIN Produtos ON Movimentacoes.cd_produto = Produtos.cd_produto " +
-                        "INNER JOIN Usuarios ON Movimentacoes.cd_usuario = Usuarios.cod_usuario " +
+                        "INNER JOIN Usuarios ON Movimentacoes.cd_usuario = Usuarios.cd_usuario " +
                         "LEFT JOIN Filiais Remetente ON Movimentacoes.cd_filial_remetente = Remetente.id " +
                         "LEFT JOIN Filiais Destinataria ON Movimentacoes.cd_filial_destinataria = Destinataria.id " +
                         "WHERE Movimentacoes.cd_produto = @pCDproduto " +

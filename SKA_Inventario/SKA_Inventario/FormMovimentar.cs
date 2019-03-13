@@ -32,7 +32,7 @@ namespace SKA_Inventario
             txbCdPrdt.Text = Cd_produto.ToString();
             txbNomePrdt.Text = Nome_produto;
             txbRemetente.Text = Filial_Remetente;
-            cbDestinataria = ConManager.GetFiliaisCheckBox(cbDestinataria);
+            cbDestinataria = ConManager.GetFiliaisComboBox(cbDestinataria);
         }
 
         private void btnMovimentar_Click(object sender, EventArgs e)

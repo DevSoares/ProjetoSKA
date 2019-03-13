@@ -36,17 +36,36 @@ namespace SKA_Inventario
 
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
-            FormCadPrdt formCadPrdt = new FormCadPrdt();
-            formCadPrdt.Show();
-            load_getProdutos();
-            load_getMovimentacoes();
+            ComboBox testCombo = new ComboBox();
+            testCombo = ConManager.GetFiliaisComboBox(testCombo);
+            if (!string.IsNullOrEmpty(testCombo.Text))
+            {
+                FormCadPrdt formCadPrdt = new FormCadPrdt();
+                formCadPrdt.Show();
+                load_getProdutos();
+                load_getMovimentacoes();
+            }
+            else
+            {
+                MessageBox.Show("É necessário cadastrar uma filial!");
+            }
+            
         }
 
   
         private void btnEditar_Click(object sender, EventArgs e)
-        {            
-            showFormEditarProduto(dataGVProdutos);
-            load_getProdutos();
+        {
+            StaticGrid = ConManager.GetProdutosGridView(dataGVProdutos);
+            if (StaticGrid.RowCount >= 1)
+            {
+                showFormEditarProduto(dataGVProdutos);
+                load_getProdutos();
+            }
+            else
+            {
+                MessageBox.Show("Não há produtos cadastrados");
+            }
+            
         }
 
         private void btnCadFilial_Click(object sender, EventArgs e)
@@ -97,8 +116,16 @@ namespace SKA_Inventario
 
         private void btnExcluirProduto_Click(object sender, EventArgs e)
         {
-            showFormDeletarProduto(dataGVProdutos);
-            this.load_getProdutos();
+            StaticGrid = ConManager.GetProdutosGridView(dataGVProdutos);
+            if (StaticGrid.RowCount >= 1)
+            {
+                showFormDeletarProduto(dataGVProdutos);
+                load_getProdutos();
+            }
+            else
+            {
+                MessageBox.Show("Não há produtos cadastrados");
+            }            
         }
 
         public void FormPrincipal_FormClosed(object sender, FormClosedEventArgs e)
@@ -108,13 +135,44 @@ namespace SKA_Inventario
 
         private void btnMovimentar_Click(object sender, EventArgs e)
         {
-            ShowFormMovimentar(gridViewMovimentacoes);
-            this.load_getMovimentacoes();
+            if (gridViewMovimentacoes.RowCount > 0)
+            {
+                if (gridViewMovimentacoes.CurrentCell.RowIndex != 0)
+                {
+                    ShowFormMovimentar(gridViewMovimentacoes);
+                    load_getMovimentacoes();
+                }
+                else
+                {
+                    MessageBox.Show("Nenhum produto selecionado");
+                }
+                
+            }
+            else
+            {
+                MessageBox.Show("Nenhum produto selecionado");
+            }
+            load_getMovimentacoes();
         }
 
         private void btnHistorico_Click(object sender, EventArgs e)
         {
-            ConManager.GetMovimentacaoProduto(gridViewMovimentacoes);
+            if (gridViewMovimentacoes.RowCount > 0)
+            {
+                if (gridViewMovimentacoes.CurrentCell.RowIndex != 0)
+                {
+                    ConManager.GetMovimentacaoProduto(gridViewMovimentacoes);
+                }
+                else
+                {
+                    MessageBox.Show("Nenhum produto selecionado");
+                }                
+            }
+            else
+            {
+                MessageBox.Show("Nenhum produto selecionado");
+            }
+            load_getMovimentacoes();
         }
 
         private void btnListarMovimentacoes_Click(object sender, EventArgs e)
@@ -175,7 +233,7 @@ namespace SKA_Inventario
         //  Mostrar o formulário de editar produto
         //
         public void showFormEditarProduto(DataGridView gridView)
-        {
+        {            
             //  pegando o index da linha selecionada no datagridview
             DataGridViewRow row = gridView.Rows[gridView.CurrentRow.Index];
             if (row.Cells["disponivel"].Value.Equals(true))

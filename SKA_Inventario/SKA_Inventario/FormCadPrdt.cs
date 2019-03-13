@@ -27,7 +27,7 @@ namespace SKA_Inventario
 
         private void setComboBox()
         {
-            cb_Filial = ConManager.GetFiliaisCheckBox(cb_Filial);
+            cb_Filial = ConManager.GetFiliaisComboBox(cb_Filial);
         }
 
         private void btnOK_Click(object sender, EventArgs e)
