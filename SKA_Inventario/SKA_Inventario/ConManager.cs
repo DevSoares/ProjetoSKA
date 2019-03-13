@@ -11,7 +11,7 @@ namespace SKA_Inventario
 {
     class ConManager
     {
-        private string connString = "Server=DESKTOP-FP3Q8AQ\\SQLEXPRESS2008; Database=ProjectSKA; User Id=SQL_PROJECT_SKA;Password=Dev0test@;";
+        public static string connString = "Server=DESKTOP-FP3Q8AQ\\SQLEXPRESS2008; Database=ProjectSKA; User Id=SQL_PROJECT_SKA;Password=Dev0test@;";
 
         //
         //  Função para criptografar a senha
@@ -70,7 +70,7 @@ namespace SKA_Inventario
         //
         //  função para atualizar o GridView da tela Filiais
         //
-        public DataGridView getFiliaisGridView(DataGridView gridView)
+        public static DataGridView GetFiliaisGridView(DataGridView gridView)
         {
             try
             {
@@ -80,7 +80,7 @@ namespace SKA_Inventario
                     connection.Open();
 
                     //definindo sqlcommand
-                    string cmdQuery = "SELECT id, nome FROM Filiais";
+                    string cmdQuery = "SELECT * FROM Filiais";
                     SqlCommand sqlCommand = new SqlCommand(cmdQuery, connection);
 
                     SqlDataAdapter dataAdapter = new SqlDataAdapter(sqlCommand);
@@ -107,7 +107,7 @@ namespace SKA_Inventario
         //
         //  Função para atualizar o gridView na tela de produtos
         //
-        public DataGridView getProdutos(DataGridView gridView)
+        public static DataGridView GetProdutosGridView(DataGridView gridView)
         {
             try
             {
@@ -144,7 +144,7 @@ namespace SKA_Inventario
         //
         //  Função para atualizar as opções de checkbox de filiais
         //
-        public static ComboBox getFiliaisCheckBox(ComboBox comboBox)
+        public static ComboBox GetFiliaisCheckBox(ComboBox comboBox)
         {
             try
             {
@@ -177,28 +177,10 @@ namespace SKA_Inventario
                 return comboBox;
             }
         }
-
-        //
-        // Mostrar o formulário de editar filial
-        //
-        public void showFormEditarFilial(DataGridView gridView)
-        {
-            //  pegando o index da linha selecionada no datagridview
-            DataGridViewRow row = gridView.Rows[gridView.CurrentRow.Index];
-            //atribuindo novo form e passando os dados da row selecionada
-            FormEdtFilial formEdtFilial = new FormEdtFilial();
-            formEdtFilial.setGridViewID(int.Parse(row.Cells["id"].Value.ToString()));
-            formEdtFilial.setGridViewNome(row.Cells["nome"].Value.ToString());
-            formEdtFilial.setGridViewCidade(row.Cells["cidade"].Value.ToString());
-            formEdtFilial.setGridViewLogradouro(row.Cells["logradouro"].Value.ToString());
-            formEdtFilial.setGridViewTelefone(row.Cells["telefone"].Value.ToString());
-            formEdtFilial.Show();
-        }
-
         //
         //  Função para editar a filial selecionada na tela de filiais
         //
-        public void EditarFilial(int edt_id, string edt_nome, string edt_cidade, string edt_logradouro, string edt_telefone)
+        public static void EditarFilial(int edt_id, string edt_nome, string edt_cidade, string edt_logradouro, string edt_telefone)
         {
             //  pegando o index da linha selecionada no datagridview
             string msgEdtConf = "Filial editada!!\n Nome: " + edt_nome + "\n ID: " + edt_id.ToString() ;
@@ -245,29 +227,10 @@ namespace SKA_Inventario
                 MessageBox.Show(ex.Message);
             }
         }
-
-
-        //
-        // Mostar o formulário Deletar Filial
-        //
-        public void showFormDeletarFilial(DataGridView gridView)
-        {
-            //  pegando o index da linha selecionada no datagridview
-            DataGridViewRow row = gridView.Rows[gridView.CurrentRow.Index];
-            //atribuindo novo form e passando os dados da row selecionada
-            FormDeletarFilial formDeletarFilial = new FormDeletarFilial();
-            formDeletarFilial.setGridViewID(int.Parse(row.Cells["id"].Value.ToString()));
-            formDeletarFilial.setGridViewNome(row.Cells["nome"].Value.ToString());
-            formDeletarFilial.setGridViewCidade(row.Cells["cidade"].Value.ToString());
-            formDeletarFilial.setGridViewLogradouro(row.Cells["logradouro"].Value.ToString());
-            formDeletarFilial.setGridViewTelefone(row.Cells["telefone"].Value.ToString());
-            formDeletarFilial.Show();
-        }
-
         //
         // Função para deletar a filial selecionada no gridView
         //
-        public void DeletarFilial(int del_id, string del_nome)
+        public static void DeletarFilial(int del_id, string del_nome)
         {
             string msgDelConf = "Filial excluída!!\n Nome: " + del_nome + "\n ID: " + del_id.ToString();
             try
@@ -300,11 +263,10 @@ namespace SKA_Inventario
                 MessageBox.Show(ex.Message);
             }
         }
-
         //
         // Função para cadastrar filial
         //
-        public void CadastrarFilial(string cad_nome, string cad_cidade, string cad_logradouro, string cad_telefone)
+        public static void CadastrarFilial(string cad_nome, string cad_cidade, string cad_logradouro, string cad_telefone)
         {
             try
             {
@@ -345,11 +307,10 @@ namespace SKA_Inventario
                 MessageBox.Show(excecao.ToString());
             }
         }
-
         //
         // Função para cadastrar o produto
         //
-        public void CadastrarProduto(string cad_nome)
+        public static void CadastrarProduto(string cad_nome)
         {            
             try
             {
@@ -387,7 +348,7 @@ namespace SKA_Inventario
         //
         //  Função para editar o produto
         //
-        public void editarProduto(int cod_prdt, string nome)
+        public static void EditarProduto(int cod_prdt, string nome)
         {
             try
             {
@@ -424,49 +385,14 @@ namespace SKA_Inventario
             }
         }
 
-        //
-        //  Mostrar o formulário de editar produto
-        //
-        public void showFormEditarProduto(DataGridView gridView)
-        {
-            //  pegando o index da linha selecionada no datagridview
-            DataGridViewRow row = gridView.Rows[gridView.CurrentRow.Index];
-            if (row.Cells["disponivel"].Value.Equals(true))
-            {
-                //atribuindo novo form e passando os dados da row selecionada
-                FormEdtPrdt formEdtPrdt = new FormEdtPrdt();
-                formEdtPrdt.setGridViewID(int.Parse(row.Cells["cd_produto"].Value.ToString()));
-                formEdtPrdt.setGridViewNome(row.Cells["nome"].Value.ToString());
-                formEdtPrdt.setGridViewDataCadastro(row.Cells["dt_criacao"].Value.ToString());
-                formEdtPrdt.Show();
-            }
-            else
-            {
-                MessageBox.Show("Produto Indisponível!");
-            }
-            
-        }
+        
 
-        //
-        //  Mostrar o formulário de Deletar produto
-        //
-        public void showFormDeletarProduto(DataGridView gridView)
-        {
-            //  pegando o index da linha selecionada no datagridview
-            DataGridViewRow row = gridView.Rows[gridView.CurrentRow.Index];
-            //atribuindo novo form e passando os dados da row selecionada
-            FormDeletarPrdt formDeletarPrdt = new FormDeletarPrdt();
-            formDeletarPrdt.setGridViewID(int.Parse(row.Cells["cd_produto"].Value.ToString()));
-            formDeletarPrdt.setGridViewNome(row.Cells["nome"].Value.ToString());
-            formDeletarPrdt.setGridViewDataCadastro(row.Cells["dt_criacao"].Value.ToString());
-            formDeletarPrdt.setDisponivel(row.Cells["disponivel"].Value.Equals(true));
-            formDeletarPrdt.Show();
-        }
+        
 
         //
         // Função para deletar o produto selecionado no gridView
         //
-        public void deletarProduto(int del_id, string del_nome, int disp)
+        public static void DeletarProduto(int del_id, string del_nome, int disp)
         {
             string msgDelConf = "Status do Produto Alterado!!\n Nome: " + del_nome + "\n ID: " + del_id.ToString();
             try
@@ -529,6 +455,33 @@ namespace SKA_Inventario
             return last_produto;
         }
 
+        public static bool ValidUser(int cd_usuario)
+        {
+            bool valido = false;
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connString))
+                {
+                    //  abrindo a conexão
+                    connection.Open();
+                    //  configurando o sqlCommand
+                    SqlCommand command = new SqlCommand("SELECT TOP 1 disponivel FROM Usuarios WHERE cd_usuario =@pCDusuario ORDER BY cd_usuario DESC", connection);
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        valido = reader.GetBoolean(0);
+                    }
+                    reader.Close();
+                    return valido;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            return valido;
+        }
+
         public static DataGridView GetMovimentacoes(DataGridView gridView)
         {
             try
@@ -573,7 +526,7 @@ namespace SKA_Inventario
             return gridView;
         }
 
-        public static void movimentarProduto(int cd_produto, int cd_remetente, int cd_destinataria)
+        public static void MovimentarProduto(int cd_produto, int cd_remetente, int cd_destinataria)
         {
             try
             {
@@ -597,24 +550,7 @@ namespace SKA_Inventario
                 MessageBox.Show(ex.ToString());
             }
         }
-        
-        public static void ShowFormMovimentar(DataGridView gridView)
-        {
-            //  pegando o index da linha selecionada no datagridview
-            DataGridViewRow row = gridView.Rows[gridView.CurrentRow.Index];
-            //atribuindo novo form e passando os dados da row selecionada
-            if(row.Cells["disponivel"].Value.Equals(true)){
-                FormMovimentar formMovimentar = new FormMovimentar();
-                formMovimentar.Cd_produto = ConManager.GetCD_ProdutoPorCD_Movimentacao(int.Parse(row.Cells["cd_movimentacao"].Value.ToString()));
-                formMovimentar.Nome_produto = (row.Cells["Produto"].Value.ToString());
-                formMovimentar.Filial_Remetente = row.Cells["Filial Destinataria"].Value.ToString();
-                formMovimentar.Show();
-            }
-            else
-            {
-                MessageBox.Show("Produto Indisponível!");
-            }        
-        }
+               
 
         public static int GetCD_ProdutoPorCD_Movimentacao(int cd_movimementacao)
         {
@@ -718,17 +654,10 @@ namespace SKA_Inventario
                 MessageBox.Show(ex.ToString());
             }
             return gridView;
-        }
-
-        public static void ShowFormPesquisarMovimentacaoPorCdProduto(DataGridView gridView)
-        {
-            FormPesquisarMovimentacaoPorCdProduto formPesquisar = new FormPesquisarMovimentacaoPorCdProduto();
-            FormPesquisarMovimentacaoPorCdProduto.gridView = gridView;
-            formPesquisar.Show();
-        }
+        }              
 
         public static DataGridView GetMovimentacaoCDProduto(DataGridView gridView, int cd_produto)
-        {
+        {            
             try
             {
                 string connString = "Server=DESKTOP-FP3Q8AQ\\SQLEXPRESS2008; Database=ProjectSKA; User Id=SQL_PROJECT_SKA;Password=Dev0test@;";
@@ -757,7 +686,6 @@ namespace SKA_Inventario
                     DataSet dataSet = new DataSet();
                     //  preenchendo o dataset com os resultados da query
                     dataAdapter.Fill(dataSet);
-                    // definindo gridview como read-only                    
                     // preenchendo o gridview com o dataset                    
                     gridView.DataSource = dataSet.Tables[0];
                     connection.Close();

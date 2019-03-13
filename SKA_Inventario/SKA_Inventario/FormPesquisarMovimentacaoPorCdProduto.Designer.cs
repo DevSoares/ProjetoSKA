@@ -52,6 +52,7 @@
             this.txbCDPrdt.Name = "txbCDPrdt";
             this.txbCDPrdt.Size = new System.Drawing.Size(171, 26);
             this.txbCDPrdt.TabIndex = 1;
+            this.txbCDPrdt.TextChanged += new System.EventHandler(this.txbCDPrdt_TextChanged);
             // 
             // btnPesquisar
             // 

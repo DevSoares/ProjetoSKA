@@ -30,11 +30,15 @@ namespace SKA_Inventario
             if (cod_usuario > 0)
             {
                 cd_usuario = cod_usuario;
-                FormPrincipal formPrincipal = new FormPrincipal();
-                formPrincipal.Show();
-                formPrincipal.Text = formPrincipal.Text + " | Usuário: " + txbUsuario.Text+" |";
-                this.Hide();
-                formPrincipal.FormClosed += new FormClosedEventHandler(formPrincipal.FormPrincipal_FormClosed);
+                if (ConManager.ValidUser(cd_usuario)==true)
+                {
+                    FormPrincipal formPrincipal = new FormPrincipal();
+                    formPrincipal.Show();
+                    formPrincipal.Text = formPrincipal.Text + " | Usuário: " + txbUsuario.Text + " |";
+                    this.Hide();
+                    formPrincipal.FormClosed += new FormClosedEventHandler(formPrincipal.FormPrincipal_FormClosed);
+                }
+                
             }
             else
             {

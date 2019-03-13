@@ -12,8 +12,6 @@ namespace SKA_Inventario
 {
     public partial class FormPesquisarMovimentacaoPorCdProduto : Form
     {
-        public static DataGridView gridView { get; set; }
-
         public FormPesquisarMovimentacaoPorCdProduto()
         {
             InitializeComponent();
@@ -27,8 +25,24 @@ namespace SKA_Inventario
 
         private void btnPesquisar_Click(object sender, EventArgs e)
         {
-            FormPrincipal.StaticGrid =  ConManager.GetMovimentacaoCDProduto(gridView, Int32.Parse(txbCDPrdt.Text));
-            this.Close();
+            if (txbCDPrdt!= null && !string.IsNullOrWhiteSpace(txbCDPrdt.Text))
+            {
+                FormPrincipal.StaticGrid = ConManager.GetMovimentacaoCDProduto(FormPrincipal.StaticGrid, Int32.Parse(txbCDPrdt.Text));
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Insira um valor");
+            }            
+        }
+
+        private void txbCDPrdt_TextChanged(object sender, EventArgs e)
+        {
+            if (System.Text.RegularExpressions.Regex.IsMatch(txbCDPrdt.Text, "[^0-9]"))
+            {
+                MessageBox.Show("Favor digitar apenas numeros");
+                txbCDPrdt.Text = txbCDPrdt.Text.Remove(txbCDPrdt.Text.Length - 1);
+            }
         }
     }
 }

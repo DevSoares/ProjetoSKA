@@ -16,7 +16,6 @@ namespace SKA_Inventario
         private string gridViewNome;
         private string gridViewDataCadastro;
         private int disponivel;
-        private ConManager conManager = new ConManager();
 
         protected override void OnLoad(EventArgs e)
         {
@@ -95,7 +94,7 @@ namespace SKA_Inventario
             {
                 this.disponivel = 0;
             }
-            conManager.deletarProduto(gridViewID,gridViewNome,disponivel);
+            ConManager.DeletarProduto(gridViewID,gridViewNome,disponivel);
             this.Close();
         }
 

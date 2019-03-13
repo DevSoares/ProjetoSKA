@@ -18,7 +18,6 @@ namespace SKA_Inventario
         private string gridViewCidade;
         private string gridViewLogradouro;
         private string gridViewTelefone;
-        private ConManager conManager = new ConManager();
 
         protected override void OnLoad(EventArgs e)
         {
@@ -43,7 +42,7 @@ namespace SKA_Inventario
         
         private void btnConfirmarExclusao_Click(object sender, EventArgs e)
         {
-            conManager.DeletarFilial(gridViewID, gridViewNome);            
+            ConManager.DeletarFilial(gridViewID, gridViewNome);            
             this.Close();
         }
 

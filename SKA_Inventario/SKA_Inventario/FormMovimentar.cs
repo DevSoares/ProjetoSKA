@@ -32,12 +32,12 @@ namespace SKA_Inventario
             txbCdPrdt.Text = Cd_produto.ToString();
             txbNomePrdt.Text = Nome_produto;
             txbRemetente.Text = Filial_Remetente;
-            cbDestinataria = ConManager.getFiliaisCheckBox(cbDestinataria);
+            cbDestinataria = ConManager.GetFiliaisCheckBox(cbDestinataria);
         }
 
         private void btnMovimentar_Click(object sender, EventArgs e)
         {
-            ConManager.movimentarProduto(Cd_produto,ConManager.GetCD_FilialPorNomeFilial(Filial_Remetente), ConManager.GetCD_FilialPorNomeFilial(cbDestinataria.Text));
+            ConManager.MovimentarProduto(Cd_produto,ConManager.GetCD_FilialPorNomeFilial(Filial_Remetente), ConManager.GetCD_FilialPorNomeFilial(cbDestinataria.Text));
             this.Close();
         }
 
