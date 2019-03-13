@@ -17,6 +17,28 @@ namespace SKA_Inventario
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FormLogin());
+            if (isLogged == true)
+            {
+                Application.Run(new FormPrincipal());
+            }
+        }
+
+        public static bool isLogged = false;
+        public static string user { get; set; }
+
+        public static bool ValidLogin(int cod_usuario, string usuario)
+        {
+            if (cod_usuario > 0)
+            {
+                user = usuario;
+                isLogged = true;
+                return true;
+            }
+            else
+            {
+                MessageBox.Show("Usuário ou senha incorretos!");
+                return false;
+            }
         }
     }
 }
