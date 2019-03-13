@@ -37,6 +37,7 @@
             this.btn_logar = new System.Windows.Forms.Button();
             this.btn_list_users = new System.Windows.Forms.Button();
             this.btn_editar = new System.Windows.Forms.Button();
+            this.chkDisponivel = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,10 +46,10 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(97, 207);
+            this.dataGridView1.Location = new System.Drawing.Point(30, 207);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(486, 150);
+            this.dataGridView1.Size = new System.Drawing.Size(758, 231);
             this.dataGridView1.TabIndex = 0;
             // 
             // label1
@@ -130,12 +131,24 @@
             this.btn_editar.UseVisualStyleBackColor = true;
             this.btn_editar.Click += new System.EventHandler(this.btn_editar_Click);
             // 
+            // chkDisponivel
+            // 
+            this.chkDisponivel.AutoSize = true;
+            this.chkDisponivel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.chkDisponivel.Location = new System.Drawing.Point(574, 46);
+            this.chkDisponivel.Name = "chkDisponivel";
+            this.chkDisponivel.Size = new System.Drawing.Size(100, 24);
+            this.chkDisponivel.TabIndex = 9;
+            this.chkDisponivel.Text = "Disponivel";
+            this.chkDisponivel.UseVisualStyleBackColor = true;
+            // 
             // FormGerenteUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.chkDisponivel);
             this.Controls.Add(this.btn_editar);
             this.Controls.Add(this.btn_list_users);
             this.Controls.Add(this.btn_logar);
@@ -164,6 +177,7 @@
         private System.Windows.Forms.Button btn_logar;
         private System.Windows.Forms.Button btn_list_users;
         private System.Windows.Forms.Button btn_editar;
+        private System.Windows.Forms.CheckBox chkDisponivel;
     }
 }
 

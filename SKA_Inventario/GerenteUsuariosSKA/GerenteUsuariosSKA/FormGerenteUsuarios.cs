@@ -51,8 +51,18 @@ namespace GerenteUsuariosSKA
 
         private void btn_editar_Click(object sender, EventArgs e)
         {
+            int disp;
             DataGridViewRow row = dataGridView1.Rows[dataGridView1.CurrentRow.Index];
-            UserDataBase.EditUser(txbNome.Text, int.Parse(row.Cells["cod_usuario"].Value.ToString()), txbSenha.Text);
+            if (chkDisponivel.CheckState == CheckState.Checked)
+            {
+                disp = 1;
+            }
+            else
+            {
+                disp = 0;
+            }
+
+            UserDataBase.EditUser(txbNome.Text, int.Parse(row.Cells["cd_usuario"].Value.ToString()), txbSenha.Text, disp);
             UserDataBase.GetUsuarios(dataGridView1);
         }
     }    

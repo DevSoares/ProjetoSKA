@@ -24,11 +24,12 @@ namespace GerenteUsuariosSKA
             string hashedPassword = Security.HashSHA1(password + userGuid.ToString());
 
             SqlConnection con = new SqlConnection(connectionstring);
-            using (SqlCommand cmd = new SqlCommand("INSERT INTO Usuarios (usuario, senha, guid_usuario) VALUES (@username, @password, @userguid)", con))
+            using (SqlCommand cmd = new SqlCommand("INSERT INTO Usuarios (usuario, senha, guid_usuario, disponivel) VALUES (@username, @password, @userguid, @disponivel)", con))
             {
                 cmd.Parameters.AddWithValue("@username", username);
                 cmd.Parameters.AddWithValue("@password", hashedPassword); // store the hashed value
                 cmd.Parameters.AddWithValue("@userguid", userGuid.ToString()); // store the Guid
+                cmd.Parameters.AddWithValue("@disponivel", 1);
 
                 con.Open();
                 cmd.ExecuteNonQuery();
@@ -43,7 +44,7 @@ namespace GerenteUsuariosSKA
             int userId = 0;
 
             SqlConnection con = new SqlConnection(connectionstring);
-            using (SqlCommand cmd = new SqlCommand("SELECT cod_usuario, senha, guid_usuario FROM Usuarios WHERE usuario=@username", con))
+            using (SqlCommand cmd = new SqlCommand("SELECT cd_usuario, senha, guid_usuario FROM Usuarios WHERE usuario=@username", con))
             {
                 cmd.Parameters.AddWithValue("@username", username);
                 con.Open();
@@ -52,7 +53,7 @@ namespace GerenteUsuariosSKA
                 {
                     // dr.Read() = we found user(s) with matching username!
 
-                    int dbUserId = Convert.ToInt32(dr["cod_usuario"]);
+                    int dbUserId = Convert.ToInt32(dr["cd_usuario"]);
                     string dbPassword = Convert.ToString(dr["senha"]);
                     string dbUserGuid = Convert.ToString(dr["guid_usuario"]);
 
@@ -74,18 +75,19 @@ namespace GerenteUsuariosSKA
             return userId;
         }
 
-        public static void EditUser(string nome, int cod_usuario, string senha)
+        public static void EditUser(string nome, int cd_usuario, string senha, int disp)
         {
             Guid userGuid = System.Guid.NewGuid();
             string hashedPassword = Security.HashSHA1(senha + userGuid.ToString());
 
             SqlConnection con = new SqlConnection(connectionstring);
-            using (SqlCommand cmd = new SqlCommand("UPDATE Usuarios SET usuario=@usuario, senha=@senha, guid_usuario=@guid_usuario  WHERE cod_usuario=@Cod_usuario", con))
+            using (SqlCommand cmd = new SqlCommand("UPDATE Usuarios SET usuario=@usuario, senha=@senha, guid_usuario=@guid_usuario, disponivel=@disponivel WHERE cd_usuario=@cd_usuario", con))
             {
-                cmd.Parameters.AddWithValue("@Cod_usuario", cod_usuario);
+                cmd.Parameters.AddWithValue("@cd_usuario", cd_usuario);
                 cmd.Parameters.AddWithValue("@usuario", nome);
                 cmd.Parameters.AddWithValue("@senha", hashedPassword);
                 cmd.Parameters.AddWithValue("@guid_usuario", userGuid.ToString());
+                cmd.Parameters.AddWithValue("@disponivel", disp);
                 con.Open();
                 cmd.ExecuteNonQuery();
                 con.Close();
