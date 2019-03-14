@@ -14,7 +14,8 @@ namespace SKA_Inventario
     public partial class FormPrincipal : Form
     {
         public static DataGridView StaticGrid { get; set; }
-
+        public static bool travaEx { get; set; }
+        
         public FormPrincipal()
         {
             InitializeComponent();
@@ -25,7 +26,8 @@ namespace SKA_Inventario
         //  buscar as informações no servidor, para isso e alterado a função OnLoad.
         protected override void OnLoad(EventArgs e)
         {
-            base.OnLoad(e);            
+            base.OnLoad(e);
+            travaEx = true;
             load_getProdutos();
             load_getFiliais();
             load_getMovimentacoes();
@@ -36,9 +38,8 @@ namespace SKA_Inventario
 
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
-            ComboBox testCombo = new ComboBox();
-            testCombo = ConManager.GetFiliaisComboBox(testCombo);
-            if (!string.IsNullOrEmpty(testCombo.Text))
+            
+            if (dataGVFilial.RowCount > 0)
             {
                 FormCadPrdt formCadPrdt = new FormCadPrdt();
                 formCadPrdt.Show();
@@ -55,17 +56,16 @@ namespace SKA_Inventario
   
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            StaticGrid = ConManager.GetProdutosGridView(dataGVProdutos);
-            if (StaticGrid.RowCount >= 1)
+            if (travaEx != true)
             {
-                showFormEditarProduto(dataGVProdutos);
-                load_getProdutos();
+                    showFormEditarProduto(dataGVProdutos);
+                    load_getProdutos();
             }
             else
             {
-                MessageBox.Show("Não há produtos cadastrados");
-            }
-            
+                MessageBox.Show("Nenhum item selecionado!");
+            }     
+            travaEx = true;
         }
 
         private void btnCadFilial_Click(object sender, EventArgs e)
@@ -77,14 +77,31 @@ namespace SKA_Inventario
 
         private void btnDelFilial_Click(object sender, EventArgs e)
         {
-            showFormDeletarFilial(dataGVFilial);
-            load_getFiliais();
+            if (travaEx != true)
+            {
+                showFormDeletarFilial(dataGVFilial);
+                load_getFiliais();
+            }
+            else
+            {
+                MessageBox.Show("Nenhum item selecionado!");
+            }
+            travaEx = true;
+            
         }
 
         private void btnEditFilial_Click(object sender, EventArgs e)
         {
-            showFormEditarFilial(dataGVFilial);
-            load_getFiliais();
+            if (travaEx != true)
+            {
+                showFormEditarFilial(dataGVFilial);
+                load_getFiliais();
+            }
+            else
+            {
+                MessageBox.Show("Nenhum item selecionado!");
+            }
+            travaEx = true;
         }
 
         //
@@ -100,32 +117,45 @@ namespace SKA_Inventario
         //  Atualiza apenas o gridView produtos
         public void load_getProdutos()
         {
-            dataGVProdutos = ConManager.GetProdutosGridView(dataGVProdutos); 
+            dataGVProdutos.DataSource = ConManager.Consultar("SELECT * FROM Produtos").Tables[0]; 
         }
         //
         //  Atualiza apenas o gridView filiais
         public void load_getFiliais()
         {
-            dataGVFilial = ConManager.GetFiliaisGridView(dataGVFilial);
+            dataGVFilial.DataSource = ConManager.Consultar("SELECT * FROM Filiais").Tables[0];
         }
 
         public void load_getMovimentacoes()
         {
-            gridViewMovimentacoes = ConManager.GetMovimentacoes(gridViewMovimentacoes);
+            gridViewMovimentacoes.DataSource = ConManager.Consultar("SELECT Movimentacoes.cd_movimentacao" +
+                        ",Movimentacoes.cd_produto AS 'Código Produto'" +
+                        ",Produtos.nome AS 'Produto'" +
+                        ",Usuarios.usuario,Remetente.nome AS 'Filial Remetente'" +
+                        ",Destinataria.nome AS 'Filial Destinataria'" +
+                        ",Movimentacoes.dt_movimentacao " +
+                        ",Produtos.disponivel " +
+                        "FROM Movimentacoes " +
+                        "INNER JOIN Produtos ON Movimentacoes.cd_produto = Produtos.cd_produto " +
+                        "INNER JOIN Usuarios ON Movimentacoes.cd_usuario = Usuarios.cd_usuario " +
+                        "LEFT JOIN Filiais Remetente ON Movimentacoes.cd_filial_remetente = Remetente.id " +
+                        "LEFT JOIN Filiais Destinataria ON Movimentacoes.cd_filial_destinataria = Destinataria.id " +
+                        "ORDER BY Movimentacoes.cd_movimentacao DESC").Tables[0];
         }
 
         private void btnExcluirProduto_Click(object sender, EventArgs e)
         {
-            StaticGrid = ConManager.GetProdutosGridView(dataGVProdutos);
-            if (StaticGrid.RowCount >= 1)
+            StaticGrid.DataSource = ConManager.Consultar("SELECT * FROM Produtos").Tables[0];
+            if (travaEx!=true)
             {
                 showFormDeletarProduto(dataGVProdutos);
                 load_getProdutos();
             }
             else
             {
-                MessageBox.Show("Não há produtos cadastrados");
-            }            
+                MessageBox.Show("Nenhum item selecionado!");
+            }
+            travaEx = true;
         }
 
         public void FormPrincipal_FormClosed(object sender, FormClosedEventArgs e)
@@ -135,43 +165,31 @@ namespace SKA_Inventario
 
         private void btnMovimentar_Click(object sender, EventArgs e)
         {
-            if (gridViewMovimentacoes.RowCount > 0)
+            if (travaEx != true)
             {
-                if (gridViewMovimentacoes.CurrentCell.RowIndex != 0)
-                {
-                    ShowFormMovimentar(gridViewMovimentacoes);
-                    load_getMovimentacoes();
-                }
-                else
-                {
-                    MessageBox.Show("Nenhum produto selecionado");
-                }
-                
+                ShowFormMovimentar(gridViewMovimentacoes);
+                load_getMovimentacoes();
             }
             else
             {
-                MessageBox.Show("Nenhum produto selecionado");
+                MessageBox.Show("Nenhum item selecionado");
             }
+            travaEx = true;
             load_getMovimentacoes();
         }
 
         private void btnHistorico_Click(object sender, EventArgs e)
         {
-            if (gridViewMovimentacoes.RowCount > 0)
-            {
-                if (gridViewMovimentacoes.CurrentCell.RowIndex != 0)
-                {
-                    ConManager.GetMovimentacaoProduto(gridViewMovimentacoes);
-                }
-                else
-                {
-                    MessageBox.Show("Nenhum produto selecionado");
-                }                
+            if (travaEx!=true)
+            {                
+                gridViewMovimentacoes = ConManager.GetMovimentacaoProduto(gridViewMovimentacoes);
+
             }
             else
             {
-                MessageBox.Show("Nenhum produto selecionado");
+                MessageBox.Show("Nenhum item selecionado");
             }
+            travaEx = true;
             load_getMovimentacoes();
         }
 
@@ -187,6 +205,36 @@ namespace SKA_Inventario
             gridViewMovimentacoes = FormPrincipal.StaticGrid;
         }
 
+        private void btnPesqFil_Click(object sender, EventArgs e)
+        {
+            StaticGrid = gridViewMovimentacoes;
+            ShowFormPesquisarMovimentacaoPorFilial();
+            gridViewMovimentacoes = FormPrincipal.StaticGrid;
+        }
+
+        private void btnPesqData_Click(object sender, EventArgs e)
+        {
+
+        }
+        /*
+         * 
+         *      Controle da travaEx
+         * 
+         */
+        private void dataGVProdutos_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            travaEx = false;
+        }
+        private void dataGVFilial_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            travaEx = false;
+        }
+        private void gridViewMovimentacoes_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            travaEx = false;
+        }
+
+
         /*
          * 
          * 
@@ -200,18 +248,32 @@ namespace SKA_Inventario
             formPesquisar.Show();
         }
 
+        public static void ShowFormPesquisarMovimentacaoPorFilial()
+        {
+            FormPesqMovimentacaoPorFilial formPesq = new FormPesqMovimentacaoPorFilial();
+            formPesq.Show();
+        }
+
         public void showFormEditarFilial(DataGridView gridView)
         {
             //  pegando o index da linha selecionada no datagridview
             DataGridViewRow row = gridView.Rows[gridView.CurrentRow.Index];
-            //atribuindo novo form e passando os dados da row selecionada
-            FormEdtFilial formEdtFilial = new FormEdtFilial();
-            formEdtFilial.setGridViewID(int.Parse(row.Cells["id"].Value.ToString()));
-            formEdtFilial.setGridViewNome(row.Cells["nome"].Value.ToString());
-            formEdtFilial.setGridViewCidade(row.Cells["cidade"].Value.ToString());
-            formEdtFilial.setGridViewLogradouro(row.Cells["logradouro"].Value.ToString());
-            formEdtFilial.setGridViewTelefone(row.Cells["telefone"].Value.ToString());
-            formEdtFilial.Show();
+            if (row.Cells["disponivel"].Value.Equals(true))
+            {
+                //atribuindo novo form e passando os dados da row selecionada
+                FormEdtFilial formEdtFilial = new FormEdtFilial();
+                formEdtFilial.setGridViewID(int.Parse(row.Cells["id"].Value.ToString()));
+                formEdtFilial.setGridViewNome(row.Cells["nome"].Value.ToString());
+                formEdtFilial.setGridViewCidade(row.Cells["cidade"].Value.ToString());
+                formEdtFilial.setGridViewLogradouro(row.Cells["logradouro"].Value.ToString());
+                formEdtFilial.setGridViewTelefone(row.Cells["telefone"].Value.ToString());
+                formEdtFilial.Show();
+            }
+            else
+            {
+                MessageBox.Show("Filial Indisponível!");
+            }
+            load_getFiliais();
         }
         //
         // Mostar o formulário Deletar Filial
@@ -227,7 +289,10 @@ namespace SKA_Inventario
             formDeletarFilial.setGridViewCidade(row.Cells["cidade"].Value.ToString());
             formDeletarFilial.setGridViewLogradouro(row.Cells["logradouro"].Value.ToString());
             formDeletarFilial.setGridViewTelefone(row.Cells["telefone"].Value.ToString());
+            formDeletarFilial.setDisponivel(row.Cells["disponivel"].Value.Equals(true));
             formDeletarFilial.Show();
+            load_getFiliais();
+   
         }
         //
         //  Mostrar o formulário de editar produto
@@ -249,6 +314,7 @@ namespace SKA_Inventario
             {
                 MessageBox.Show("Produto Indisponível!");
             }
+            load_getProdutos();
         }
         //
         //  Mostrar o formulário de Deletar produto

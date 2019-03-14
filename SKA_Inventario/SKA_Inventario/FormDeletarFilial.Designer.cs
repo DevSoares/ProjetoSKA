@@ -35,12 +35,13 @@
             this.lblCidadeFilial = new System.Windows.Forms.Label();
             this.lblLogradouroFilial = new System.Windows.Forms.Label();
             this.lblTelefoneFilial = new System.Windows.Forms.Label();
+            this.chkDisp = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // btnConfirmarExclusao
             // 
             this.btnConfirmarExclusao.BackColor = System.Drawing.SystemColors.Control;
-            this.btnConfirmarExclusao.Location = new System.Drawing.Point(99, 170);
+            this.btnConfirmarExclusao.Location = new System.Drawing.Point(99, 200);
             this.btnConfirmarExclusao.Name = "btnConfirmarExclusao";
             this.btnConfirmarExclusao.Size = new System.Drawing.Size(149, 23);
             this.btnConfirmarExclusao.TabIndex = 0;
@@ -50,7 +51,7 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(331, 170);
+            this.btnCancelar.Location = new System.Drawing.Point(331, 200);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(149, 23);
             this.btnCancelar.TabIndex = 1;
@@ -108,12 +109,24 @@
             this.lblTelefoneFilial.TabIndex = 6;
             this.lblTelefoneFilial.Text = "label5";
             // 
+            // chkDisp
+            // 
+            this.chkDisp.AutoSize = true;
+            this.chkDisp.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.chkDisp.Location = new System.Drawing.Point(60, 170);
+            this.chkDisp.Name = "chkDisp";
+            this.chkDisp.Size = new System.Drawing.Size(95, 22);
+            this.chkDisp.TabIndex = 7;
+            this.chkDisp.Text = "Disponivel";
+            this.chkDisp.UseVisualStyleBackColor = true;
+            // 
             // FormDeletarFilial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(584, 216);
+            this.ClientSize = new System.Drawing.Size(584, 251);
+            this.Controls.Add(this.chkDisp);
             this.Controls.Add(this.lblTelefoneFilial);
             this.Controls.Add(this.lblLogradouroFilial);
             this.Controls.Add(this.lblCidadeFilial);
@@ -136,5 +149,6 @@
         private System.Windows.Forms.Label lblCidadeFilial;
         private System.Windows.Forms.Label lblLogradouroFilial;
         private System.Windows.Forms.Label lblTelefoneFilial;
+        private System.Windows.Forms.CheckBox chkDisp;
     }
 }

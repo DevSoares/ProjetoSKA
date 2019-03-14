@@ -40,11 +40,13 @@
             this.dataGVProdutos = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btnPesqFil = new System.Windows.Forms.Button();
+            this.btnPesCodPrdt = new System.Windows.Forms.Button();
+            this.btnListarMovimentacoes = new System.Windows.Forms.Button();
+            this.btnHistorico = new System.Windows.Forms.Button();
             this.btnMovimentar = new System.Windows.Forms.Button();
             this.gridViewMovimentacoes = new System.Windows.Forms.DataGridView();
-            this.btnHistorico = new System.Windows.Forms.Button();
-            this.btnListarMovimentacoes = new System.Windows.Forms.Button();
-            this.btnPesCodPrdt = new System.Windows.Forms.Button();
+            this.btnPesqData = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGVFilial)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -70,7 +72,7 @@
             this.btnEditarProduto.Name = "btnEditarProduto";
             this.btnEditarProduto.Size = new System.Drawing.Size(75, 23);
             this.btnEditarProduto.TabIndex = 1;
-            this.btnEditarProduto.Text = "editar";
+            this.btnEditarProduto.Text = "Editar";
             this.btnEditarProduto.UseVisualStyleBackColor = true;
             this.btnEditarProduto.Click += new System.EventHandler(this.btnEditar_Click);
             // 
@@ -80,7 +82,7 @@
             this.btnCadastrarProduto.Name = "btnCadastrarProduto";
             this.btnCadastrarProduto.Size = new System.Drawing.Size(75, 23);
             this.btnCadastrarProduto.TabIndex = 0;
-            this.btnCadastrarProduto.Text = "cadastrar";
+            this.btnCadastrarProduto.Text = "Cadastrar";
             this.btnCadastrarProduto.UseVisualStyleBackColor = true;
             this.btnCadastrarProduto.Click += new System.EventHandler(this.btnCadastrar_Click);
             // 
@@ -95,14 +97,15 @@
             this.dataGVFilial.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGVFilial.Size = new System.Drawing.Size(706, 280);
             this.dataGVFilial.TabIndex = 3;
+            this.dataGVFilial.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGVFilial_CellMouseClick);
             // 
             // btnDelFilial
             // 
             this.btnDelFilial.Location = new System.Drawing.Point(168, 8);
             this.btnDelFilial.Name = "btnDelFilial";
-            this.btnDelFilial.Size = new System.Drawing.Size(75, 23);
+            this.btnDelFilial.Size = new System.Drawing.Size(91, 23);
             this.btnDelFilial.TabIndex = 2;
-            this.btnDelFilial.Text = "excluir";
+            this.btnDelFilial.Text = "Alterar Status";
             this.btnDelFilial.UseVisualStyleBackColor = true;
             this.btnDelFilial.Click += new System.EventHandler(this.btnDelFilial_Click);
             // 
@@ -112,7 +115,7 @@
             this.btnEditFilial.Name = "btnEditFilial";
             this.btnEditFilial.Size = new System.Drawing.Size(75, 23);
             this.btnEditFilial.TabIndex = 1;
-            this.btnEditFilial.Text = "editar";
+            this.btnEditFilial.Text = "Editar";
             this.btnEditFilial.UseVisualStyleBackColor = true;
             this.btnEditFilial.Click += new System.EventHandler(this.btnEditFilial_Click);
             // 
@@ -122,7 +125,7 @@
             this.btnCadFilial.Name = "btnCadFilial";
             this.btnCadFilial.Size = new System.Drawing.Size(75, 23);
             this.btnCadFilial.TabIndex = 0;
-            this.btnCadFilial.Text = "cadastrar";
+            this.btnCadFilial.Text = "Cadastrar";
             this.btnCadFilial.UseVisualStyleBackColor = true;
             this.btnCadFilial.Click += new System.EventHandler(this.btnCadFilial_Click);
             // 
@@ -164,6 +167,7 @@
             this.dataGVProdutos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGVProdutos.Size = new System.Drawing.Size(797, 259);
             this.dataGVProdutos.TabIndex = 3;
+            this.dataGVProdutos.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGVProdutos_CellMouseClick);
             // 
             // tabPage2
             // 
@@ -181,6 +185,8 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.btnPesqData);
+            this.tabPage3.Controls.Add(this.btnPesqFil);
             this.tabPage3.Controls.Add(this.btnPesCodPrdt);
             this.tabPage3.Controls.Add(this.btnListarMovimentacoes);
             this.tabPage3.Controls.Add(this.btnHistorico);
@@ -193,6 +199,46 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Movimentações";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // btnPesqFil
+            // 
+            this.btnPesqFil.Location = new System.Drawing.Point(421, 17);
+            this.btnPesqFil.Name = "btnPesqFil";
+            this.btnPesqFil.Size = new System.Drawing.Size(75, 23);
+            this.btnPesqFil.TabIndex = 5;
+            this.btnPesqFil.Text = "Pesq / Fil";
+            this.btnPesqFil.UseVisualStyleBackColor = true;
+            this.btnPesqFil.Click += new System.EventHandler(this.btnPesqFil_Click);
+            // 
+            // btnPesCodPrdt
+            // 
+            this.btnPesCodPrdt.Location = new System.Drawing.Point(340, 17);
+            this.btnPesCodPrdt.Name = "btnPesCodPrdt";
+            this.btnPesCodPrdt.Size = new System.Drawing.Size(75, 23);
+            this.btnPesCodPrdt.TabIndex = 4;
+            this.btnPesCodPrdt.Text = "Pesq / Cod";
+            this.btnPesCodPrdt.UseVisualStyleBackColor = true;
+            this.btnPesCodPrdt.Click += new System.EventHandler(this.btnPesCodPrdt_Click);
+            // 
+            // btnListarMovimentacoes
+            // 
+            this.btnListarMovimentacoes.Location = new System.Drawing.Point(207, 17);
+            this.btnListarMovimentacoes.Name = "btnListarMovimentacoes";
+            this.btnListarMovimentacoes.Size = new System.Drawing.Size(127, 23);
+            this.btnListarMovimentacoes.TabIndex = 3;
+            this.btnListarMovimentacoes.Text = "Listar Movimentações";
+            this.btnListarMovimentacoes.UseVisualStyleBackColor = true;
+            this.btnListarMovimentacoes.Click += new System.EventHandler(this.btnListarMovimentacoes_Click);
+            // 
+            // btnHistorico
+            // 
+            this.btnHistorico.Location = new System.Drawing.Point(100, 17);
+            this.btnHistorico.Name = "btnHistorico";
+            this.btnHistorico.Size = new System.Drawing.Size(101, 23);
+            this.btnHistorico.TabIndex = 2;
+            this.btnHistorico.Text = "Verificar Histórico";
+            this.btnHistorico.UseVisualStyleBackColor = true;
+            this.btnHistorico.Click += new System.EventHandler(this.btnHistorico_Click);
             // 
             // btnMovimentar
             // 
@@ -215,36 +261,17 @@
             this.gridViewMovimentacoes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridViewMovimentacoes.Size = new System.Drawing.Size(804, 373);
             this.gridViewMovimentacoes.TabIndex = 0;
+            this.gridViewMovimentacoes.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.gridViewMovimentacoes_CellMouseClick);
             // 
-            // btnHistorico
+            // btnPesqData
             // 
-            this.btnHistorico.Location = new System.Drawing.Point(114, 17);
-            this.btnHistorico.Name = "btnHistorico";
-            this.btnHistorico.Size = new System.Drawing.Size(101, 23);
-            this.btnHistorico.TabIndex = 2;
-            this.btnHistorico.Text = "Verificar Histórico";
-            this.btnHistorico.UseVisualStyleBackColor = true;
-            this.btnHistorico.Click += new System.EventHandler(this.btnHistorico_Click);
-            // 
-            // btnListarMovimentacoes
-            // 
-            this.btnListarMovimentacoes.Location = new System.Drawing.Point(234, 17);
-            this.btnListarMovimentacoes.Name = "btnListarMovimentacoes";
-            this.btnListarMovimentacoes.Size = new System.Drawing.Size(127, 23);
-            this.btnListarMovimentacoes.TabIndex = 3;
-            this.btnListarMovimentacoes.Text = "Listar Movimentações";
-            this.btnListarMovimentacoes.UseVisualStyleBackColor = true;
-            this.btnListarMovimentacoes.Click += new System.EventHandler(this.btnListarMovimentacoes_Click);
-            // 
-            // btnPesCodPrdt
-            // 
-            this.btnPesCodPrdt.Location = new System.Drawing.Point(367, 17);
-            this.btnPesCodPrdt.Name = "btnPesCodPrdt";
-            this.btnPesCodPrdt.Size = new System.Drawing.Size(75, 23);
-            this.btnPesCodPrdt.TabIndex = 4;
-            this.btnPesCodPrdt.Text = "Pesq / Cod";
-            this.btnPesCodPrdt.UseVisualStyleBackColor = true;
-            this.btnPesCodPrdt.Click += new System.EventHandler(this.btnPesCodPrdt_Click);
+            this.btnPesqData.Location = new System.Drawing.Point(502, 17);
+            this.btnPesqData.Name = "btnPesqData";
+            this.btnPesqData.Size = new System.Drawing.Size(75, 23);
+            this.btnPesqData.TabIndex = 6;
+            this.btnPesqData.Text = "Pesq / Data";
+            this.btnPesqData.UseVisualStyleBackColor = true;
+            this.btnPesqData.Click += new System.EventHandler(this.btnPesqData_Click);
             // 
             // FormPrincipal
             // 
@@ -284,6 +311,8 @@
         private System.Windows.Forms.Button btnListarMovimentacoes;
         private System.Windows.Forms.Button btnHistorico;
         private System.Windows.Forms.Button btnPesCodPrdt;
+        private System.Windows.Forms.Button btnPesqFil;
+        private System.Windows.Forms.Button btnPesqData;
     }
 }
 

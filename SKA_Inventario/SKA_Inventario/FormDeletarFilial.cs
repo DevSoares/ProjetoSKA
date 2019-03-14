@@ -18,6 +18,7 @@ namespace SKA_Inventario
         private string gridViewCidade;
         private string gridViewLogradouro;
         private string gridViewTelefone;
+        private int disp;
 
         protected override void OnLoad(EventArgs e)
         {
@@ -38,11 +39,27 @@ namespace SKA_Inventario
             lblCidadeFilial.Text = "Cidade: " + getGridViewCidade();
             lblLogradouroFilial.Text = "Logradouro: "+getGridViewLogradouro();
             lblTelefoneFilial.Text = "Telefone: "+getGridViewTelefone();
+            if (disp == 1)
+            {
+                chkDisp.CheckState = CheckState.Checked;                
+            }
+            else
+            {
+                chkDisp.CheckState = CheckState.Unchecked;
+            }
         }
         
         private void btnConfirmarExclusao_Click(object sender, EventArgs e)
         {
-            ConManager.DeletarFilial(gridViewID, gridViewNome);            
+            if (chkDisp.Checked)
+            {
+                this.disp = 1;
+            }
+            else
+            {
+                this.disp = 0;
+            }
+            ConManager.DeletarFilial(gridViewID, gridViewNome, disp);            
             this.Close();
         }
 
@@ -93,6 +110,17 @@ namespace SKA_Inventario
         public string getGridViewTelefone()
         {
             return this.gridViewTelefone;
-        }       
+        }
+        public void setDisponivel(bool disp)
+        {
+            if (disp == true)
+            {
+                this.disp = 1;
+            }
+            else
+            {
+                this.disp = 0;
+            }
+        }
     }
 }

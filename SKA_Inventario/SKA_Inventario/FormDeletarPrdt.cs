@@ -80,8 +80,7 @@ namespace SKA_Inventario
             else
             {
                 this.disponivel = 0;
-            }
-            
+            }            
         }        
 
         private void btnExcluir_Click(object sender, EventArgs e)

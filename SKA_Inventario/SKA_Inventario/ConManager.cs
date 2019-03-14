@@ -68,157 +68,102 @@ namespace SKA_Inventario
         }
 
         //
-        //  função para atualizar o GridView da tela Filiais
+        //  Função para retornar um DataSet
         //
-        public static DataGridView GetFiliaisGridView(DataGridView gridView)
+        public static DataSet Consultar(string query)
+        {
+            try
+            {
+                using(SqlConnection connection = new SqlConnection(connString))
+                {
+                    connection.Open();
+                    SqlCommand sqlCommand = new SqlCommand(query, connection);
+                    SqlDataAdapter dataAdapter = new SqlDataAdapter(sqlCommand);
+                    DataSet dataSet = new DataSet();
+                    dataAdapter.Fill(dataSet);
+                    return dataSet;
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                return new DataSet();
+            }
+        }
+        //
+        //  Função para retornar um DataSet passando um parametro de pesquisa string
+        //
+        public static DataSet Consultar(string query, string parametro, string parametroValue)
         {
             try
             {
                 using (SqlConnection connection = new SqlConnection(connString))
                 {
-                    // abrindo conexão com o DB
                     connection.Open();
-
-                    //definindo sqlcommand
-                    string cmdQuery = "SELECT * FROM Filiais";
-                    SqlCommand sqlCommand = new SqlCommand(cmdQuery, connection);
-
+                    SqlCommand sqlCommand = new SqlCommand(query, connection);
+                    sqlCommand.Parameters.AddWithValue(parametro, parametroValue);
                     SqlDataAdapter dataAdapter = new SqlDataAdapter(sqlCommand);
-                    //  definindo dataSet
                     DataSet dataSet = new DataSet();
-                    //  preenchendo o dataset com os resultados da query
                     dataAdapter.Fill(dataSet);
-                    // definindo gridview como read-only
-                    gridView.ReadOnly = true;
-                    // preenchendo o gridview com o dataset
-                    gridView.DataSource = dataSet.Tables[0];
-                    connection.Close();
-                    return gridView;
-                    
+                    return dataSet;
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                return gridView;
+                MessageBox.Show(ex.ToString());
+                return new DataSet();
             }
         }
-
         //
-        //  Função para atualizar o gridView na tela de produtos
+        //  Função para retornar um DataSet passando um parametro de pesquisa int
         //
-        public static DataGridView GetProdutosGridView(DataGridView gridView)
+        public static DataSet Consultar(string query, string parametro, int parametroValue)
         {
             try
             {
                 using (SqlConnection connection = new SqlConnection(connString))
                 {
-                    // abrindo conexão com o DB
                     connection.Open();
-
-                    //definindo sqlcommand
-                    string cmdQuery = "SELECT * FROM Produtos";
-                    SqlCommand sqlCommand = new SqlCommand(cmdQuery, connection);
-
+                    SqlCommand sqlCommand = new SqlCommand(query, connection);
+                    sqlCommand.Parameters.AddWithValue(parametro, parametroValue);
                     SqlDataAdapter dataAdapter = new SqlDataAdapter(sqlCommand);
-                    //  definindo dataSet
                     DataSet dataSet = new DataSet();
-                    //  preenchendo o dataset com os resultados da query
                     dataAdapter.Fill(dataSet);
-                    // definindo gridview como read-only
-                    gridView.ReadOnly = true;
-                    // preenchendo o gridview com o dataset
-                    gridView.DataSource = dataSet.Tables[0];
-                    connection.Close();
-                    return gridView;
-
+                    return dataSet;
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                return gridView;
+                MessageBox.Show(ex.ToString());
+                return new DataSet();
             }
         }
 
-        //
-        //  Função para atualizar as opções de checkbox de filiais
-        //
-        public static ComboBox GetFiliaisComboBox(ComboBox comboBox)
-        {
-            try
-            {
-                string connString = "Server=DESKTOP-FP3Q8AQ\\SQLEXPRESS2008; Database=ProjectSKA; User Id=SQL_PROJECT_SKA;Password=Dev0test@;";
-                using (SqlConnection connection = new SqlConnection(connString))
-                {
-                    // abrindo conexão com o DB
-                    connection.Open();
 
-                    //definindo sqlcommand
-                    string cmdQuery = "SELECT nome FROM Filiais";
-                    SqlCommand sqlCommand = new SqlCommand(cmdQuery, connection);
-
-                    SqlDataAdapter dataAdapter = new SqlDataAdapter(sqlCommand);
-                    //  definindo dataSet
-                    DataSet dataSet = new DataSet();
-                    //  preenchendo o dataset com os resultados da query
-                    dataAdapter.Fill(dataSet);
-                    // preenchendo o gridview com o dataset
-                    comboBox.DataSource = dataSet.Tables[0];
-                    comboBox.DisplayMember = "nome";
-                    connection.Close();
-                    return comboBox;
-
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                return comboBox;
-            }
-        }
         //
         //  Função para editar a filial selecionada na tela de filiais
         //
         public static void EditarFilial(int edt_id, string edt_nome, string edt_cidade, string edt_logradouro, string edt_telefone)
         {
-            //  pegando o index da linha selecionada no datagridview
-            string msgEdtConf = "Filial editada!!\n Nome: " + edt_nome + "\n ID: " + edt_id.ToString() ;
             try
             {
-                string connString = "Server=DESKTOP-FP3Q8AQ\\SQLEXPRESS2008; Database=ProjectSKA; User Id=SQL_PROJECT_SKA;Password=Dev0test@;";
                 using (SqlConnection connection = new SqlConnection(connString))
                 {
                     //  abrindo a conexão
-                    connection.Open();
-                    //  configurando o parametro de exclusão
-                    SqlParameter paramID = new SqlParameter("@ParamID", SqlDbType.Int);
-                    paramID.Value = edt_id;
-                    SqlParameter paramNome = new SqlParameter("@ParamNome", SqlDbType.NVarChar, 50);
-                    paramNome.Value =  edt_nome;
-                    SqlParameter paramCidade = new SqlParameter("@ParamCidade", SqlDbType.NVarChar, 50);
-                    paramCidade.Value = edt_cidade;
-                    SqlParameter paramLogradouro = new SqlParameter("@ParamLogradouro", SqlDbType.NVarChar, 50);
-                    paramLogradouro.Value = edt_logradouro;
-                    SqlParameter paramTelefone = new SqlParameter("@ParamTelefone", SqlDbType.NVarChar, 50);
-                    paramTelefone.Value = edt_telefone;
-
+                    connection.Open();                           
                     //  configurando o sqlCommand
                     SqlCommand command = new SqlCommand();
                     //  adicionando parametros
-                    command.Parameters.Add(paramID);
-                    command.Parameters.Add(paramNome);
-                    command.Parameters.Add(paramCidade);
-                    command.Parameters.Add(paramLogradouro);
-                    command.Parameters.Add(paramTelefone);
-
+                    command.Parameters.AddWithValue("@ParamID", edt_id);
+                    command.Parameters.AddWithValue("@ParamNome", edt_nome);
+                    command.Parameters.AddWithValue("@ParamCidade", edt_cidade);
+                    command.Parameters.AddWithValue("@ParamLogradouro", edt_logradouro);
+                    command.Parameters.AddWithValue("@ParamTelefone", edt_telefone);
                     command.Connection = connection;
                     command.CommandText = "UPDATE Filiais SET nome=@ParamNome, cidade=@ParamCidade, logradouro=@ParamLogradouro, telefone=@ParamTelefone WHERE id=@paramID";
                     command.CommandType = CommandType.Text;
-
                     command.ExecuteNonQuery();
-                    MessageBox.Show(msgEdtConf);
-
+                    MessageBox.Show("Filial editada!!\n Nome: " + edt_nome + "\n ID: " + edt_id.ToString());
                     connection.Close();
                 }
             }
@@ -230,38 +175,31 @@ namespace SKA_Inventario
         //
         // Função para deletar a filial selecionada no gridView
         //
-        public static void DeletarFilial(int del_id, string del_nome)
+        public static void DeletarFilial(int del_id, string del_nome, int disp)
         {
-            string msgDelConf = "Filial excluída!!\n Nome: " + del_nome + "\n ID: " + del_id.ToString();
             try
             {
-                string connString = "Server=DESKTOP-FP3Q8AQ\\SQLEXPRESS2008; Database=ProjectSKA; User Id=SQL_PROJECT_SKA;Password=Dev0test@;";
                 using (SqlConnection connection = new SqlConnection(connString))
                 {
                     //  abrindo a conexão
                     connection.Open();
-                    //  configurando o parametro de exclusão
-                    SqlParameter paramID = new SqlParameter("@paramID", SqlDbType.Int);
-                    paramID.Value = del_id;
-
                     //  configurando o sqlCommand
                     SqlCommand command = new SqlCommand();
                     //  adicionando o parametro
-                    command.Parameters.Add(paramID);
+                    command.Parameters.AddWithValue("paramID", del_id);
+                    command.Parameters.AddWithValue("@pDisp", disp);
                     command.Connection = connection;
-                    command.CommandText = "DELETE FROM Filiais WHERE id=@paramID";
+                    command.CommandText = "UPDATE Filiais SET disponivel=@pDisp WHERE id=@paramID";
                     command.CommandType = CommandType.Text;
-
                     command.ExecuteNonQuery();
-                    MessageBox.Show(msgDelConf);
-
+                    MessageBox.Show("Filial Alterada!!\n Nome: " + del_nome + "\n ID: " + del_id.ToString());
                     connection.Close();
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
+            }            
         }
         //
         // Função para cadastrar filial
@@ -270,30 +208,21 @@ namespace SKA_Inventario
         {
             try
             {
-                string connString = "Server=DESKTOP-FP3Q8AQ\\SQLEXPRESS2008; Database=ProjectSKA; User Id=SQL_PROJECT_SKA;Password=Dev0test@;";
                 using (SqlConnection connection = new SqlConnection(connString))
                 {
                     //  abrindo a conexão com o servidor sql
                     connection.Open();
-
                     //  definindo parametros do SqlCommand
                     SqlCommand sqlCommand = new SqlCommand();
-                    SqlParameter paramNome = new SqlParameter("@paramNome", SqlDbType.NVarChar, 50);
-                    paramNome.Value = cad_nome;
-                    SqlParameter paramCidade = new SqlParameter("@paramCidade", SqlDbType.NVarChar, 50);
-                    paramCidade.Value = cad_cidade;
-                    SqlParameter paramLogradouro = new SqlParameter("@paramLogradouro", SqlDbType.NVarChar, 50);
-                    paramLogradouro.Value = cad_logradouro;
-                    SqlParameter paramTelefone = new SqlParameter("@paramTelefone", SqlDbType.NVarChar, 50);
-                    paramTelefone.Value = cad_telefone;
                     //  Adicionando os parametros
-                    sqlCommand.Parameters.Add(paramNome);
-                    sqlCommand.Parameters.Add(paramCidade);
-                    sqlCommand.Parameters.Add(paramLogradouro);
-                    sqlCommand.Parameters.Add(paramTelefone);
+                    sqlCommand.Parameters.AddWithValue("@paramNome", cad_nome);
+                    sqlCommand.Parameters.AddWithValue("@paramCidade", cad_cidade);
+                    sqlCommand.Parameters.AddWithValue("@paramLogradouro", cad_logradouro);
+                    sqlCommand.Parameters.AddWithValue("@paramTelefone", cad_telefone);
+                    sqlCommand.Parameters.AddWithValue("@disponivel", 1);
                     //  Definindo atributos do SqlCommand
                     sqlCommand.Connection = connection;
-                    sqlCommand.CommandText = "INSERT INTO Filiais (nome, cidade, logradouro, telefone) VALUES (@paramNome, @paramCidade, @paramLogradouro, @paramTelefone);";
+                    sqlCommand.CommandText = "INSERT INTO Filiais (nome, cidade, logradouro, telefone, disponivel) VALUES (@paramNome, @paramCidade, @paramLogradouro, @paramTelefone, @disponivel);";
                     sqlCommand.CommandType = CommandType.Text;
                     //  Executando o SqlCommand
                     sqlCommand.ExecuteNonQuery();
@@ -319,14 +248,9 @@ namespace SKA_Inventario
                 {
                     //  abrindo a conexão com o servidor sql
                     connection.Open();
-
-                    //  definindo parametros do SqlCommand
                     SqlCommand sqlCommand = new SqlCommand();
-                    SqlParameter paramNome = new SqlParameter("@paramNome", SqlDbType.NVarChar, 50);
-                    paramNome.Value = cad_nome;
-                    
                     //  Adicionando os parametros
-                    sqlCommand.Parameters.Add(paramNome);
+                    sqlCommand.Parameters.AddWithValue("@paramNome", cad_nome);
                     sqlCommand.Parameters.AddWithValue("@paramDisponivel", 1);
                     //  Definindo atributos do SqlCommand
                     sqlCommand.Connection = connection;
@@ -344,7 +268,6 @@ namespace SKA_Inventario
                 MessageBox.Show(excecao.ToString());
             }
         }
-
         //
         //  Função para editar o produto
         //
@@ -352,22 +275,14 @@ namespace SKA_Inventario
         {
             try
             {
-                string connString = "Server=DESKTOP-FP3Q8AQ\\SQLEXPRESS2008; Database=ProjectSKA; User Id=SQL_PROJECT_SKA;Password=Dev0test@;";
                 using (SqlConnection connection = new SqlConnection(connString))
                 {
                     //  abrindo a conexão com o servidor sql
                     connection.Open();
-
-                    //  definindo parametros do SqlCommand
                     SqlCommand sqlCommand = new SqlCommand();
-                    SqlParameter paramNome = new SqlParameter("@paramNome", SqlDbType.NVarChar, 50);
-                    paramNome.Value = nome;
-                    SqlParameter paramID = new SqlParameter("@paramID", SqlDbType.Int);
-                    paramID.Value = cod_prdt;
-
                     //  Adicionando os parametros
-                    sqlCommand.Parameters.Add(paramNome);
-                    sqlCommand.Parameters.Add(paramID);
+                    sqlCommand.Parameters.AddWithValue("@paramNome", nome);
+                    sqlCommand.Parameters.AddWithValue("@paramID", cod_prdt);
                     //  Definindo atributos do SqlCommand
                     sqlCommand.Connection = connection;                    
                     sqlCommand.CommandText = "UPDATE Produtos SET nome=@paramNome WHERE cd_produto=@paramID";
@@ -384,40 +299,27 @@ namespace SKA_Inventario
                 MessageBox.Show(excecao.ToString());
             }
         }
-
-        
-
-        
-
         //
         // Função para deletar o produto selecionado no gridView
         //
         public static void DeletarProduto(int del_id, string del_nome, int disp)
         {
-            string msgDelConf = "Status do Produto Alterado!!\n Nome: " + del_nome + "\n ID: " + del_id.ToString();
             try
             {
-                string connString = "Server=DESKTOP-FP3Q8AQ\\SQLEXPRESS2008; Database=ProjectSKA; User Id=SQL_PROJECT_SKA;Password=Dev0test@;";
                 using (SqlConnection connection = new SqlConnection(connString))
                 {
                     //  abrindo a conexão
                     connection.Open();
-                    //  configurando o parametro de exclusão
-                    SqlParameter paramID = new SqlParameter("@paramID", SqlDbType.Int);
-                    paramID.Value = del_id;
-
                     //  configurando o sqlCommand
                     SqlCommand command = new SqlCommand();
                     //  adicionando o parametro
                     command.Parameters.AddWithValue("@paDisponivel", disp);
-                    command.Parameters.Add(paramID);
+                    command.Parameters.AddWithValue("@paramID", del_id);
                     command.Connection = connection;
                     command.CommandText = "UPDATE Produtos SET disponivel = @paDisponivel WHERE cd_produto=@paramID";
                     command.CommandType = CommandType.Text;
-
                     command.ExecuteNonQuery();
-                    MessageBox.Show(msgDelConf);
-
+                    MessageBox.Show("Status do Produto Alterado!!\n Nome: " + del_nome + "\n ID: " + del_id.ToString());
                     connection.Close();
                 }
             }
@@ -426,13 +328,13 @@ namespace SKA_Inventario
                 MessageBox.Show(ex.Message);
             }
         }              
-
+        //
+        //      Função para pegar o último produto cadastrado
         public static int GetLastProduto()
         {
             int last_produto = 0;           
             try
             {
-                string connString = "Server=DESKTOP-FP3Q8AQ\\SQLEXPRESS2008; Database=ProjectSKA; User Id=SQL_PROJECT_SKA;Password=Dev0test@;";
                 using (SqlConnection connection = new SqlConnection(connString))
                 {    
                     //  abrindo a conexão
@@ -453,8 +355,10 @@ namespace SKA_Inventario
                 MessageBox.Show(ex.Message);
             }
             return last_produto;
-        }
-
+        }        
+        //
+        //      Função para validar o usuario
+        //
         public static bool ValidUser(int cd_usuario)
         {
             bool valido = false;
@@ -481,50 +385,6 @@ namespace SKA_Inventario
                 MessageBox.Show(ex.Message);
             }
             return valido;
-        }
-
-        public static DataGridView GetMovimentacoes(DataGridView gridView)
-        {
-            try
-            {
-                string connString = "Server=DESKTOP-FP3Q8AQ\\SQLEXPRESS2008; Database=ProjectSKA; User Id=SQL_PROJECT_SKA;Password=Dev0test@;";
-                using (SqlConnection connection = new SqlConnection(connString))
-                {
-                    // abrindo conexão com o DB
-                    connection.Open();
-
-                    //definindo sqlcommand
-                    string cmdQuery = "SELECT Movimentacoes.cd_movimentacao" +
-                        ",Movimentacoes.cd_produto AS 'Código Produto'"+
-                        ",Produtos.nome AS 'Produto'" +
-                        ",Usuarios.usuario,Remetente.nome AS 'Filial Remetente'" +
-                        ",Destinataria.nome AS 'Filial Destinataria'" +
-                        ",Movimentacoes.dt_movimentacao " +
-                        ",Produtos.disponivel "+
-                        "FROM Movimentacoes " +
-                        "INNER JOIN Produtos ON Movimentacoes.cd_produto = Produtos.cd_produto " +
-                        "INNER JOIN Usuarios ON Movimentacoes.cd_usuario = Usuarios.cd_usuario " +
-                        "LEFT JOIN Filiais Remetente ON Movimentacoes.cd_filial_remetente = Remetente.id " +
-                        "LEFT JOIN Filiais Destinataria ON Movimentacoes.cd_filial_destinataria = Destinataria.id "+
-                        "ORDER BY Movimentacoes.cd_movimentacao DESC";
-                    SqlCommand sqlCommand = new SqlCommand(cmdQuery, connection);
-                    SqlDataAdapter dataAdapter = new SqlDataAdapter(sqlCommand);
-                    //  definindo dataSet
-                    DataSet dataSet = new DataSet();
-                    //  preenchendo o dataset com os resultados da query
-                    dataAdapter.Fill(dataSet);
-                    // definindo gridview como read-only
-                    // preenchendo o gridview com o dataset
-                    gridView.DataSource = dataSet.Tables[0];
-                    connection.Close();
-                    return gridView;
-                }
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-            return gridView;
         }
 
         public static void MovimentarProduto(int cd_produto, int cd_remetente, int cd_destinataria)
@@ -558,7 +418,6 @@ namespace SKA_Inventario
             int cd_produto = 0;
             try
             {
-                string connString = "Server=DESKTOP-FP3Q8AQ\\SQLEXPRESS2008; Database=ProjectSKA; User Id=SQL_PROJECT_SKA;Password=Dev0test@;";
                 using (SqlConnection connection = new SqlConnection(connString))
                 {                    
                     //  abrindo a conexão
@@ -587,7 +446,6 @@ namespace SKA_Inventario
             int cd_filial = 0;
             try
             {
-                string connString = "Server=DESKTOP-FP3Q8AQ\\SQLEXPRESS2008; Database=ProjectSKA; User Id=SQL_PROJECT_SKA;Password=Dev0test@;";
                 using (SqlConnection connection = new SqlConnection(connString))
                 {
                     //  abrindo a conexão
@@ -610,53 +468,7 @@ namespace SKA_Inventario
             }
             return cd_filial;
         }
-
-        public static DataGridView GetMovimentacaoProduto(DataGridView gridView)
-        {
-            DataGridViewRow row = gridView.Rows[gridView.CurrentRow.Index];
-            try
-            {
-                string connString = "Server=DESKTOP-FP3Q8AQ\\SQLEXPRESS2008; Database=ProjectSKA; User Id=SQL_PROJECT_SKA;Password=Dev0test@;";
-                using (SqlConnection connection = new SqlConnection(connString))
-                {
-                    // abrindo conexão com o DB
-                    connection.Open();
-                    string cmdQuery = "SELECT Movimentacoes.cd_movimentacao" +
-                        ",Movimentacoes.cd_produto AS 'Código Produto'" +
-                        ",Produtos.nome AS 'Produto'" +
-                        ",Usuarios.usuario,Remetente.nome AS 'Filial Remetente'" +
-                        ",Destinataria.nome AS 'Filial Destinataria'" +
-                        ",Movimentacoes.dt_movimentacao " +
-                        ",Produtos.disponivel " +
-                        "FROM Movimentacoes " +
-                        "INNER JOIN Produtos ON Movimentacoes.cd_produto = Produtos.cd_produto " +
-                        "INNER JOIN Usuarios ON Movimentacoes.cd_usuario = Usuarios.cd_usuario " +
-                        "LEFT JOIN Filiais Remetente ON Movimentacoes.cd_filial_remetente = Remetente.id " +
-                        "LEFT JOIN Filiais Destinataria ON Movimentacoes.cd_filial_destinataria = Destinataria.id "+
-                        "WHERE Movimentacoes.cd_produto = @pCDproduto "+
-                        "ORDER BY Movimentacoes.cd_movimentacao DESC";
-                    SqlCommand sqlCommand = new SqlCommand(cmdQuery, connection);
-                    sqlCommand.Parameters.AddWithValue("@pCDproduto", int.Parse(row.Cells["Código Produto"].Value.ToString()));
-                    SqlDataAdapter dataAdapter = new SqlDataAdapter(sqlCommand);
-                    //  definindo dataSet
-                    DataSet dataSet = new DataSet();
-                    //  preenchendo o dataset com os resultados da query
-                    dataAdapter.Fill(dataSet);
-                    // definindo gridview como read-only
-                    gridView.ReadOnly = true;
-                    // preenchendo o gridview com o dataset
-                    gridView.DataSource = dataSet.Tables[0];
-                    connection.Close();
-                    return gridView;
-                }
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-            return gridView;
-        }              
-
+       
         public static DataGridView GetMovimentacaoCDProduto(DataGridView gridView, int cd_produto)
         {            
             try
@@ -690,6 +502,9 @@ namespace SKA_Inventario
                     // preenchendo o gridview com o dataset                    
                     gridView.DataSource = dataSet.Tables[0];
                     connection.Close();
+                    if (gridView.RowCount == 0) {
+                        MessageBox.Show("Identidade inválida! ");
+                    }
                     return gridView;
                 }
             }
@@ -698,6 +513,51 @@ namespace SKA_Inventario
                 MessageBox.Show(ex.ToString());
             }
             return  gridView;
+        }
+        public static DataGridView GetMovimentacaoProduto(DataGridView gridView)
+        {
+            DataGridViewRow row = gridView.Rows[gridView.CurrentRow.Index];
+            try
+            {
+                string connString = "Server=DESKTOP-FP3Q8AQ\\SQLEXPRESS2008; Database=ProjectSKA; User Id=SQL_PROJECT_SKA;Password=Dev0test@;";
+                using (SqlConnection connection = new SqlConnection(connString))
+                {
+                    // abrindo conexão com o DB
+                    connection.Open();
+                    string cmdQuery = "SELECT Movimentacoes.cd_movimentacao" +
+                        ",Movimentacoes.cd_produto AS 'Código Produto'" +
+                        ",Produtos.nome AS 'Produto'" +
+                        ",Usuarios.usuario,Remetente.nome AS 'Filial Remetente'" +
+                        ",Destinataria.nome AS 'Filial Destinataria'" +
+                        ",Movimentacoes.dt_movimentacao " +
+                        ",Produtos.disponivel " +
+                        "FROM Movimentacoes " +
+                        "INNER JOIN Produtos ON Movimentacoes.cd_produto = Produtos.cd_produto " +
+                        "INNER JOIN Usuarios ON Movimentacoes.cd_usuario = Usuarios.cd_usuario " +
+                        "LEFT JOIN Filiais Remetente ON Movimentacoes.cd_filial_remetente = Remetente.id " +
+                        "LEFT JOIN Filiais Destinataria ON Movimentacoes.cd_filial_destinataria = Destinataria.id " +
+                        "WHERE Movimentacoes.cd_produto = @pCDproduto " +
+                        "ORDER BY Movimentacoes.cd_movimentacao DESC";
+                    SqlCommand sqlCommand = new SqlCommand(cmdQuery, connection);
+                    sqlCommand.Parameters.AddWithValue("@pCDproduto", int.Parse(row.Cells["Código Produto"].Value.ToString()));
+                    SqlDataAdapter dataAdapter = new SqlDataAdapter(sqlCommand);
+                    //  definindo dataSet
+                    DataSet dataSet = new DataSet();
+                    //  preenchendo o dataset com os resultados da query
+                    dataAdapter.Fill(dataSet);
+                    // definindo gridview como read-only
+                    gridView.ReadOnly = true;
+                    // preenchendo o gridview com o dataset
+                    gridView.DataSource = dataSet.Tables[0];
+                    connection.Close();
+                    return gridView;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            return gridView;
         }
     }
 }
