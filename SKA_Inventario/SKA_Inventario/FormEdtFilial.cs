@@ -18,8 +18,6 @@ namespace SKA_Inventario
         private string gridViewCidade;
         private string gridViewLogradouro;
         private string gridViewTelefone;
-        private ConManager conManager = new ConManager();
-        
 
         protected override void OnLoad(EventArgs e)
         {
@@ -48,7 +46,7 @@ namespace SKA_Inventario
 
         private void btnAplicar_Click(object sender, EventArgs e)
         {
-            conManager.EditarFilial(this.getGridViewID(), txbNomeFilial.Text, txbCidadeFilial.Text, txbLogradouroFilial.Text, txbTelefoneFilial.Text);
+            ConManager.EditarFilial(this.getGridViewID(), txbNomeFilial.Text, txbCidadeFilial.Text, txbLogradouroFilial.Text, txbTelefoneFilial.Text);
             this.Close();
         }
 

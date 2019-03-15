@@ -15,7 +15,6 @@ namespace SKA_Inventario
         private int gridViewID;
         private string gridViewNome;
         private string gridViewDataCadastro;
-        private ConManager conManager = new ConManager();
 
         protected override void OnLoad(EventArgs e)
         {
@@ -43,7 +42,7 @@ namespace SKA_Inventario
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            conManager.editarProduto(gridViewID, txbNomePrdt.Text);
+            ConManager.EditarProduto(gridViewID, txbNomePrdt.Text);
             this.Close();
         }
 

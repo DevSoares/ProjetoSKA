@@ -13,8 +13,6 @@ namespace SKA_Inventario
 {
     public partial class FormCadFilial : Form
     {
-        private ConManager conManager = new ConManager();
-
         public FormCadFilial()
         {
             InitializeComponent();
@@ -22,7 +20,7 @@ namespace SKA_Inventario
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            conManager.CadastrarFilial(txbNomeFilial.Text, txbCidadeFilial.Text, txbLogFilial.Text, txbTelFilial.Text);
+            ConManager.CadastrarFilial(txbNomeFilial.Text, txbCidadeFilial.Text, txbLogFilial.Text, txbTelFilial.Text);
             this.Close();
         }
 

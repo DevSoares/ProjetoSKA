@@ -14,14 +14,27 @@ namespace SKA_Inventario
     {
         private ConManager conManager = new ConManager();
 
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            setComboBox();
+        }
+
         public FormCadPrdt()
         {
             InitializeComponent();
         }
 
+        private void setComboBox()
+        {
+            cb_Filial.DataSource = ConManager.Consultar("SELECT nome FROM Filiais").Tables[0];
+            cb_Filial.DisplayMember = "nome";
+        }
+
         private void btnOK_Click(object sender, EventArgs e)
         {
-            conManager.CadastrarProduto(txbNomePrdt.Text);            
+            ConManager.CadastrarProduto(txbNomePrdt.Text);                     
+            ConManager.MovimentarProduto(ConManager.GetLastProduto(), ConManager.GetCD_FilialPorNomeFilial(cb_Filial.Text), ConManager.GetCD_FilialPorNomeFilial(cb_Filial.Text));
             this.Close();
         }
 
@@ -29,6 +42,6 @@ namespace SKA_Inventario
         {
             MessageBox.Show("Operação cancelada!");
             this.Close();
-        }
+        }             
     }
 }

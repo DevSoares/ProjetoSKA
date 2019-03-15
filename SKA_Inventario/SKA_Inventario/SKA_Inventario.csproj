@@ -71,6 +71,30 @@
     <Compile Include="FormLogin.Designer.cs">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormMovimentar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMovimentar.Designer.cs">
+      <DependentUpon>FormMovimentar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPesqMovimentacaoPorData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPesqMovimentacaoPorData.Designer.cs">
+      <DependentUpon>FormPesqMovimentacaoPorData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPesqMovimentacaoPorFilial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPesqMovimentacaoPorFilial.Designer.cs">
+      <DependentUpon>FormPesqMovimentacaoPorFilial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPesquisarMovimentacaoPorCdProduto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPesquisarMovimentacaoPorCdProduto.Designer.cs">
+      <DependentUpon>FormPesquisarMovimentacaoPorCdProduto.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,11 +120,6 @@
       <DependentUpon>FormCadFilial.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
-    <Compile Include="ProjectSKADataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ProjectSKADataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormDeletarPrdt.resx">
       <DependentUpon>FormDeletarPrdt.cs</DependentUpon>
@@ -113,6 +132,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMovimentar.resx">
+      <DependentUpon>FormMovimentar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPesqMovimentacaoPorData.resx">
+      <DependentUpon>FormPesqMovimentacaoPorData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPesqMovimentacaoPorFilial.resx">
+      <DependentUpon>FormPesqMovimentacaoPorFilial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPesquisarMovimentacaoPorCdProduto.resx">
+      <DependentUpon>FormPesquisarMovimentacaoPorCdProduto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPrincipal.resx">
       <DependentUpon>FormPrincipal.cs</DependentUpon>
@@ -135,17 +166,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="ProjectSKADataSet.xsc">
-      <DependentUpon>ProjectSKADataSet.xsd</DependentUpon>
-    </None>
-    <None Include="ProjectSKADataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>ProjectSKADataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="ProjectSKADataSet.xss">
-      <DependentUpon>ProjectSKADataSet.xsd</DependentUpon>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
