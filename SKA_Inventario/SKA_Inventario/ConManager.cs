@@ -138,8 +138,6 @@ namespace SKA_Inventario
                 return new DataSet();
             }
         }
-
-
         //
         //  Função para editar a filial selecionada na tela de filiais
         //

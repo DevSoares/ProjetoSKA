@@ -37,16 +37,24 @@
             this.btnCadFilial = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btn_pesq_prdt_cd = new System.Windows.Forms.Button();
+            this.txb_CD_prdt = new System.Windows.Forms.TextBox();
+            this.btn_pesq_prdt_filial = new System.Windows.Forms.Button();
+            this.cb_prdt_filial = new System.Windows.Forms.ComboBox();
+            this.btn_pesq_prdt = new System.Windows.Forms.Button();
+            this.txbPesq = new System.Windows.Forms.TextBox();
+            this.btn_ordem = new System.Windows.Forms.Button();
             this.dataGVProdutos = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btn_ordem_mov = new System.Windows.Forms.Button();
+            this.btnPesqData = new System.Windows.Forms.Button();
             this.btnPesqFil = new System.Windows.Forms.Button();
             this.btnPesCodPrdt = new System.Windows.Forms.Button();
             this.btnListarMovimentacoes = new System.Windows.Forms.Button();
             this.btnHistorico = new System.Windows.Forms.Button();
             this.btnMovimentar = new System.Windows.Forms.Button();
             this.gridViewMovimentacoes = new System.Windows.Forms.DataGridView();
-            this.btnPesqData = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGVFilial)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -143,6 +151,13 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.btn_pesq_prdt_cd);
+            this.tabPage1.Controls.Add(this.txb_CD_prdt);
+            this.tabPage1.Controls.Add(this.btn_pesq_prdt_filial);
+            this.tabPage1.Controls.Add(this.cb_prdt_filial);
+            this.tabPage1.Controls.Add(this.btn_pesq_prdt);
+            this.tabPage1.Controls.Add(this.txbPesq);
+            this.tabPage1.Controls.Add(this.btn_ordem);
             this.tabPage1.Controls.Add(this.dataGVProdutos);
             this.tabPage1.Controls.Add(this.btnExcluirProduto);
             this.tabPage1.Controls.Add(this.btnCadastrarProduto);
@@ -155,6 +170,71 @@
             this.tabPage1.Text = "Produtos";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // btn_pesq_prdt_cd
+            // 
+            this.btn_pesq_prdt_cd.Location = new System.Drawing.Point(482, 11);
+            this.btn_pesq_prdt_cd.Name = "btn_pesq_prdt_cd";
+            this.btn_pesq_prdt_cd.Size = new System.Drawing.Size(45, 23);
+            this.btn_pesq_prdt_cd.TabIndex = 10;
+            this.btn_pesq_prdt_cd.Text = "Pesq";
+            this.btn_pesq_prdt_cd.UseVisualStyleBackColor = true;
+            this.btn_pesq_prdt_cd.Click += new System.EventHandler(this.btn_pesq_prdt_cd_Click);
+            // 
+            // txb_CD_prdt
+            // 
+            this.txb_CD_prdt.Location = new System.Drawing.Point(432, 12);
+            this.txb_CD_prdt.MaxLength = 50;
+            this.txb_CD_prdt.Name = "txb_CD_prdt";
+            this.txb_CD_prdt.Size = new System.Drawing.Size(44, 20);
+            this.txb_CD_prdt.TabIndex = 9;
+            this.txb_CD_prdt.TextChanged += new System.EventHandler(this.txb_CD_prdt_TextChanged);
+            // 
+            // btn_pesq_prdt_filial
+            // 
+            this.btn_pesq_prdt_filial.Location = new System.Drawing.Point(670, 11);
+            this.btn_pesq_prdt_filial.Name = "btn_pesq_prdt_filial";
+            this.btn_pesq_prdt_filial.Size = new System.Drawing.Size(58, 23);
+            this.btn_pesq_prdt_filial.TabIndex = 8;
+            this.btn_pesq_prdt_filial.Text = "Pesq";
+            this.btn_pesq_prdt_filial.UseVisualStyleBackColor = true;
+            this.btn_pesq_prdt_filial.Click += new System.EventHandler(this.btn_pesq_prdt_filial_Click);
+            // 
+            // cb_prdt_filial
+            // 
+            this.cb_prdt_filial.FormattingEnabled = true;
+            this.cb_prdt_filial.Location = new System.Drawing.Point(543, 12);
+            this.cb_prdt_filial.Name = "cb_prdt_filial";
+            this.cb_prdt_filial.Size = new System.Drawing.Size(121, 21);
+            this.cb_prdt_filial.TabIndex = 7;
+            // 
+            // btn_pesq_prdt
+            // 
+            this.btn_pesq_prdt.Location = new System.Drawing.Point(386, 11);
+            this.btn_pesq_prdt.Name = "btn_pesq_prdt";
+            this.btn_pesq_prdt.Size = new System.Drawing.Size(40, 23);
+            this.btn_pesq_prdt.TabIndex = 6;
+            this.btn_pesq_prdt.Text = "Pesq";
+            this.btn_pesq_prdt.UseVisualStyleBackColor = true;
+            this.btn_pesq_prdt.Click += new System.EventHandler(this.btn_pesq_prdt_Click);
+            // 
+            // txbPesq
+            // 
+            this.txbPesq.Location = new System.Drawing.Point(272, 12);
+            this.txbPesq.MaxLength = 50;
+            this.txbPesq.Name = "txbPesq";
+            this.txbPesq.Size = new System.Drawing.Size(108, 20);
+            this.txbPesq.TabIndex = 5;
+            // 
+            // btn_ordem
+            // 
+            this.btn_ordem.Location = new System.Drawing.Point(744, 11);
+            this.btn_ordem.Name = "btn_ordem";
+            this.btn_ordem.Size = new System.Drawing.Size(58, 23);
+            this.btn_ordem.TabIndex = 4;
+            this.btn_ordem.Text = "Data +";
+            this.btn_ordem.UseVisualStyleBackColor = true;
+            this.btn_ordem.Click += new System.EventHandler(this.btn_ordem_Click);
+            // 
             // dataGVProdutos
             // 
             this.dataGVProdutos.AllowUserToAddRows = false;
@@ -165,7 +245,7 @@
             this.dataGVProdutos.Name = "dataGVProdutos";
             this.dataGVProdutos.ReadOnly = true;
             this.dataGVProdutos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGVProdutos.Size = new System.Drawing.Size(797, 259);
+            this.dataGVProdutos.Size = new System.Drawing.Size(797, 555);
             this.dataGVProdutos.TabIndex = 3;
             this.dataGVProdutos.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGVProdutos_CellMouseClick);
             // 
@@ -185,6 +265,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.btn_ordem_mov);
             this.tabPage3.Controls.Add(this.btnPesqData);
             this.tabPage3.Controls.Add(this.btnPesqFil);
             this.tabPage3.Controls.Add(this.btnPesCodPrdt);
@@ -199,6 +280,26 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Movimentações";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // btn_ordem_mov
+            // 
+            this.btn_ordem_mov.Location = new System.Drawing.Point(583, 17);
+            this.btn_ordem_mov.Name = "btn_ordem_mov";
+            this.btn_ordem_mov.Size = new System.Drawing.Size(75, 23);
+            this.btn_ordem_mov.TabIndex = 7;
+            this.btn_ordem_mov.Text = "Data +";
+            this.btn_ordem_mov.UseVisualStyleBackColor = true;
+            this.btn_ordem_mov.Click += new System.EventHandler(this.btn_ordem_mov_Click);
+            // 
+            // btnPesqData
+            // 
+            this.btnPesqData.Location = new System.Drawing.Point(502, 17);
+            this.btnPesqData.Name = "btnPesqData";
+            this.btnPesqData.Size = new System.Drawing.Size(75, 23);
+            this.btnPesqData.TabIndex = 6;
+            this.btnPesqData.Text = "Pesq / Data";
+            this.btnPesqData.UseVisualStyleBackColor = true;
+            this.btnPesqData.Click += new System.EventHandler(this.btnPesqData_Click);
             // 
             // btnPesqFil
             // 
@@ -263,16 +364,6 @@
             this.gridViewMovimentacoes.TabIndex = 0;
             this.gridViewMovimentacoes.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.gridViewMovimentacoes_CellMouseClick);
             // 
-            // btnPesqData
-            // 
-            this.btnPesqData.Location = new System.Drawing.Point(502, 17);
-            this.btnPesqData.Name = "btnPesqData";
-            this.btnPesqData.Size = new System.Drawing.Size(75, 23);
-            this.btnPesqData.TabIndex = 6;
-            this.btnPesqData.Text = "Pesq / Data";
-            this.btnPesqData.UseVisualStyleBackColor = true;
-            this.btnPesqData.Click += new System.EventHandler(this.btnPesqData_Click);
-            // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -285,6 +376,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGVFilial)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGVProdutos)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
@@ -313,6 +405,14 @@
         private System.Windows.Forms.Button btnPesCodPrdt;
         private System.Windows.Forms.Button btnPesqFil;
         private System.Windows.Forms.Button btnPesqData;
+        private System.Windows.Forms.Button btn_ordem;
+        private System.Windows.Forms.Button btn_ordem_mov;
+        private System.Windows.Forms.TextBox txbPesq;
+        private System.Windows.Forms.Button btn_pesq_prdt_filial;
+        private System.Windows.Forms.ComboBox cb_prdt_filial;
+        private System.Windows.Forms.Button btn_pesq_prdt;
+        private System.Windows.Forms.Button btn_pesq_prdt_cd;
+        private System.Windows.Forms.TextBox txb_CD_prdt;
     }
 }
 

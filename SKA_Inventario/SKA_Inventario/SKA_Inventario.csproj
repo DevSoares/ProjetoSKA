@@ -77,6 +77,12 @@
     <Compile Include="FormMovimentar.Designer.cs">
       <DependentUpon>FormMovimentar.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormPesqMovimentacaoPorData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPesqMovimentacaoPorData.Designer.cs">
+      <DependentUpon>FormPesqMovimentacaoPorData.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormPesqMovimentacaoPorFilial.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -129,6 +135,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMovimentar.resx">
       <DependentUpon>FormMovimentar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPesqMovimentacaoPorData.resx">
+      <DependentUpon>FormPesqMovimentacaoPorData.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPesqMovimentacaoPorFilial.resx">
       <DependentUpon>FormPesqMovimentacaoPorFilial.cs</DependentUpon>

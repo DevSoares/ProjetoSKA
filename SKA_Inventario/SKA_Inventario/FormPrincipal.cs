@@ -15,6 +15,10 @@ namespace SKA_Inventario
     {
         public static DataGridView StaticGrid { get; set; }
         public static bool travaEx { get; set; }
+        private int controle_btn_ordem_prdt = 0;
+        private int controle_btn_ordem_mov = 0;
+
+        
         
         public FormPrincipal()
         {
@@ -28,6 +32,7 @@ namespace SKA_Inventario
         {
             base.OnLoad(e);
             travaEx = true;
+            load_cb_prdt_filiais();
             load_getProdutos();
             load_getFiliais();
             load_getMovimentacoes();
@@ -117,13 +122,20 @@ namespace SKA_Inventario
         //  Atualiza apenas o gridView produtos
         public void load_getProdutos()
         {
-            dataGVProdutos.DataSource = ConManager.Consultar("SELECT * FROM Produtos").Tables[0]; 
+            dataGVProdutos.DataSource = ConManager.Consultar("SELECT * FROM Produtos ORDER BY Produtos.cd_produto DESC").Tables[0]; 
         }
         //
         //  Atualiza apenas o gridView filiais
         public void load_getFiliais()
         {
             dataGVFilial.DataSource = ConManager.Consultar("SELECT * FROM Filiais").Tables[0];
+        }
+        //
+        //  Atualiza apenas o combo box de filiais na tela de produtos
+        public void load_cb_prdt_filiais()
+        {
+            cb_prdt_filial.DataSource = ConManager.Consultar("SELECT nome FROM Filiais").Tables[0];
+            cb_prdt_filial.DisplayMember = "nome";
         }
 
         public void load_getMovimentacoes()
@@ -212,9 +224,162 @@ namespace SKA_Inventario
             gridViewMovimentacoes = FormPrincipal.StaticGrid;
         }
 
+        private void btn_ordem_Click(object sender, EventArgs e)
+        {
+            controle_btn_ordem_prdt = controle_btn_ordem_prdt + 1;
+            if (controle_btn_ordem_prdt >= 4)
+            {
+                controle_btn_ordem_prdt = 0;
+            }
+            switch (controle_btn_ordem_prdt)
+            {
+                case 0:
+                    dataGVProdutos.DataSource = ConManager.Consultar("SELECT * FROM Produtos ORDER BY Produtos.cd_produto DESC").Tables[0];
+                    btn_ordem.Text = "Data +";
+                    break;
+                case 1:
+                    dataGVProdutos.DataSource = ConManager.Consultar("SELECT * FROM Produtos ORDER BY Produtos.nome ASC").Tables[0];
+                    btn_ordem.Text = "Az";
+                    break;
+                case 2:
+                    dataGVProdutos.DataSource = ConManager.Consultar("SELECT * FROM Produtos ORDER BY Produtos.nome DESC").Tables[0];
+                    btn_ordem.Text = "Za";
+                    break;
+                case 3:
+                    dataGVProdutos.DataSource = ConManager.Consultar("SELECT * FROM Produtos ORDER BY Produtos.cd_produto ASC").Tables[0];
+                    btn_ordem.Text = "Data -";
+                    break;
+            }
+        }
+
+        private void btn_ordem_mov_Click(object sender, EventArgs e)
+        {
+            controle_btn_ordem_mov = controle_btn_ordem_mov + 1;
+            if (controle_btn_ordem_mov >= 4)
+            {
+                controle_btn_ordem_mov = 0;
+            }
+            switch (controle_btn_ordem_mov)
+            {
+                case 0:
+                    gridViewMovimentacoes.DataSource = ConManager.Consultar("SELECT Movimentacoes.cd_movimentacao AS 'Código Movimentação' " +
+                                    ", Movimentacoes.cd_produto AS 'Código Produto' " +
+                                    ", Produtos.nome AS 'Produto' " +
+                                    ", Usuarios.usuario " +
+                                    ", Remetente.nome AS 'Filial Remetente' " +
+                                    ", Destinataria.nome AS 'Filial Destinataria' " +
+                                    ", Movimentacoes.dt_movimentacao " +
+                                    ", Produtos.disponivel " +
+                                    "FROM Movimentacoes " +
+                                    "INNER JOIN Produtos ON Movimentacoes.cd_produto = Produtos.cd_produto " +
+                                    "INNER JOIN Usuarios ON Movimentacoes.cd_usuario = Usuarios.cd_usuario " +
+                                    "LEFT JOIN Filiais Remetente ON Movimentacoes.cd_filial_remetente = Remetente.id " +
+                                    "LEFT JOIN Filiais Destinataria ON Movimentacoes.cd_filial_destinataria = Destinataria.id " +
+                                    "ORDER BY Movimentacoes.cd_movimentacao DESC").Tables[0];
+                    btn_ordem_mov.Text = "Data +";
+                    break;
+                case 1:
+                    gridViewMovimentacoes.DataSource = ConManager.Consultar("SELECT Movimentacoes.cd_movimentacao AS 'Código Movimentação' " +
+                                        ", Movimentacoes.cd_produto AS 'Código Produto' " +
+                                        ", Produtos.nome AS 'Produto' " +
+                                        ", Usuarios.usuario " +
+                                        ", Remetente.nome AS 'Filial Remetente' " +
+                                        ", Destinataria.nome AS 'Filial Destinataria' " +
+                                        ", Movimentacoes.dt_movimentacao " +
+                                        ", Produtos.disponivel " +
+                                        "FROM Movimentacoes " +
+                                        "INNER JOIN Produtos ON Movimentacoes.cd_produto = Produtos.cd_produto " +
+                                        "INNER JOIN Usuarios ON Movimentacoes.cd_usuario = Usuarios.cd_usuario " +
+                                        "LEFT JOIN Filiais Remetente ON Movimentacoes.cd_filial_remetente = Remetente.id " +
+                                        "LEFT JOIN Filiais Destinataria ON Movimentacoes.cd_filial_destinataria = Destinataria.id " +
+                                        "ORDER BY Produtos.nome ASC").Tables[0];
+                    btn_ordem_mov.Text = "Az";
+                    break;
+                case 2:
+                    gridViewMovimentacoes.DataSource = ConManager.Consultar("SELECT Movimentacoes.cd_movimentacao AS 'Código Movimentação' " +
+                                        ", Movimentacoes.cd_produto AS 'Código Produto' " +
+                                        ", Produtos.nome AS 'Produto' " +
+                                        ", Usuarios.usuario " +
+                                        ", Remetente.nome AS 'Filial Remetente' " +
+                                        ", Destinataria.nome AS 'Filial Destinataria' " +
+                                        ", Movimentacoes.dt_movimentacao " +
+                                        ", Produtos.disponivel " +
+                                        "FROM Movimentacoes " +
+                                        "INNER JOIN Produtos ON Movimentacoes.cd_produto = Produtos.cd_produto " +
+                                        "INNER JOIN Usuarios ON Movimentacoes.cd_usuario = Usuarios.cd_usuario " +
+                                        "LEFT JOIN Filiais Remetente ON Movimentacoes.cd_filial_remetente = Remetente.id " +
+                                        "LEFT JOIN Filiais Destinataria ON Movimentacoes.cd_filial_destinataria = Destinataria.id " +
+                                        "ORDER BY Produtos.nome DESC").Tables[0];
+                    btn_ordem_mov.Text = "Za";
+                    break;
+                case 3:
+                    gridViewMovimentacoes.DataSource = ConManager.Consultar("SELECT Movimentacoes.cd_movimentacao AS 'Código Movimentação' " +
+                                    ", Movimentacoes.cd_produto AS 'Código Produto' " +
+                                    ", Produtos.nome AS 'Produto' " +
+                                    ", Usuarios.usuario " +
+                                    ", Remetente.nome AS 'Filial Remetente' " +
+                                    ", Destinataria.nome AS 'Filial Destinataria' " +
+                                    ", Movimentacoes.dt_movimentacao " +
+                                    ", Produtos.disponivel " +
+                                    "FROM Movimentacoes " +
+                                    "INNER JOIN Produtos ON Movimentacoes.cd_produto = Produtos.cd_produto " +
+                                    "INNER JOIN Usuarios ON Movimentacoes.cd_usuario = Usuarios.cd_usuario " +
+                                    "LEFT JOIN Filiais Remetente ON Movimentacoes.cd_filial_remetente = Remetente.id " +
+                                    "LEFT JOIN Filiais Destinataria ON Movimentacoes.cd_filial_destinataria = Destinataria.id " +
+                                    "ORDER BY Movimentacoes.cd_movimentacao ASC").Tables[0];
+                    btn_ordem_mov.Text = "Data -";
+                    break;
+            }
+        }
+
+        private void btn_pesq_prdt_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txbPesq.Text) || string.IsNullOrWhiteSpace(txbPesq.Text)) 
+            {
+                dataGVProdutos.DataSource = ConManager.Consultar("SELECT * FROM Produtos ORDER BY cd_produto DESC").Tables[0];
+            }
+            else
+            {
+                dataGVProdutos.DataSource = ConManager.Consultar("SELECT * FROM Produtos WHERE nome=@nome", "@nome", txbPesq.Text).Tables[0];
+            }
+        }
+
+        private void btn_pesq_prdt_cd_Click(object sender, EventArgs e)
+        {
+            if(string.IsNullOrEmpty(txb_CD_prdt.Text)|| string.IsNullOrWhiteSpace(txb_CD_prdt.Text))
+            {
+                dataGVProdutos.DataSource = ConManager.Consultar("SELECT * FROM Produtos ORDER BY cd_produto DESC").Tables[0];
+            }
+            else
+            {
+                dataGVProdutos.DataSource = ConManager.Consultar("SELECT * FROM Produtos WHERE cd_produto=@cd_produto", "@cd_produto", Int32.Parse(txb_CD_prdt.Text)).Tables[0];
+            }
+        }
+        private void btn_pesq_prdt_filial_Click(object sender, EventArgs e)
+        {
+            dataGVProdutos.DataSource = ConManager.Consultar("SELECT Produtos.cd_produto " +
+                ", Produtos.nome , cd_filial_destinataria, Produtos.dt_criacao, cd_filial_destinataria" +
+                ", Produtos.disponivel FROM Movimentacoes " +
+                "LEFT JOIN Produtos ON Movimentacoes.cd_produto = Produtos.cd_produto " +
+                "WHERE Movimentacoes.cd_filial_destinataria = @parametro " +
+                "ORDER BY Produtos.cd_produto DESC", "@parametro", ConManager.GetCD_FilialPorNomeFilial(cb_prdt_filial.Text)).Tables[0];
+        }
+
+
+        private void txb_CD_prdt_TextChanged(object sender, EventArgs e)
+        {
+            if (System.Text.RegularExpressions.Regex.IsMatch(txb_CD_prdt.Text, "[^0-9]"))
+            {
+                MessageBox.Show("Favor digitar apenas numeros");
+                txb_CD_prdt.Text = txb_CD_prdt.Text.Remove(txb_CD_prdt.Text.Length - 1);
+            }
+        }
+
         private void btnPesqData_Click(object sender, EventArgs e)
         {
-
+            StaticGrid = gridViewMovimentacoes;
+            ShowFormPesqMovimentacaoPorData();
+            gridViewMovimentacoes = StaticGrid;
         }
         /*
          * 
@@ -348,6 +513,11 @@ namespace SKA_Inventario
             {
                 MessageBox.Show("Produto Indisponível!");
             }
+        }
+        public static void ShowFormPesqMovimentacaoPorData()
+        {
+            FormPesqMovimentacaoPorData formPesq = new FormPesqMovimentacaoPorData();
+            formPesq.Show();
         }
     }
 }

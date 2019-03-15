@@ -18,3 +18,4 @@ C:\Users\SKA\Documents\Análise Sistema de Inventário\SKA_Inventario\SKA_Invent
 C:\Users\SKA\Documents\Análise Sistema de Inventário\SKA_Inventario\SKA_Inventario\obj\Debug\SKA_Inventario.FormMovimentar.resources
 C:\Users\SKA\Documents\Análise Sistema de Inventário\SKA_Inventario\SKA_Inventario\obj\Debug\SKA_Inventario.FormPesquisarMovimentacaoPorCdProduto.resources
 C:\Users\SKA\Documents\Análise Sistema de Inventário\SKA_Inventario\SKA_Inventario\obj\Debug\SKA_Inventario.FormPesqMovimentacaoPorFilial.resources
+C:\Users\SKA\Documents\Análise Sistema de Inventário\SKA_Inventario\SKA_Inventario\obj\Debug\SKA_Inventario.FormPesqMovimentacaoPorData.resources
