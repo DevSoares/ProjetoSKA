@@ -29,9 +29,7 @@ namespace SKA_Inventario
             int cod_usuario = ConManager.GetUserIdByUsernameAndPassword(txbUsuario.Text, txbSenha.Text);
             if(Program.ValidLogin(cod_usuario, txbUsuario.Text) == true)
             {
-<<<<<<< HEAD
                 this.Dispose();
-=======
                 cd_usuario = cod_usuario;
                 if (ConManager.ValidUser(cd_usuario)==true)
                 {
@@ -50,7 +48,6 @@ namespace SKA_Inventario
             else
             {
                 MessageBox.Show("Usuário ou senha incorretos!");
->>>>>>> tela_movimentacoes
             }
         }
     }
