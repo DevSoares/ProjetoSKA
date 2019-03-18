@@ -192,16 +192,31 @@ namespace SKA_Inventario
 
         private void btnHistorico_Click(object sender, EventArgs e)
         {
+            DataGridViewRow row = gridViewMovimentacoes.Rows[gridViewMovimentacoes.CurrentRow.Index];
+            int cd_produto = int.Parse(row.Cells["Código Produto"].Value.ToString());
             if (travaEx!=true)
-            {                
-                gridViewMovimentacoes = ConManager.GetMovimentacaoProduto(gridViewMovimentacoes);
+            {
+                gridViewMovimentacoes.DataSource = ConManager.Consultar("SELECT Movimentacoes.cd_movimentacao" +
+                        ",Movimentacoes.cd_produto AS 'Código Produto'" +
+                        ",Produtos.nome AS 'Produto'" +
+                        ",Usuarios.usuario,Remetente.nome AS 'Filial Remetente'" +
+                        ",Destinataria.nome AS 'Filial Destinataria'" +
+                        ",Movimentacoes.dt_movimentacao " +
+                        ",Produtos.disponivel " +
+                        "FROM Movimentacoes " +
+                        "INNER JOIN Produtos ON Movimentacoes.cd_produto = Produtos.cd_produto " +
+                        "INNER JOIN Usuarios ON Movimentacoes.cd_usuario = Usuarios.cd_usuario " +
+                        "LEFT JOIN Filiais Remetente ON Movimentacoes.cd_filial_remetente = Remetente.id " +
+                        "LEFT JOIN Filiais Destinataria ON Movimentacoes.cd_filial_destinataria = Destinataria.id " +
+                        "WHERE Movimentacoes.cd_produto = @pCDproduto " +
+                        "ORDER BY Movimentacoes.cd_movimentacao DESC", "@pCDproduto", cd_produto).Tables[0]; 
             }
             else
             {
                 MessageBox.Show("Nenhum item selecionado");
+                load_getMovimentacoes();
             }
-            travaEx = true;
-            load_getMovimentacoes();
+            travaEx = true;            
         }
 
         private void btnListarMovimentacoes_Click(object sender, EventArgs e)
@@ -284,15 +299,20 @@ namespace SKA_Inventario
         }
 
         private void btn_pesq_prdt_Click(object sender, EventArgs e)
-        {
+        {            
             if (string.IsNullOrEmpty(txbPesq.Text) || string.IsNullOrWhiteSpace(txbPesq.Text)) 
             {
                 dataGVProdutos.DataSource = ConManager.Consultar("SELECT * FROM Produtos ORDER BY cd_produto DESC").Tables[0];
             }
             else
             {
-                dataGVProdutos.DataSource = ConManager.Consultar("SELECT * FROM Produtos WHERE nome=@nome", "@nome", txbPesq.Text).Tables[0];
+                dataGVProdutos.DataSource = ConManager.Consultar("SELECT * FROM Produtos WHERE nome LIKE '%'+@nome+'%'", "@nome", txbPesq.Text).Tables[0];
             }
+        }
+
+        private void txbPesq_Click(object sender, EventArgs e)
+        {
+            txbPesq.Text = "";
         }
 
         private void btn_pesq_prdt_cd_Click(object sender, EventArgs e)
@@ -306,6 +326,12 @@ namespace SKA_Inventario
                 dataGVProdutos.DataSource = ConManager.Consultar("SELECT * FROM Produtos WHERE cd_produto=@cd_produto", "@cd_produto", Int32.Parse(txb_CD_prdt.Text)).Tables[0];
             }
         }
+
+        private void txb_CD_prdt_Click(object sender, EventArgs e)
+        {
+            txb_CD_prdt.Text = "";
+        }
+
         private void btn_pesq_prdt_filial_Click(object sender, EventArgs e)
         {
             dataGVProdutos.DataSource = ConManager.Consultar("SELECT Produtos.cd_produto " +

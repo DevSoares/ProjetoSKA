@@ -102,8 +102,9 @@
             this.dataGVFilial.Location = new System.Drawing.Point(6, 40);
             this.dataGVFilial.MultiSelect = false;
             this.dataGVFilial.Name = "dataGVFilial";
+            this.dataGVFilial.ReadOnly = true;
             this.dataGVFilial.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGVFilial.Size = new System.Drawing.Size(706, 280);
+            this.dataGVFilial.Size = new System.Drawing.Size(830, 564);
             this.dataGVFilial.TabIndex = 3;
             this.dataGVFilial.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGVFilial_CellMouseClick);
             // 
@@ -187,6 +188,8 @@
             this.txb_CD_prdt.Name = "txb_CD_prdt";
             this.txb_CD_prdt.Size = new System.Drawing.Size(44, 20);
             this.txb_CD_prdt.TabIndex = 9;
+            this.txb_CD_prdt.Text = "código";
+            this.txb_CD_prdt.Click += new System.EventHandler(this.txb_CD_prdt_Click);
             this.txb_CD_prdt.TextChanged += new System.EventHandler(this.txb_CD_prdt_TextChanged);
             // 
             // btn_pesq_prdt_filial
@@ -224,6 +227,8 @@
             this.txbPesq.Name = "txbPesq";
             this.txbPesq.Size = new System.Drawing.Size(108, 20);
             this.txbPesq.TabIndex = 5;
+            this.txbPesq.Text = "nome";
+            this.txbPesq.Click += new System.EventHandler(this.txbPesq_Click);
             // 
             // btn_ordem
             // 
@@ -360,7 +365,7 @@
             this.gridViewMovimentacoes.Name = "gridViewMovimentacoes";
             this.gridViewMovimentacoes.ReadOnly = true;
             this.gridViewMovimentacoes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridViewMovimentacoes.Size = new System.Drawing.Size(804, 373);
+            this.gridViewMovimentacoes.Size = new System.Drawing.Size(804, 546);
             this.gridViewMovimentacoes.TabIndex = 0;
             this.gridViewMovimentacoes.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.gridViewMovimentacoes_CellMouseClick);
             // 
