@@ -37,7 +37,7 @@ namespace SKA_Inventario
             // valor padrão para retorno da função
             int userId = 0;
 
-            SqlConnection con = new SqlConnection("Server=DESKTOP-FP3Q8AQ\\SQLEXPRESS2008; Database=ProjectSKA; User Id=SQL_PROJECT_SKA;Password=Dev0test@;");
+            SqlConnection con = new SqlConnection(connString);
             using (SqlCommand cmd = new SqlCommand("SELECT cd_usuario, senha, guid_usuario FROM Usuarios WHERE usuario=@username", con))
             {
                 cmd.Parameters.AddWithValue("@username", username);

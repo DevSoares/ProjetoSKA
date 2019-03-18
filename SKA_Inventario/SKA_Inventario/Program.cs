@@ -36,7 +36,6 @@ namespace SKA_Inventario
             }
             else
             {
-                MessageBox.Show("Usuário ou senha incorretos!");
                 return false;
             }
         }

@@ -29,15 +29,13 @@ namespace SKA_Inventario
             int cod_usuario = ConManager.GetUserIdByUsernameAndPassword(txbUsuario.Text, txbSenha.Text);
             if(Program.ValidLogin(cod_usuario, txbUsuario.Text) == true)
             {
-                this.Dispose();
                 cd_usuario = cod_usuario;
                 if (ConManager.ValidUser(cd_usuario)==true)
                 {
                     FormPrincipal formPrincipal = new FormPrincipal();
                     formPrincipal.Show();
                     formPrincipal.Text = formPrincipal.Text + " | Usuário: " + txbUsuario.Text + " |";
-                    this.Hide();
-                    formPrincipal.FormClosed += new FormClosedEventHandler(formPrincipal.FormPrincipal_FormClosed);
+                    this.Dispose();
                 }
                 else
                 {
