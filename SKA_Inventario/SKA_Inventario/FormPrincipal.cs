@@ -90,7 +90,21 @@ namespace SKA_Inventario
         {
             if (travaEx != true)
             {
-                showFormDeletarFilial(dataGVFilial);                
+                DataGridViewRow row = dataGVFilial.Rows[dataGVFilial.CurrentRow.Index];
+                DataSet table = ConManager.Consultar("select max(cd_movimentacao), Movimentacoes.cd_produto,cd_filial_destinataria, Produtos.disponivel "+
+                    "FROM Movimentacoes " +
+                    "INNER JOIN Produtos ON Movimentacoes.cd_produto = Produtos.cd_produto "+
+                    "WHERE cd_filial_destinataria = @valor AND Produtos.disponivel =1 "+
+                    "group by Movimentacoes.cd_produto,cd_filial_destinataria, Produtos.disponivel", "@valor", int.Parse(row.Cells["id"].Value.ToString()));
+                if (table.Tables[0].Rows.Count>0)
+                {
+                    MessageBox.Show("A filial selecionado possui produtos vinculados!" +
+                    "\nPor favor movimente os produtos para outras filiais e tente novamente.");
+                }
+                else
+                {
+                    showFormDeletarFilial(dataGVFilial);
+                }        
             }
             else
             {
@@ -336,11 +350,14 @@ namespace SKA_Inventario
 
         private void btn_pesq_prdt_filial_Click(object sender, EventArgs e)
         {
-            dataGVProdutos.DataSource = ConManager.Consultar("SELECT Produtos.cd_produto " +
-                ", Produtos.nome , cd_filial_destinataria, Produtos.dt_criacao, cd_filial_destinataria" +
+            dataGVProdutos.DataSource = ConManager.Consultar("SELECT Movimentacoes.cd_produto " +
+                ", Produtos.nome , Produtos.dt_criacao, Movimentacoes.cd_filial_destinataria AS 'Código da Filial' " +
+                ",Filiais.nome AS 'Nome da Filial' " +
                 ", Produtos.disponivel FROM Movimentacoes " +
-                "LEFT JOIN Produtos ON Movimentacoes.cd_produto = Produtos.cd_produto " +
-                "WHERE Movimentacoes.cd_filial_destinataria = @parametro " +
+                "LEFT JOIN Produtos ON Produtos.cd_produto = Movimentacoes.cd_produto " +
+                "LEFT JOIN Filiais ON Filiais.id = Movimentacoes.cd_filial_destinataria "+
+                "WHERE cd_movimentacao IN (SELECT MAX(cd_movimentacao) FROM Movimentacoes GROUP BY	cd_produto) " +
+                "AND cd_filial_destinataria=@parametro " +
                 "ORDER BY Produtos.cd_produto DESC", "@parametro", ConManager.GetCD_FilialPorNomeFilial(cb_prdt_filial.Text)).Tables[0];
         }
 
