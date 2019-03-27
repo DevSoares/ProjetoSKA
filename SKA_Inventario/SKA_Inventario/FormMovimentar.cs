@@ -34,6 +34,7 @@ namespace SKA_Inventario
             txbRemetente.Text = Filial_Remetente;
             cbDestinataria.DataSource = ConManager.Consultar("SELECT nome FROM Filiais WHERE disponivel = 1 AND nome !=@nome ", "@nome", Filial_Remetente).Tables[0];
             cbDestinataria.DisplayMember = "nome";
+            cbDestinataria.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void btnMovimentar_Click(object sender, EventArgs e)

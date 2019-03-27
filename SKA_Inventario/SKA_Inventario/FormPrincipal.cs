@@ -38,7 +38,7 @@ namespace SKA_Inventario
             load_getProdutos();
             load_getFiliais();
             load_getMovimentacoes();
-
+            cb_prdt_filial.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void btnCadastrar_Click(object sender, EventArgs e)

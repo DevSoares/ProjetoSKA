@@ -28,15 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.txbNomePrdt = new System.Windows.Forms.TextBox();
             this.lblNomePrdt = new System.Windows.Forms.Label();
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.lblFilial = new System.Windows.Forms.Label();
-            this.filiaisBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cb_Filial = new System.Windows.Forms.ComboBox();
-            ((System.ComponentModel.ISupportInitialize)(this.filiaisBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // txbNomePrdt
@@ -90,10 +87,6 @@
             this.lblFilial.TabIndex = 4;
             this.lblFilial.Text = "Filial :";
             // 
-            // filiaisBindingSource
-            // 
-            this.filiaisBindingSource.DataMember = "Filiais";
-            // 
             // cb_Filial
             // 
             this.cb_Filial.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
@@ -117,7 +110,6 @@
             this.Controls.Add(this.txbNomePrdt);
             this.Name = "FormCadPrdt";
             this.Text = "Cadastro de Produto";
-            ((System.ComponentModel.ISupportInitialize)(this.filiaisBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -130,7 +122,6 @@
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Label lblFilial;
-        private System.Windows.Forms.BindingSource filiaisBindingSource;
         private System.Windows.Forms.ComboBox cb_Filial;
     }
 }
