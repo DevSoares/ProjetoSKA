@@ -32,7 +32,7 @@ namespace SKA_Inventario
             txbCdPrdt.Text = Cd_produto.ToString();
             txbNomePrdt.Text = Nome_produto;
             txbRemetente.Text = Filial_Remetente;
-            cbDestinataria.DataSource = ConManager.Consultar("SELECT nome FROM Filiais").Tables[0];
+            cbDestinataria.DataSource = ConManager.Consultar("SELECT nome FROM Filiais WHERE disponivel = 1 AND nome !=@nome ", "@nome", Filial_Remetente).Tables[0];
             cbDestinataria.DisplayMember = "nome";
         }
 

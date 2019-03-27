@@ -91,11 +91,10 @@ namespace SKA_Inventario
             if (travaEx != true)
             {
                 DataGridViewRow row = dataGVFilial.Rows[dataGVFilial.CurrentRow.Index];
-                DataSet table = ConManager.Consultar("select max(cd_movimentacao), Movimentacoes.cd_produto,cd_filial_destinataria, Produtos.disponivel "+
-                    "FROM Movimentacoes " +
-                    "INNER JOIN Produtos ON Movimentacoes.cd_produto = Produtos.cd_produto "+
-                    "WHERE cd_filial_destinataria = @valor AND Produtos.disponivel =1 "+
-                    "group by Movimentacoes.cd_produto,cd_filial_destinataria, Produtos.disponivel", "@valor", int.Parse(row.Cells["id"].Value.ToString()));
+                DataSet table = ConManager.Consultar("SELECT *  FROM Movimentacoes "+
+                        "INNER JOIN Produtos ON Movimentacoes.cd_produto = Produtos.cd_produto "+
+                        "WHERE cd_movimentacao IN(SELECT MAX(cd_movimentacao) FROM Movimentacoes GROUP BY cd_produto) "+
+                        "AND cd_filial_destinataria = @valor AND Produtos.disponivel = 1", "@valor", int.Parse(row.Cells["id"].Value.ToString()));
                 if (table.Tables[0].Rows.Count>0)
                 {
                     MessageBox.Show("A filial selecionado possui produtos vinculados!" +
@@ -178,8 +177,7 @@ namespace SKA_Inventario
             if (travaEx!=true)
             {
                 StaticGrid = dataGVProdutos;
-                StaticGrid.DataSource = ConManager.Consultar("SELECT * FROM Produtos").Tables[0];
-                showFormDeletarProduto(dataGVProdutos);
+                showFormDeletarProduto(dataGVProdutos);                
             }
             else
             {
