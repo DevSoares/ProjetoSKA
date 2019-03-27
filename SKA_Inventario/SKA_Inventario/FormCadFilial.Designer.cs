@@ -111,6 +111,7 @@
             this.txbTelFilial.Name = "txbTelFilial";
             this.txbTelFilial.Size = new System.Drawing.Size(550, 20);
             this.txbTelFilial.TabIndex = 7;
+            this.txbTelFilial.TextChanged += new System.EventHandler(this.txbTelFilial_TextChanged);
             // 
             // btnOK
             // 

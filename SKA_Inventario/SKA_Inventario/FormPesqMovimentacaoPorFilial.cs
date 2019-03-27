@@ -25,6 +25,7 @@ namespace SKA_Inventario
         {
             cb_Filial.DataSource = ConManager.Consultar("SELECT nome FROM Filiais").Tables[0];
             cb_Filial.DisplayMember = "nome";
+            cb_Filial.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void btnOK_Click(object sender, EventArgs e)

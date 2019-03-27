@@ -42,8 +42,16 @@ namespace SKA_Inventario
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            ConManager.EditarProduto(gridViewID, txbNomePrdt.Text);
-            this.Close();
+            if (!string.IsNullOrWhiteSpace(txbNomePrdt.Text))
+            {
+                ConManager.EditarProduto(gridViewID, txbNomePrdt.Text);
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("O nome do produto não pode estar em branco!");
+            }
+
         }
 
         //

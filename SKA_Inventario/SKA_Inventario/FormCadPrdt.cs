@@ -34,9 +34,16 @@ namespace SKA_Inventario
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            ConManager.CadastrarProduto(txbNomePrdt.Text);                     
-            ConManager.MovimentarProduto(ConManager.GetLastProduto(), ConManager.GetCD_FilialPorNomeFilial(cb_Filial.Text), ConManager.GetCD_FilialPorNomeFilial(cb_Filial.Text));
-            this.Close();
+            if(!string.IsNullOrWhiteSpace(txbNomePrdt.Text))
+            {
+                ConManager.CadastrarProduto(txbNomePrdt.Text);
+                ConManager.MovimentarProduto(ConManager.GetLastProduto(), ConManager.GetCD_FilialPorNomeFilial(cb_Filial.Text), ConManager.GetCD_FilialPorNomeFilial(cb_Filial.Text));
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("O nome do produto não pode estar em branco!");
+            }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

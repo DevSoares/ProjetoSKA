@@ -20,14 +20,31 @@ namespace SKA_Inventario
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            ConManager.CadastrarFilial(txbNomeFilial.Text, txbCidadeFilial.Text, txbLogFilial.Text, txbTelFilial.Text);
-            this.Close();
+            if (!string.IsNullOrWhiteSpace(txbNomeFilial.Text)&&!string.IsNullOrWhiteSpace(txbCidadeFilial.Text)&&!string.IsNullOrWhiteSpace(txbLogFilial.Text)&&!string.IsNullOrWhiteSpace(txbTelFilial.Text))
+            {
+                ConManager.CadastrarFilial(txbNomeFilial.Text, txbCidadeFilial.Text, txbLogFilial.Text, txbTelFilial.Text);
+                this.Close();
+
+            }
+            else
+            {
+                MessageBox.Show("Por favor preencha os campos acima!");
+            }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Operação cancelada");
             this.Close();
+        }
+
+        private void txbTelFilial_TextChanged(object sender, EventArgs e)
+        {
+            if (System.Text.RegularExpressions.Regex.IsMatch(txbTelFilial.Text, "[^0-9]"))
+            {
+                MessageBox.Show("Favor digitar apenas numeros");
+                txbTelFilial.Text = txbTelFilial.Text.Remove(txbTelFilial.Text.Length - 1);
+            }
         }
     }
 }

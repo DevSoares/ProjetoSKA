@@ -46,8 +46,15 @@ namespace SKA_Inventario
 
         private void btnAplicar_Click(object sender, EventArgs e)
         {
-            ConManager.EditarFilial(this.getGridViewID(), txbNomeFilial.Text, txbCidadeFilial.Text, txbLogradouroFilial.Text, txbTelefoneFilial.Text);
-            this.Close();
+            if (!string.IsNullOrWhiteSpace(txbNomeFilial.Text)&&!string.IsNullOrWhiteSpace(txbCidadeFilial.Text)&&!string.IsNullOrWhiteSpace(txbLogradouroFilial.Text)&&!string.IsNullOrWhiteSpace(txbTelefoneFilial.Text))
+            {
+                ConManager.EditarFilial(this.getGridViewID(), txbNomeFilial.Text, txbCidadeFilial.Text, txbLogradouroFilial.Text, txbTelefoneFilial.Text);
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Por favor preencha os campos acima!");
+            }
         }
 
         //
@@ -92,6 +99,15 @@ namespace SKA_Inventario
         public string getGridViewTelefone()
         {
             return this.gridViewTelefone;
-        }       
+        }
+
+        private void txbTelefoneFilial_TextChanged(object sender, EventArgs e)
+        {
+            if (System.Text.RegularExpressions.Regex.IsMatch(txbTelefoneFilial.Text, "[^0-9]"))
+            {
+                MessageBox.Show("Favor digitar apenas numeros");
+                txbTelefoneFilial.Text = txbTelefoneFilial.Text.Remove(txbTelefoneFilial.Text.Length - 1);
+            }
+        }
     }
 }
