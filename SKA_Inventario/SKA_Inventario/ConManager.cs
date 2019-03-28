@@ -325,7 +325,61 @@ namespace SKA_Inventario
             {
                 MessageBox.Show(ex.Message);
             }
-        }              
+        }
+
+        //  Retorna uma string usando um dataReader e recebendo um parametro do tipo INT
+        public static string GetStringConsulta(string query, string parametro, int valor)
+        {
+            string retorno = "";
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connString))
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue(parametro, valor);
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        retorno = reader.GetString(0);
+                    }
+                    reader.Close();                   
+                    return retorno;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            return retorno;
+        }
+
+        //  Retorna uma string usando um dataReader e recebendo um parametro do tipo string
+        public static string GetStringConsulta(string query, string parametro, string valor)
+        {
+            string retorno = "";
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connString))
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue(parametro, valor);
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        retorno = reader.GetString(0);
+                    }
+                    reader.Close();
+                    return retorno;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            return retorno;
+        }
         //
         //      Função para pegar o último produto cadastrado
         public static int GetLastProduto()

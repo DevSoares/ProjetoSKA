@@ -84,6 +84,7 @@ namespace SKA_Inventario
         private void FormCadFilial_FormClosed(object sender, FormClosedEventArgs e)
         {
             load_getFiliais();
+            load_cb_prdt_filiais();
         }
 
         private void btnDelFilial_Click(object sender, EventArgs e)
@@ -331,19 +332,28 @@ namespace SKA_Inventario
 
         private void btn_pesq_prdt_cd_Click(object sender, EventArgs e)
         {
-            if(string.IsNullOrEmpty(txb_CD_prdt.Text)|| string.IsNullOrWhiteSpace(txb_CD_prdt.Text))
+            if (travaEx != true)
             {
-                dataGVProdutos.DataSource = ConManager.Consultar("SELECT * FROM Produtos ORDER BY cd_produto DESC").Tables[0];
+                if (!string.IsNullOrEmpty(txb_CD_prdt.Text) || !string.IsNullOrWhiteSpace(txb_CD_prdt.Text))
+                {
+                    dataGVProdutos.DataSource = ConManager.Consultar("SELECT * FROM Produtos WHERE cd_produto=@cd_produto", "@cd_produto", Int32.Parse(txb_CD_prdt.Text)).Tables[0];
+                    travaEx = true;
+                }
+                else
+                {
+                    dataGVProdutos.DataSource = ConManager.Consultar("SELECT * FROM Produtos ORDER BY cd_produto DESC").Tables[0];
+                }
             }
             else
             {
-                dataGVProdutos.DataSource = ConManager.Consultar("SELECT * FROM Produtos WHERE cd_produto=@cd_produto", "@cd_produto", Int32.Parse(txb_CD_prdt.Text)).Tables[0];
+                MessageBox.Show("Insira um código!");
             }
         }
 
         private void txb_CD_prdt_Click(object sender, EventArgs e)
         {
             txb_CD_prdt.Text = "";
+            travaEx = false;
         }
 
         private void btn_pesq_prdt_filial_Click(object sender, EventArgs e)
@@ -520,13 +530,14 @@ namespace SKA_Inventario
         {
             //  pegando o index da linha selecionada no datagridview
             DataGridViewRow row = gridView.Rows[gridView.CurrentRow.Index];
-            //atribuindo novo form e passando os dados da row selecionada
             if (row.Cells["disponivel"].Value.Equals(true))
             {
                 FormMovimentar formMovimentar = new FormMovimentar();
                 formMovimentar.Cd_produto = ConManager.GetCD_ProdutoPorCD_Movimentacao(int.Parse(row.Cells["cd_movimentacao"].Value.ToString()));
                 formMovimentar.Nome_produto = (row.Cells["Produto"].Value.ToString());
-                formMovimentar.Filial_Remetente = row.Cells["Filial Destinataria"].Value.ToString();
+                formMovimentar.Filial_Remetente = ConManager.GetStringConsulta("SELECT Filiais.nome FROM Movimentacoes " +
+                "INNER JOIN Filiais ON Movimentacoes.cd_filial_destinataria = Filiais.id " +
+                "WHERE cd_movimentacao IN(SELECT MAX(cd_movimentacao) FROM Movimentacoes WHERE cd_produto = @produto)", "@produto", int.Parse(row.Cells["Código Produto"].Value.ToString()));
                 formMovimentar.Show();
                 formMovimentar.FormClosed += FormMovimentar_FormClosed;
             }
