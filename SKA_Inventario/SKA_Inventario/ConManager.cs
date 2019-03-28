@@ -327,32 +327,6 @@ namespace SKA_Inventario
             }
         }
 
-        //  Retorna uma string usando um dataReader e recebendo um parametro do tipo INT
-        public static string GetStringConsulta(string query, string parametro, int valor)
-        {
-            string retorno = "";
-            try
-            {
-                using (SqlConnection connection = new SqlConnection(connString))
-                {
-                    connection.Open();
-                    SqlCommand command = new SqlCommand(query, connection);
-                    command.Parameters.AddWithValue(parametro, valor);
-                    SqlDataReader reader = command.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        retorno = reader.GetString(0);
-                    }
-                    reader.Close();                   
-                    return retorno;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            return retorno;
-        }
 
         //  Retorna uma string usando um dataReader e recebendo um parametro do tipo string
         public static string GetStringConsulta(string query, string parametro, string valor)
@@ -380,6 +354,60 @@ namespace SKA_Inventario
             }
             return retorno;
         }
+        //  Retorna uma string usando um dataReader e recebendo um parametro do tipo INT
+        public static string GetStringConsulta(string query, string parametro, int valor)
+        {
+            string retorno = "";
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connString))
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue(parametro, valor);
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        retorno = reader.GetString(0);
+                    }
+                    reader.Close();
+                    return retorno;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            return retorno;
+        }
+
+        //  Retorna um INT usando um dataReader e recebendo um parametro do tipo INT
+        public static int GetIntConsulta(string query, string parametro, int valor)
+        {
+            int retorno = 0;
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connString))
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue(parametro, valor);
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        retorno = reader.GetInt32(0);
+                    }
+                    reader.Close();
+                    return retorno;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            return retorno;
+        }
+
         //
         //      Função para pegar o último produto cadastrado
         public static int GetLastProduto()

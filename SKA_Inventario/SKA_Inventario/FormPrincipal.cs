@@ -42,8 +42,9 @@ namespace SKA_Inventario
         }
 
         private void btnCadastrar_Click(object sender, EventArgs e)
-        {            
-            if (dataGVFilial.RowCount > 0)
+        {
+            int trava = ConManager.GetIntConsulta("SELECT COUNT(nome) FROM Filiais WHERE disponivel = @parametro", "@parametro", 1);
+            if (trava>0)
             {
                 FormCadPrdt formCadPrdt = new FormCadPrdt();
                 formCadPrdt.Show();
