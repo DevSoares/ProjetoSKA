@@ -11,7 +11,7 @@ namespace SKA_Inventario
 {
     class ConManager
     {
-        public static string connString = "Server=DESKTOP-FP3Q8AQ\\SQLEXPRESS2008; Database=ProjectSKA; User Id=SQL_PROJECT_SKA;Password=Dev0test@;";
+        public static string connString = "Server=DEV-LS\\SQLEXPRESS2008; Database=ProjectSKA; User Id=SQL_PROJECT_SKA;Password=Sql@D3v7este;";
 
         //
         //  Função para criptografar a senha
@@ -241,7 +241,7 @@ namespace SKA_Inventario
         {            
             try
             {
-                string connString = "Server=DESKTOP-FP3Q8AQ\\SQLEXPRESS2008; Database=ProjectSKA; User Id=SQL_PROJECT_SKA;Password=Dev0test@;";
+                string connString = "Server=DEV-LS\\SQLEXPRESS2008; Database=ProjectSKA; User Id=SQL_PROJECT_SKA;Password=Sql@D3v7este;";
                 using (SqlConnection connection = new SqlConnection(connString))
                 {
                     //  abrindo a conexão com o servidor sql
@@ -471,7 +471,7 @@ namespace SKA_Inventario
         {
             try
             {
-                string connString = "Server=DESKTOP-FP3Q8AQ\\SQLEXPRESS2008; Database=ProjectSKA; User Id=SQL_PROJECT_SKA;Password=Dev0test@;";
+                string connString = "Server=DEV-LS\\SQLEXPRESS2008; Database=ProjectSKA; User Id=SQL_PROJECT_SKA;Password=Sql@D3v7este;";
                 using (SqlConnection connection = new SqlConnection(connString))
                 {
                     connection.Open();
@@ -553,7 +553,7 @@ namespace SKA_Inventario
         {            
             try
             {
-                string connString = "Server=DESKTOP-FP3Q8AQ\\SQLEXPRESS2008; Database=ProjectSKA; User Id=SQL_PROJECT_SKA;Password=Dev0test@;";
+                string connString = "Server=DEV-LS\\SQLEXPRESS2008; Database=ProjectSKA; User Id=SQL_PROJECT_SKA;Password=Sql@D3v7este;";
                 using (SqlConnection connection = new SqlConnection(connString))
                 {
                     // abrindo conexão com o DB

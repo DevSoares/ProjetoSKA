@@ -11,7 +11,7 @@ namespace GerenteUsuariosSKA
 {
     public class UserDataBase
     {
-        private static string connectionstring = "Server=DESKTOP-FP3Q8AQ\\SQLEXPRESS2008; Database=ProjectSKA; User Id=SQL_PROJECT_SKA;Password=Dev0test@;";
+        private static string connectionstring = "Server=DEV-LS\\SQLEXPRESS2008; Database=ProjectSKA; User Id=SQL_PROJECT_SKA;Password=Sql@D3v7este;";
 
         public static bool AddUser(string username, string password)
         {
@@ -98,7 +98,7 @@ namespace GerenteUsuariosSKA
         {
             try
             {
-                string connString = "Server=DESKTOP-FP3Q8AQ\\SQLEXPRESS2008; Database=ProjectSKA; User Id=SQL_PROJECT_SKA;Password=Dev0test@;";
+                string connString = "Server=DEV-LS\\SQLEXPRESS2008; Database=ProjectSKA; User Id=SQL_PROJECT_SKA;Password=Sql@D3v7este;";
                 using (SqlConnection connection = new SqlConnection(connString))
                 {
                     // abrindo conexão com o DB
